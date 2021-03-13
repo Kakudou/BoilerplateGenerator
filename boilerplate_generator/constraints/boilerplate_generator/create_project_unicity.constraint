@@ -1,0 +1,7 @@
+Constraint: A Project should'nt be create if another one exist with the same name.
+
+    Scenario: Create a Project who already exist to check the error.
+        Given i have a <project> already created.
+        When i try to create another <project> with the same <project_name>.
+        Then i have an error telling me <project_name> already exist.
+

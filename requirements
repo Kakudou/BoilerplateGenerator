@@ -1,0 +1,9 @@
+# Requirements file
+Jinja2
+PyYAML
+click
+questionary
+
+flake8
+pynvim
+pytest-bdd

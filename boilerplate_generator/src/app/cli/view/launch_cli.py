@@ -18,6 +18,8 @@ from boilerplate_generator.src.app.cli.view.project.list_projects\
 from boilerplate_generator.src.app.cli.view.project.generate_structure\
     import GenerateStructure
 
+from boilerplate_generator.src.app.cli.view.feature.create_feature\
+    import CreateFeature
 
 class OrderedGroup(click.Group):
     def __init__(self, name=None, commands=None, **attrs):
@@ -87,3 +89,12 @@ class LaunchCLI:
         click.echo("let's generate a project structure")
         gs = GenerateStructure()
         gs.show(project_name, files_dir, force)
+
+    @start.command()
+    @click.option("-p", "--project", "project_name", help="The name of the targeted project")
+    @click.option("-d", "--dir", "files_dir", help="The dir of the yaml files")
+    def create_feature(project_name, files_dir):
+        """Create a new feature."""
+        click.echo("let's create a new feature")
+        cf = CreateFeature()
+        cf.show(project_name, files_dir)

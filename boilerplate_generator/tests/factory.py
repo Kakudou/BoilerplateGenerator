@@ -14,3 +14,17 @@ class Factory:
         project["types"] = ["cli", "web", "api"]
 
         return project
+
+    @classmethod
+    def create_feature(cls, name: str) -> Dict:
+        """Will create a feature based on the name """
+        feature = {}
+
+        feature["name"] = f"Name{name}"
+        feature["description"] = "Description for the feature"
+        feature["scenario"] = "Description for the scenario"
+        feature["given"] = "Given for the scenario"
+        feature["when"] = "When for the scenario"
+        feature["then"] = "Then for the scenario"
+
+        return feature

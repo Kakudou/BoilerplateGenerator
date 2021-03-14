@@ -32,4 +32,3 @@ class LaunchCLI:
         click.echo("let's create a new project")
         cp = CreateProject()
         cp.show()
-

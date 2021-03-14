@@ -14,7 +14,7 @@ from boilerplate_generator.src.app.adapter.\
     project.delete_project.delete_project_adapter\
     import DeleteProjectAdapter
 
-STORAGE_ENGINE = "INMEMORY"
+STORAGE_ENGINE = "INFILE"
 __fullpath = os.path.dirname(os.path.abspath(__file__))
 
 
@@ -33,7 +33,7 @@ def context():
 
 @given("I have a <project> already created.")
 def given_delete_project(context):
-    context["project"] = Factory.create_project("DeleteProject")
+    context["project"] = Factory.create_project("DeleteProjectInFile")
     CreateProjectAdapter.execute(context["project"], STORAGE_ENGINE)
 
 

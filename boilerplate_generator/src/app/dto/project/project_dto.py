@@ -61,3 +61,19 @@ class ProjectDTO:
     @types.setter
     def types(self, types: List[str]):
         self.__types = types
+
+    def to_yaml(self) -> str:
+        obj_to_yaml = {
+            "project": {
+                "name": self.name,
+                "path": self.path,
+                "types": self.types
+            }
+        }
+
+        return obj_to_yaml
+
+    def from_yaml(self, yaml):
+        self.name = yaml["project"]["name"]
+        self.path = yaml["project"]["path"]
+        self.types = yaml["project"]["types"]

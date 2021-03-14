@@ -289,6 +289,7 @@ class ProjectINFILERepository(ProjectGateway):
 
         return project
 
+
 class Dumper(Dumper):
     def increase_indent(self, flow=False, *args, **kwargs):
         return super().increase_indent(flow=flow, indentless=False)

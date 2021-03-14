@@ -1,5 +1,6 @@
 """This module handle the form and create a project from it"""
-from sys import exit
+from sys import\
+    exit
 
 import questionary
 from prompt_toolkit.shortcuts\
@@ -29,7 +30,7 @@ class CreateProject:
                 if len(val) == 0 else True,
                 only_directories=True,
             ),
-            project_types=questionary.checkbox(
+            types=questionary.checkbox(
                 "What types of project this will be?",
                 choices=["web", "cli", "api"],
                 use_pointer=True,

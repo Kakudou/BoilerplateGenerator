@@ -1,0 +1,86 @@
+{% set typing = [] %}
+{% for attribute in usecase.input_attrs %}
+    {% if attribute.type[0].isupper() and attribute.type.split("[")[0] not in typing %}
+        {% set typing = typing.append(attribute.type.split("[")[0]) %}
+    {% endif %}
+{% endfor %}
+"""This module is the builder that ensure the filling of the input contract"""
+from dataclasses\
+    import dataclass
+from typing\
+    import Any{% if typing|length > 0 %}, {{ typing | join(", ") }}{% endif %}
+
+from {{ project.snakename }}.src.{{ project.snakename }}.usecase.\
+    {{ entity.snakedomain }}.{{ usecase.snakename }}.{{ usecase.snakename }}_inputport\
+    import {{ usecase.name }}InputPort
+
+
+@dataclass
+class {{ usecase.name }}InputPortBuilder:
+    """This class defined the function to easily build the input contract
+
+    Attributes:
+    -----------
+    __input: {{ usecase.name }}InputPort
+        the input contract
+
+    Functions:
+    ----------
+    create:
+        create the input contract
+{% for input_attrs in usecase.input_attrs %}
+    with_{{ input_attrs.name }}: {{ input_attrs.type}}
+        fill the {{ input_attrs.name }} in the contract
+{% endfor %}
+    build:
+        build the final input contract
+
+    """
+
+    __input: Any = None
+
+    def create(self):
+        """ This function create the empty contract
+
+        Returns:
+        --------
+        {{ usecase.name }}InputPortBuilder
+            this builder with the contract to fill
+
+        """
+
+        self.__input = {{ usecase.name }}InputPort()
+        return self
+{% for input_attrs in usecase.input_attrs %}
+
+    def with_{{ input_attrs.name }}(self, {{ input_attrs.name }}: {{ input_attrs.type }}):
+        """ This function fill the {{ input_attrs.name }} in the contract
+
+        Parameters:
+        -----------
+        {{ input_attrs.name }}: {{ input_attrs.type }}
+            the {{ input_attrs.name }} of the {{ usecase.name }}
+
+        Returns:
+        --------
+        {{ usecase.name }}OutputPortBuilder
+            this builder with the contract to fill
+
+        """
+
+        self.__input.{{ input_attrs.name }} = {{ input_attrs.name }}
+        return self
+{% endfor %}
+
+    def build(self) -> {{ usecase.name }}InputPort:
+        """ This function return the filled contract
+
+        Returns:
+        --------
+        {{ usecase.name }}InputPort
+            the contract filled
+
+        """
+
+        return self.__input
+

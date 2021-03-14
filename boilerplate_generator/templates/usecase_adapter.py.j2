@@ -1,0 +1,65 @@
+""" This module use the usecase {{ usecase.name }}"""
+from typing\
+    import Dict
+
+from {{ project.snakename }}.src\
+    import STORAGE_ENGINE
+
+from {{ project.snakename }}.src.utils.usecase_container\
+    import UsecaseContainer
+from {{ project.snakename }}.src.{{ project.snakename }}.usecase.\
+    {{ entity.snakedomain }}.{{ usecase.snakename }}.{{ usecase.snakename }}_inputport_builder\
+    import {{ usecase.name }}InputPortBuilder
+
+
+class {{ usecase.name }}Adapter:
+    """This class gonna take the input, sanitize and give it to the usecase.
+
+    Functions:
+    ----------
+    execute: classmethod
+        will consume the usecase {{ usecase.name }}.
+
+    """
+
+    @classmethod
+    def execute(cls, inputs: Dict, storage_engine=STORAGE_ENGINE):
+        """This function will convert inputs into {{ usecase.name }}InputPort
+        with the use of {{ usecase.name }}InputPortBuilder.
+        Then this contract will be gave to {{ usecase.name }} usecase.
+        In return we should obtain the contract {{ usecase.name }}OutputPort
+
+        Parameters:
+        -----------
+        inputs: Dict
+            a Dict containing the inputs:
+        {% for input_attrs in usecase.input_attrs %}
+            {{ input_attrs.name }}: {{ input_attrs.type}}
+                {{ input_attrs.description }}
+        {% endfor %}
+
+        Returns:
+        --------
+        {{ usecase.name }}_oc
+            the output contract of the usecase {{ usecase.name }}
+
+        """
+{% for input_attrs in usecase.input_attrs %}
+
+        sanitize_{{ input_attrs.name }} = inputs["{{ input_attrs.name }}"]
+{% endfor %}
+
+        {{ usecase.snakename }}_icb = {{ usecase.name }}InputPortBuilder()
+        {{ usecase.snakename }}_ic = {{ usecase.snakename }}_icb\
+            .create()\
+{% for input_attrs in usecase.input_attrs %}
+            .with_{{ input_attrs.name }}(sanitize_{{ input_attrs.name }})\
+{% endfor %}
+            .build()
+
+        {{ usecase.snakename }}_oc = UsecaseContainer\
+            .get("{{ usecase.name }}", storage_engine)\
+            .execute({{ usecase.snakename }}_ic)
+
+        return {{ usecase.snakename }}_oc
+

@@ -15,6 +15,8 @@ from boilerplate_generator.src.app.cli.view.project.delete_project\
     import DeleteProject
 from boilerplate_generator.src.app.cli.view.project.list_projects\
     import ListProjects
+from boilerplate_generator.src.app.cli.view.project.generate_structure\
+    import GenerateStructure
 
 
 class OrderedGroup(click.Group):
@@ -75,3 +77,13 @@ class LaunchCLI:
         click.echo("Let me show you all projects")
         lp = ListProjects()
         lp.show(files_dir)
+
+    @start.command()
+    @click.option("-p", "--project", "project_name", help="The name of the targeted project")
+    @click.option("-d", "--dir", "files_dir", help="The dir of the yaml files")
+    @click.option("--force", "force", help="Will force the generation", is_flag=True)
+    def generate_structure(project_name, files_dir, force):
+        """Generate the project structure."""
+        click.echo("let's generate a project structure")
+        gs = GenerateStructure()
+        gs.show(project_name, files_dir, force)

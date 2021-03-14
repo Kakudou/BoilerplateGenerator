@@ -1,0 +1,32 @@
+{% set typing = [] %}
+{% for attribute in usecase.input_attrs %}
+    {% if attribute.type[0].isupper() and attribute.type.split("[")[0] not in typing %}
+        {% set typing = typing.append(attribute.type.split("[")[0]) %}
+    {% endif %}
+{% endfor %}
+""""This module define the input contract to create a {{ usecase.name }}"""
+from dataclasses\
+    import dataclass
+{% if typing|length > 0 %}
+from typing\
+    import {{ typing | join(", ") }}
+{% endif %}
+
+
+@dataclass
+class {{ usecase.name }}InputPort:
+    """"This class define the necessary attributes to create a {{ entity.name }}
+
+    Attributes:
+    -----------
+{% for input_attrs in usecase.input_attrs %}
+    {{ input_attrs.name }}: {{ input_attrs.type}}
+        {{ input_attrs.description }}
+{% endfor %}
+
+    """
+{% for input_attrs in usecase.input_attrs %}
+
+    {{ input_attrs.name }}: {{ input_attrs.type}} = None
+{% endfor %}
+

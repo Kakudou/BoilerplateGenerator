@@ -1,0 +1,106 @@
+{% set typing = [] %}
+{% for attribute in usecase.output_attrs %}
+    {% if attribute.type[0].isupper() and attribute.type.split("[")[0] not in typing %}
+        {% set typing = typing.append(attribute.type.split("[")[0]) %}
+    {% endif %}
+{% endfor %}
+"""This module is the builder that ensure the filling of the output contract"""
+from dataclasses\
+    import dataclass
+from typing\
+    import Any{% if typing|length  > 0 %}, {{ typing | join(", ") }}{% endif %}
+
+from {{ project.snakename }}.src.{{ project.snakename }}.usecase.\
+    {{ entity.snakedomain }}.{{ usecase.snakename }}.{{ usecase.snakename }}_outputport\
+    import {{ usecase.name }}OutputPort
+
+
+@dataclass
+class {{ usecase.name }}OutputPortBuilder:
+    """This class defined the function to easily build the output contract
+
+    Attributes:
+    -----------
+    __output: {{ usecase.name }}OutputPort
+        the output contract
+
+    Functions:
+    ----------
+    create:
+        create the output contract
+{% for output_attrs in usecase.output_attrs %}
+    with_{{ output_attrs.name }}: {{ output_attrs.type}}
+        fill the {{ output_attrs.name }} in the contract
+{% endfor %}
+    with_error:
+        fill the possible usecase error
+    build:
+        build the final output contract
+
+    """
+
+    __output: Any = None
+
+    def create(self):
+        """ This function create the empty contract
+
+        Returns:
+        --------
+        {{ usecase.name }}OutputPortBuilder
+            this builder with the contract to fill
+
+        """
+
+        self.__output = {{ usecase.name }}OutputPort()
+        return self
+{% for output_attrs in usecase.output_attrs %}
+
+    def with_{{ output_attrs.name }}(self, {{ output_attrs.name }}: {{ output_attrs.type }}):
+        """ This function fill the {{ output_attrs.name }} in the contract
+
+        Parameters:
+        -----------
+        {{ output_attrs.name }}: {{ output_attrs.type }}
+            the {{ output_attrs.name }} of the {{ usecase.name }}
+
+        Returns:
+        --------
+        {{ usecase.name }}OutputPortBuilder
+            this builder with the contract to fill
+
+        """
+
+        self.__output.{{ output_attrs.name }} = {{ output_attrs.name }}
+        return self
+{% endfor %}
+
+    def with_error(self, error: str):
+        """ This function fill the error in the contract
+
+        Parameters:
+        -----------
+        error: str
+            the error of the usecase
+
+        Returns:
+        --------
+        {{ usecase.name }}OutputPortBuilder
+            this builder with the contract to fill
+
+        """
+
+        self.__output.error = error
+        return self
+
+    def build(self) -> {{ usecase.name }}OutputPort:
+        """ This function return the filled contract
+
+        Returns:
+        --------
+        {{ usecase.name }}OutputPort
+            the contract filled
+
+        """
+
+        return self.__output
+

@@ -1,0 +1,56 @@
+{% set comma = joiner(", ") %}
+{% set typing = [] %}
+{% for attribute in entity.attributes %}
+    {% if attribute.type[0].isupper() and attribute.type.split("[")[0] not in typing %}
+        {% set typing = typing.append(attribute.type.split("[")[0]) %}
+    {% endif %}
+{% endfor %}
+"""This module is the {{ entity.name }}DTO that will be persist"""
+from dataclasses\
+    import dataclass
+{% if typing|length > 0 %}
+from typing\
+    import {{ typing | join(", ") }}
+{% endif %}
+
+
+@dataclass
+class {{ entity.name }}DTO:
+    """This class defined the attributes that we want to be persist
+
+    Attributes:
+    -----------
+    __id: str
+        The hash of the identifier of {{ entity.name }}: ({% for attribute in entity.attributes %}{% if attribute.identifier %}{{ comma() }}{{ attribute.name }}{% endif %}{% endfor %})
+{% for attribute in entity.attributes %}
+    __{{ attribute.name }}: {{ attribute.type }}
+        {{ attribute.description }}
+{% endfor %}
+
+    Functions:
+    ----------
+    Getter and Setter for above attributes
+    """
+
+    __id: str = None
+{% for attribute in entity.attributes %}
+    __{{ attribute.name }}: {{ attribute.type }} = None
+{% endfor %}
+
+    @property
+    def id(self) -> str:
+        return self.__id
+
+    @id.setter
+    def id(self, id: str):
+        self.__id = id
+{% for attribute in entity.attributes %}
+
+    @property
+    def {{ attribute.name }}(self) -> {{ attribute.type }}:
+        return self.__{{ attribute.name }}
+
+    @{{ attribute.name }}.setter
+    def {{ attribute.name }}(self, {{ attribute.name }}: {{ attribute.type }}):
+        self.__{{ attribute.name }} = {{ attribute.name }}
+{% endfor %}

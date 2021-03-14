@@ -1,0 +1,158 @@
+{% set comma = joiner(", ") %}
+"""This module is the core logic to create a Entity"""
+from dataclasses\
+    import dataclass
+from typing\
+    import Any
+
+from {{ project.snakename }}.src.{{ project.snakename }}.usecase.\
+    {{ entity.snakedomain }}.{{ usecase.snakename }}.{{ usecase.snakename }}_inputport\
+    import {{ usecase.name }}InputPort
+from {{ project.snakename }}.src.{{ project.snakename }}.usecase.\
+    {{ entity.snakedomain }}.{{ usecase.snakename }}.{{ usecase.snakename }}_outputport_builder\
+    import {{ usecase.name }}OutputPortBuilder
+from {{ project.snakename }}.src.{{ project.snakename }}.usecase.\
+    {{ entity.snakedomain }}.{{ usecase.snakename }}.{{ usecase.snakename }}_outputport\
+    import {{ usecase.name }}OutputPort
+{% if "Create" == usecase.type_ %}
+from {{ project.snakename }}.src.{{ project.snakename }}.entity.\
+    {{ entity.snakedomain }}.{{ entity.snakename }}\
+    import {{ entity.name }}
+{% endif %}
+
+
+@dataclass
+class {{ usecase.name }}:
+    """This class is the usecase to create a Entity
+
+    Attributes:
+    -----------
+    __output: {{ usecase.name }}OutputPort
+        is the outputport information who gonna travel to the adapter
+
+    Functions:
+    ----------
+    __init__:
+        classical constructor
+    execute:
+        execute the usecase logic
+
+    """
+
+    __output: Any = None
+
+    def __init__(self, implemented_gateway):
+        """This function is the constructor particularity:
+        the usecase_container utils class give it the good implemented_gateway
+
+        Parameters:
+        -----------
+        implemented_gateway:
+            The implemented_gateway for the storage engine we want
+        """
+
+        self.gateway = implemented_gateway
+        self.builder = {{ usecase.name }}OutputPortBuilder()
+
+    def execute(self, inputp: {{ usecase.name }}InputPort) -> {{ usecase.name }}OutputPort:
+        """This function will from the inputport create a {{ entity.name }}
+        and save it if none with the same identifier is found.
+        And then return the appropriate outputport.
+
+        Parameters:
+        -----------
+        inputport: {{ usecase.name }}InputPort
+            the inputport who come from the adapter
+
+        Returns:
+        --------
+        {{ usecase.name }}OutputPort:
+            The output contract
+
+        """
+
+        executed = False
+        {{ entity.snakename }} = None
+    {% if "List" != usecase.type_ %}
+
+    {% for input_attr in usecase.input_attrs %}
+        {{ input_attr.name }} = inputp.{{input_attr.name}}
+    {% endfor %}
+
+        identifier = ({% for input_attr in usecase.input_attrs %}{% if input_attr.identifier %}{{ comma() }}{{ input_attr.name }}{% endif %}{% endfor %})
+    {% endif %}
+
+    {% if "Create" == usecase.type_ %}
+        {{ entity.snakename }} = self.gateway.exist_by_identifier(identifier)
+
+        if {{ entity.snakename }}:
+            error = "The {{ entity.name }} you want, already exist"
+            self.__output = self.builder.create().with_error(error).build()
+        else:
+            {{ entity.snakename }} = {{ entity.name }}()
+        {% for attr in entity.attributes %}
+            {{ entity.snakename }}.{{ attr.name }} = {{ attr.name }}
+        {% endfor %}
+
+            executed = self.gateway.save({{ entity.snakename }})
+    {% elif "Read" == usecase.type_ %}
+        {{ entity.snakename }} = self.gateway.find_by_identifier(identifier)
+
+        if {{ entity.snakename }} is None:
+            error = "This {{ entity.name }}, doesn't look like to exist"
+            self.__output = self.builder.create().with_error(error).build()
+        else:
+            executed = True
+    {% elif "Update" == usecase.type_ %}
+        {{ entity.snakename }} = self.gateway.find_by_identifier(identifier)
+
+        if {{ entity.snakename }} is None:
+            error = "The {{ entity.name }} you want, doesn't look like to exist"
+            self.__output = self.builder.create().with_error(error).build()
+        else:
+        {% for attr in usecase.input_attrs %}
+            {{ entity.snakename }}.{{ attr.name }} = {{ attr.name }}
+        {% endfor %}
+
+            executed = self.gateway.update_by_identifier(identifier, {{ entity.snakename }})
+    {% elif "Delete" == usecase.type_ %}
+        {{ entity.snakename }}_deleted = self.gateway.destroy_by_identifier(identifier)
+
+        if {{ entity.snakename }}_deleted:
+            error = "This Entity {{ entity.name }}, doesn't look like to exist in {{ project.name }}"
+            self.__output = self.builder.create().with_error(error).build()
+            executed = True
+            {{ entity.snakename }} = True
+    {% elif "List" == usecase.type_ %}
+        all_{{ entity.snakename }}s = self.gateway.find_all()
+
+        if all_{{ entity.snakename }}s is None:
+            error = "Nothing was found."
+            self.__output = self.builder.create().with_error(error).build()
+        else:
+            executed = True
+            {{ entity.snakename }} = True
+    {% else %}
+        # TODO: Implement your custom code
+        raise NotImplementedError
+    {% endif %}
+
+        if executed:
+            self.__output = self.builder.create()\
+                            {% for output_attr in usecase.output_attrs %}
+                            {% if "Delete" == usecase.type_ %}
+                                .with_{{ output_attr.name }}({{ entity.snakename }}_{{ output_attr.name }})\
+                            {% elif "List" == usecase.type_ %}
+                                .with_{{ output_attr.name }}({{ output_attr.name }})\
+                            {% else %}
+                                .with_{{ output_attr.name }}({{ entity.snakename }}.{{ output_attr.name }})\
+                            {% endif %}
+                            {% endfor %}
+                                .build()
+
+        elif not executed and {{ entity.snakename }} is None:
+            error = "An error occured during persistence"
+            self.__output = self.builder.create().with_error(error).build()
+
+        return self.__output
+

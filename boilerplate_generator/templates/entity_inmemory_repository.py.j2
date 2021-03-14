@@ -1,0 +1,270 @@
+{% set comma = joiner(", ") %}
+"""This module handle the data access in memory"""
+from hashlib\
+    import sha256
+from typing\
+    import List
+
+from {{ project.snakename }}.src.utils.\
+    singleton\
+    import Singleton
+from {{ project.snakename }}.src.app.\
+    dto.{{ entity.snakedomain }}.{{ entity.snakename }}_dto\
+    import {{ entity.name }}DTO
+from {{ project.snakename }}.src.{{ project.snakename }}.gateway.\
+    {{ entity.snakedomain }}.{{ entity.snakename }}_gateway\
+    import {{ entity.name }}Gateway
+from {{ project.snakename }}.src.{{ project.snakename }}.entity.\
+    {{ entity.snakedomain }}.{{ entity.snakename }}\
+    import {{ entity.name }}
+from {{ project.snakename }}.src.app.\
+    repository.inmemory.inmemory_persist\
+    import InMemoryPersist
+
+
+@Singleton
+class {{ entity.name }}INMEMORYRepository({{ entity.name }}Gateway):
+    """"This class implement the {{ entity.name }}Gateway
+
+    Functions:
+    ----------
+    __init__:
+        will get the dict from InMemoryPersist
+    _generate_id:
+        will generate an hash from identifier for storage
+    save:
+        will 'save' the {{ entity.name }} inmemory dict
+    exist_by_identifier:
+        will check if an {{ entity.name }} with this identifier exist
+    update_by_identifier:
+        will 'update' the {{ entity.name }} inmemory dict
+    find_all:
+        will search all {{ entity.name }}
+    find_by_identifier:
+        will search an {{ entity.name }} by his identifier
+    destroy_by_identifier:
+        will delete an {{ entity.name }} by his identifier
+    _convert_to_dto:
+        convert core {{ entity.name }} to {{ entity.name }}DTO
+    _convert_to_entity:
+        convert {{ entity.name }}DTO to core {{ entity.name }}
+    """
+
+    def __init__(self):
+        """Init InMemoryPersist who will be used for inmemory storage"""
+
+        self.__persists = InMemoryPersist()
+        self.__persists.{{ entity.snakename }}s = {}
+
+    def _generate_id(self, identifier) -> str:
+        """This function will generate an ID for the entity
+        base on his identifier
+
+        Returns:
+        --------
+        str
+            the identifier hash
+
+        """
+        id = sha256(str(identifier).encode()).hexdigest()
+
+        return id
+
+    def save(self, {{ entity.snakename }}: {{ entity.name }}) -> bool:
+        """This function will save {{ entity.name }} as {{ entity.name }}DTO
+
+        Parameters:
+        -----------
+        {{ entity.snakename }}: {{ entity.name }}
+            The {{ entity.name }} that we will be saved and convert as {{ entity.name }}DTO
+
+        Returns:
+        --------
+        bool
+            True if saved
+
+        """
+
+        saved = False
+
+        {{ entity.snakename }}_dto = self._convert_to_dto({{ entity.snakename }})
+        self.__persists.{{entity.snakename}}s[{{ entity.snakename }}_dto.id] = {{ entity.snakename }}_dto
+
+        saved = True
+
+        return saved
+
+    def exist_by_identifier(self, identifier) -> bool:
+        """This function will check {{ entity.name }} existence by is identifier
+
+        Parameters:
+        -----------
+        identifier: str
+            The identifier for the {{ entity.name }} to check
+
+        Returns:
+        --------
+        bool
+            True if exist
+
+        """
+
+        exist = False
+
+        hash_id = sha256(str(identifier).encode()).hexdigest()
+
+        try:
+            found = self.__persists.{{ entity.snakename }}s[hash_id]
+        except KeyError:
+            found = None
+
+        if found is not None:
+            exist = True
+
+        return exist
+
+    def update_by_identifier(self, identifier: str, {{ entity.snakename }}: {{ entity.name }}) -> bool:
+        """This function will update {{ entity.name }}
+
+        Parameters:
+        -----------
+        identifier: str
+            the identifier for the {{ entity.name }} to update
+        {{ entity.snakename }}: {{ entity.name }}
+            The {{ entity.name }} that we will be updated
+
+        Returns:
+        --------
+        bool
+            True if updated
+
+        """
+
+        updated = False
+
+        {{ entity.snakename }}_dto = self._convert_to_dto({{ entity.snakename }})
+        self.__persists.{{ entity.snakename }}s[{{ entity.snakename }}_dto.id] = {{ entity.snakename }}_dto
+
+        updated = True
+
+        return updated
+
+    def find_all(self) -> List[str]:
+        """This function will find all {{ entity.name }}
+
+        Parameters:
+        -----------
+
+        Returns:
+        --------
+        List[str]:
+            all {{ entity.name }}
+
+        """
+
+        {{ entity.snakename }}_names = []
+        for {{ entity.snakename }}_id in self.__persists.{{ entity.snakename }}s:
+            {{ entity.snakename }}_names.append(self.__persists.{{ entity.snakename }}s[{{ entity.snakename }}_id].name)
+
+        return {{ entity.snakename }}_names
+
+    def find_by_identifier(self, identifier: str) -> {{ entity.name }}:
+        """This function will find {{ entity.name }} by is identifier
+
+        Parameters:
+        -----------
+        identifier: str
+            The identifier for {{ entity.name }} to find
+
+        Returns:
+        --------
+        {{ entity.name }}:
+            The {{ entity.name }}
+
+        """
+
+        {{ entity.snakename }} = None
+
+        hash_id = sha256(str(identifier).encode()).hexdigest()
+
+        try:
+            {{ entity.snakename }}_dto = self.__persists.{{ entity.snakename }}s[hash_id]
+        except KeyError:
+            {{ entity.snakename }}_dto = None
+
+        if {{ entity.snakename }}_dto is not None:
+            {{ entity.snakename }} = self._convert_to_entity({{ entity.snakename }}_dto)
+
+        return {{ entity.snakename }}
+
+    def destroy_by_identifier(self, identifier: str) -> bool:
+        """This function will delete {{ entity.name }}
+
+        Parameters:
+        -----------
+        identifier: str
+            The identifier for the {{ entity.name }} to delete
+
+        Returns:
+        --------
+        bool
+            True if deleted
+
+        """
+
+        deleted = False
+
+        {{ entity.snakename }}_id = self._generate_id(identifier)
+        del self.__persists.{{ entity.snakename }}s[{{ entity.snakename }}_id]
+
+        deleted = True
+
+        return deleted
+
+    def _convert_to_dto(self, {{ entity.snakename }}: {{ entity.name }}) -> {{ entity.name }}DTO:
+        """This function will convert {{ entity.name }} to a {{ entity.name }}DTO
+
+        Parameters:
+        -----------
+        {{ entity.snakename }}: {{ entity.name }}
+            Entity {{ entity.name }} as seen by the core
+
+        Returns:
+        --------
+        {{ entity.name }}DTO
+            the {{ entity.name}}DTO ready to be persist
+
+        """
+
+        identifier = ({% for attribute in entity.attributes %}{% if attribute.identifier %}{{ comma() }}{{ entity.snakename }}.{{ attribute.name }}{% endif %}{% endfor %})
+
+        {{ entity.snakename }}_dto = {{ entity.name }}DTO()
+        {{ entity.snakename }}_dto.id = self._generate_id(identifier)
+        {% for attribute in entity.attributes %}
+        {{ entity.snakename }}_dto.{{ attribute.name }} = {{ entity.snakename }}.{{ attribute.name }}
+        {% endfor %}
+
+        return {{ entity.snakename }}_dto
+
+    def _convert_to_entity(self, {{ entity.snakename }}_dto: {{ entity.name }}DTO) -> {{ entity.name }}:
+        """This function will convert a {{ entity.name }}DTO to {{ entity.name }}
+
+        Parameters:
+        -----------
+        {{ entity.name }}DTO
+            the {{ entity.name }}DTO ready to be persist
+
+        Returns:
+        --------
+        {{ entity.snakename }}: {{ entity.name }}
+            Entity {{ entity.name }} as seen by the core
+
+        """
+
+        {{ entity.snakename }} = {{ entity.name }}()
+        {% for attribute in entity.attributes %}
+        {{ entity.snakename }}.{{ attribute.name }} = {{ entity.snakename }}_dto.{{ attribute.name }}
+        {% endfor %}
+
+        return {{ entity.snakename }}
+

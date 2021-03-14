@@ -11,6 +11,6 @@ class Factory:
 
         project["name"] = f"Name{name}"
         project["path"] = "/tmp"
-        project["types"] = ["cli", "view", "api"]
+        project["types"] = ["cli", "web", "api"]
 
         return project

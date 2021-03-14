@@ -1,0 +1,44 @@
+{% set typing = [] %}
+{% for attribute in entity.attributes %}
+    {% if attribute.type[0].isupper() and attribute.type.split("[")[0] not in typing %}
+        {% set typing = typing.append(attribute.type.split("[")[0]) %}
+    {% endif %}
+{% endfor %}
+"""This module is the core defined entity for {{ entity.name }}"""
+from dataclasses\
+    import dataclass
+{% if typing|length > 0 %}
+from typing\
+    import {{ typing | join(", ") }}
+{% endif %}
+
+
+@dataclass
+class {{ entity.name }}:
+    """This class defined the attributes for {{ entity.name }}
+
+    Attributes:
+    -----------
+{% for attribute in entity.attributes %}
+    __{{ attribute.name }}: {{ attribute.type }}
+        {{ attribute.description }}
+{% endfor %}
+
+    Functions:
+    ----------
+    Getter and Setter for above attributes
+    """
+
+{% for attribute in entity.attributes %}
+    __{{ attribute.name }}: {{ attribute.type }} = None
+{% endfor %}
+{% for attribute in entity.attributes %}
+
+    @property
+    def {{ attribute.name }}(self) -> {{ attribute.type }}:
+        return self.__{{ attribute.name }}
+
+    @{{ attribute.name }}.setter
+    def {{ attribute.name }}(self, {{ attribute.name }}: {{ attribute.type }}):
+        self.__{{ attribute.name }} = {{ attribute.name }}
+{% endfor %}

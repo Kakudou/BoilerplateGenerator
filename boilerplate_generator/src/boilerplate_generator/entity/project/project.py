@@ -1,4 +1,6 @@
 """This module is the core defined entity for Project"""
+import re
+
 from dataclasses\
     import dataclass
 from typing\
@@ -13,6 +15,8 @@ class Project:
     -----------
     __name: str
         The name of the project
+    __snakename: str
+          The snake case name of the project
     __path: str
         The path of the project
     __types: List[str]
@@ -24,6 +28,7 @@ class Project:
     """
 
     __name: str = None
+    __snakename: str = None
     __path: str = None
     __types: List[str] = None
 
@@ -34,6 +39,11 @@ class Project:
     @name.setter
     def name(self, name: str):
         self.__name = name
+        self.__snakename = re.sub(r'(?!^)([A-Z]+)', r'_\1', name).lower()
+
+    @property
+    def snakename(self) -> str:
+        return self.__snakename
 
     @property
     def path(self) -> str:

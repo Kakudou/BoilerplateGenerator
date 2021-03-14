@@ -1,0 +1,35 @@
+{% set typing = [] %}
+{% for attribute in usecase.output_attrs %}
+    {% if attribute.type[0].isupper() and attribute.type.split("[")[0] not in typing %}
+        {% set typing = typing.append(attribute.type.split("[")[0]) %}
+    {% endif %}
+{% endfor %}
+""""This module define the output contract to create a {{ usecase.name }}"""
+from dataclasses\
+    import dataclass
+{% if typing|length > 0 %}
+from typing\
+    import {{ typing | join(", ") }}
+{% endif %}
+
+
+@dataclass
+class {{ usecase.name }}OutputPort:
+    """This class defined the attributes the adapter will get
+
+    Attributes:
+    -----------
+    error: str
+        if an error happened during the usecase
+{% for output_attrs in usecase.output_attrs %}
+    {{ output_attrs.name }}: {{ output_attrs.type}}
+        {{ output_attrs.description }}
+{% endfor %}
+
+    """
+
+    error: str = None
+{% for output_attrs in usecase.output_attrs %}
+    {{ output_attrs.name }}: {{ output_attrs.type}} = None
+{% endfor %}
+

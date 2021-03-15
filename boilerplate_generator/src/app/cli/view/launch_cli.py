@@ -48,6 +48,10 @@ class LaunchCLI:
         pass
 
     @start.command()
+    def ______________________projects______________________ ():
+        pass
+
+    @start.command()
     def create_project():
         """Create a new project."""
         click.echo("let's create a new project")
@@ -98,6 +102,10 @@ class LaunchCLI:
         click.echo("let's generate a project structure")
         gs = GenerateStructure()
         gs.show(project_name, files_dir, force)
+
+    @start.command()
+    def ______________________features______________________ ():
+        pass
 
     @start.command()
     @click.option("-p", "--project", "project_name", help="The name of the targeted project")

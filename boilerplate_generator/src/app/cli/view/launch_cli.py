@@ -53,7 +53,7 @@ class LaunchCLI:
 
     @start.command()
     def create_project():
-        """Create a new project."""
+        """Create a project"""
         click.echo("let's create a new project")
         cp = CreateProject()
         cp.show()
@@ -62,7 +62,7 @@ class LaunchCLI:
     @click.option("-p", "--project", "project_name", help="The name of the targeted project")
     @click.option("-d", "--dir", "files_dir", help="The dir of the yaml files")
     def read_project(project_name, files_dir):
-        """Read a project."""
+        """Read a project"""
         click.echo("Let me read you that project")
         sp = ReadProject()
         sp.show(project_name, files_dir)
@@ -71,7 +71,7 @@ class LaunchCLI:
     @click.option("-p", "--project", "project_name", help="The name of the targeted project")
     @click.option("-d", "--dir", "files_dir", help="The dir of the yaml files")
     def update_project(project_name, files_dir):
-        """Update a project."""
+        """Update a project"""
         click.echo("Let's update that project")
         up = UpdateProject()
         up.show(project_name, files_dir)
@@ -80,7 +80,7 @@ class LaunchCLI:
     @click.option("-p", "--project", "project_name", help="The name of the targeted project")
     @click.option("-d", "--dir", "files_dir", help="The dir of the yaml files")
     def delete_project(project_name, files_dir):
-        """Delete a project."""
+        """Delete a project"""
         click.echo("Let's delete a project")
         up = DeleteProject()
         up.show(project_name, files_dir)
@@ -88,7 +88,7 @@ class LaunchCLI:
     @start.command()
     @click.option("-d", "--dir", "files_dir", help="The dir of the yaml files")
     def list_projects(files_dir):
-        """List all projects."""
+        """List all projects"""
         click.echo("Let me show you all projects")
         lp = ListProjects()
         lp.show(files_dir)
@@ -98,7 +98,7 @@ class LaunchCLI:
     @click.option("-d", "--dir", "files_dir", help="The dir of the yaml files")
     @click.option("--force", "force", help="Will force the generation", is_flag=True)
     def generate_structure(project_name, files_dir, force):
-        """Generate the project structure."""
+        """Generate structure"""
         click.echo("let's generate a project structure")
         gs = GenerateStructure()
         gs.show(project_name, files_dir, force)
@@ -111,7 +111,7 @@ class LaunchCLI:
     @click.option("-p", "--project", "project_name", help="The name of the targeted project")
     @click.option("-d", "--dir", "files_dir", help="The dir of the yaml files")
     def create_feature(project_name, files_dir):
-        """Create a new feature."""
+        """Create a feature"""
         click.echo("let's create a new feature")
         cf = CreateFeature()
         cf.show(project_name, files_dir)
@@ -121,7 +121,7 @@ class LaunchCLI:
     @click.option("-f", "--feature", "feature_name", help="The name of the targeted feature")
     @click.option("-d", "--dir", "files_dir", help="The dir of the yaml files")
     def read_feature(project_name, feature_name, files_dir):
-        """Read a feature."""
+        """Read a feature"""
         click.echo("let's read a feature")
         rf = ReadFeature()
         rf.show(project_name, feature_name, files_dir)
@@ -131,7 +131,7 @@ class LaunchCLI:
     @click.option("-f", "--feature", "feature_name", help="The name of the targeted feature")
     @click.option("-d", "--dir", "files_dir", help="The dir of the yaml files")
     def update_feature(project_name, feature_name, files_dir):
-        """Update a feature."""
+        """Update a feature"""
         click.echo("let's read a feature")
         uf = UpdateFeature()
         uf.show(project_name, feature_name, files_dir)
@@ -141,7 +141,7 @@ class LaunchCLI:
     @click.option("-f", "--feature", "feature_name", help="The name of the targeted feature")
     @click.option("-d", "--dir", "files_dir", help="The dir of the yaml files")
     def delete_feature(project_name, feature_name, files_dir):
-        """Delete a feature."""
+        """Delete a feature"""
         click.echo("let's delete a feature")
         df = DeleteFeature()
         df.show(project_name, feature_name, files_dir)
@@ -150,7 +150,7 @@ class LaunchCLI:
     @click.option("-p", "--project", "project_name", help="The name of the targeted project")
     @click.option("-d", "--dir", "files_dir", help="The dir of the yaml files")
     def list_features(project_name, files_dir):
-        """List all features."""
+        """List all features"""
         click.echo("let's list all features")
         lf = ListFeatures()
         lf.show(project_name, files_dir)

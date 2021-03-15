@@ -158,9 +158,24 @@ class FeatureINFILERepository(FeatureGateway):
 
         updated = False
 
-        raise NotImplementedError
+        file_dest = f"{self.__persists.save_path}/{identifier[1]}.yml"
+        project_exist = path.exists(file_dest)
 
-        updated = True
+        if project_exist:
+            with open(file_dest, "r") as file:
+                yaml_to_dict = load(file, Loader=FullLoader)
+            if "features" in yaml_to_dict["project"].keys():
+                if identifier[0] in yaml_to_dict["project"]["features"].keys():
+                    yaml_to_dict["project"]["features"][identifier[0]]["description"] = feature.description
+                    yaml_to_dict["project"]["features"][identifier[0]]["scenario"] = feature.scenario
+                    yaml_to_dict["project"]["features"][identifier[0]]["given"] = feature.given
+                    yaml_to_dict["project"]["features"][identifier[0]]["when"] = feature.when
+                    yaml_to_dict["project"]["features"][identifier[0]]["then"] = feature.then
+
+                    with open(file_dest, "w") as file:
+                        dump(yaml_to_dict, file, Dumper=Dumper)
+
+                    updated = True
 
         return updated
 
@@ -183,6 +198,34 @@ class FeatureINFILERepository(FeatureGateway):
 
         return feature_names
 
+    def find_all_by_project(self, project_name) -> List[str]:
+        """This function will find all feature for a project
+
+        Parameters:
+        -----------
+        project_name: str
+            the name of the project
+
+        Returns:
+        --------
+        List[str]:
+            all entities Feature
+
+        """
+        all_features = []
+
+        file_dest = f"{self.__persists.save_path}/{project_name}.yml"
+        project_exist = path.exists(file_dest)
+
+        if project_exist:
+            with open(file_dest, "r") as file:
+                yaml_to_dict = load(file, Loader=FullLoader)
+            if "features" in yaml_to_dict["project"].keys():
+                for feature in yaml_to_dict["project"]["features"]:
+                    all_features.append(feature)
+
+        return all_features
+
     def find_by_identifier(self, identifier: str) -> Feature:
         """This function will find Feature by is identifier
 
@@ -200,7 +243,18 @@ class FeatureINFILERepository(FeatureGateway):
 
         feature = None
 
-        raise NotImplementedError
+        file_dest = f"{self.__persists.save_path}/{identifier[1]}.yml"
+        project_exist = path.exists(file_dest)
+
+        if project_exist:
+            with open(file_dest, "r") as file:
+                yaml_to_dict = load(file, Loader=FullLoader)
+            if "features" in yaml_to_dict["project"].keys():
+                if identifier[0] in yaml_to_dict["project"]["features"].keys():
+                    feature_dto = FeatureDTO()
+                    feature_dto.from_yaml(yaml_to_dict["project"]["features"][identifier[0]])
+
+                    feature = self._convert_to_entity(feature_dto)
 
         return feature
 
@@ -221,9 +275,20 @@ class FeatureINFILERepository(FeatureGateway):
 
         deleted = False
 
-        raise NotImplementedError
+        file_dest = f"{self.__persists.save_path}/{identifier[1]}.yml"
+        project_exist = path.exists(file_dest)
 
-        deleted = True
+        if project_exist:
+            with open(file_dest, "r") as file:
+                yaml_to_dict = load(file, Loader=FullLoader)
+            if "features" in yaml_to_dict["project"].keys():
+                if identifier[0] in yaml_to_dict["project"]["features"].keys():
+                    del yaml_to_dict["project"]["features"][identifier[0]]
+
+                    with open(file_dest, "w") as file:
+                        dump(yaml_to_dict, file, Dumper=Dumper)
+
+                    deleted = True
 
         return deleted
 
@@ -281,3 +346,8 @@ class FeatureINFILERepository(FeatureGateway):
         feature.then = feature_dto.then
 
         return feature
+
+
+class Dumper(Dumper):
+    def increase_indent(self, flow=False, *args, **kwargs):
+        return super().increase_indent(flow=flow, indentless=False)

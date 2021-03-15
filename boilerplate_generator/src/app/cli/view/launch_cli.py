@@ -20,6 +20,15 @@ from boilerplate_generator.src.app.cli.view.project.generate_structure\
 
 from boilerplate_generator.src.app.cli.view.feature.create_feature\
     import CreateFeature
+from boilerplate_generator.src.app.cli.view.feature.read_feature\
+    import ReadFeature
+from boilerplate_generator.src.app.cli.view.feature.update_feature\
+    import UpdateFeature
+from boilerplate_generator.src.app.cli.view.feature.delete_feature\
+    import DeleteFeature
+from boilerplate_generator.src.app.cli.view.feature.list_features\
+    import ListFeatures
+
 
 class OrderedGroup(click.Group):
     def __init__(self, name=None, commands=None, **attrs):
@@ -98,3 +107,42 @@ class LaunchCLI:
         click.echo("let's create a new feature")
         cf = CreateFeature()
         cf.show(project_name, files_dir)
+
+    @start.command()
+    @click.option("-p", "--project", "project_name", help="The name of the targeted project")
+    @click.option("-f", "--feature", "feature_name", help="The name of the targeted feature")
+    @click.option("-d", "--dir", "files_dir", help="The dir of the yaml files")
+    def read_feature(project_name, feature_name, files_dir):
+        """Read a feature."""
+        click.echo("let's read a feature")
+        rf = ReadFeature()
+        rf.show(project_name, feature_name, files_dir)
+
+    @start.command()
+    @click.option("-p", "--project", "project_name", help="The name of the targeted project")
+    @click.option("-f", "--feature", "feature_name", help="The name of the targeted feature")
+    @click.option("-d", "--dir", "files_dir", help="The dir of the yaml files")
+    def update_feature(project_name, feature_name, files_dir):
+        """Update a feature."""
+        click.echo("let's read a feature")
+        uf = UpdateFeature()
+        uf.show(project_name, feature_name, files_dir)
+
+    @start.command()
+    @click.option("-p", "--project", "project_name", help="The name of the targeted project")
+    @click.option("-f", "--feature", "feature_name", help="The name of the targeted feature")
+    @click.option("-d", "--dir", "files_dir", help="The dir of the yaml files")
+    def delete_feature(project_name, feature_name, files_dir):
+        """Delete a feature."""
+        click.echo("let's delete a feature")
+        df = DeleteFeature()
+        df.show(project_name, feature_name, files_dir)
+
+    @start.command()
+    @click.option("-p", "--project", "project_name", help="The name of the targeted project")
+    @click.option("-d", "--dir", "files_dir", help="The dir of the yaml files")
+    def list_features(project_name, files_dir):
+        """List all features."""
+        click.echo("let's list all features")
+        lf = ListFeatures()
+        lf.show(project_name, files_dir)

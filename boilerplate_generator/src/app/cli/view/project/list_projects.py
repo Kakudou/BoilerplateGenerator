@@ -28,9 +28,9 @@ class ListProjects:
             exit(1)
 
         if len(all_projects) == 0:
-            print(f"\r\nI can't find any project in: {file_dir}")
+            print(f"\r\nI can't find any project in: {ifr.save_path}")
         else:
-            print(f"\r\nI've found all of this projects in: {file_dir}")
+            print(f"\r\nI've found all of this projects in: {ifr.save_path}")
             for project_name in all_projects:
                 print(f"{project_name}")
 

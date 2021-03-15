@@ -167,6 +167,27 @@ class FeatureINMEMORYRepository(FeatureGateway):
 
         return feature_names
 
+    def find_all_by_project(self, project_name) -> List[str]:
+        """This function will find all Feature for a project
+
+        Parameters:
+        -----------
+        project_name: str
+            the name of the project
+
+        Returns:
+        --------
+        List[str]:
+            all entities Feature
+
+        """
+        all_features = []
+
+        for feature_id in self.__persists.features:
+            all_features.append(self.__persists.features[feature_id].name)
+
+        return all_features
+
     def find_by_identifier(self, identifier: str) -> Feature:
         """This function will find Feature by is identifier
 

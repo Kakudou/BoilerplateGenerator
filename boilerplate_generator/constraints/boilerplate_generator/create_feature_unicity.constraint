@@ -1,0 +1,7 @@
+Constraint: A Feature should'nt be create if another one exist with the same name.
+
+    Scenario: Create a Feature who already exist to check the error.
+        Given I have a <feature> already created.
+        When I try to create another <feature> with the same <feature_name>.
+        Then I have an error telling me <feature_name> already exist.
+

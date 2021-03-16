@@ -42,7 +42,6 @@ def given_create_feature(context):
 
 @when("I execute CreateFeature.")
 def when_create_feature(context):
-
     output_contract = CreateFeatureAdapter.execute(context["feature"], STORAGE_ENGINE)
     context["output_contract"] = output_contract
 

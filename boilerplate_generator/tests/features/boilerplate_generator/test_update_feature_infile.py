@@ -41,7 +41,7 @@ def given_update_feature(context):
     CreateProjectAdapter.execute(context["project"], STORAGE_ENGINE)
     context["feature"] = Factory.create_feature("UpdateFeatureInFile")
     context["feature"]["project_name"] = context["project"]["name"]
-    output_contract = CreateFeatureAdapter.execute(context["feature"], STORAGE_ENGINE)
+    CreateFeatureAdapter.execute(context["feature"], STORAGE_ENGINE)
 
 @when("i use UpdateFeature with <feature_name>.")
 def when_update_feature(context):

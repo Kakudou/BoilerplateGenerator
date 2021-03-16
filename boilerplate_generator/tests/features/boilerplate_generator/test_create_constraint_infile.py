@@ -42,7 +42,6 @@ def given_create_constraint(context):
 
 @when("I execute CreateConstraint.")
 def when_create_constraint(context):
-
     output_contract = CreateConstraintAdapter.execute(context["constraint"], STORAGE_ENGINE)
     context["output_contract"] = output_contract
 

@@ -13,6 +13,12 @@ from boilerplate_generator.src.app.adapter\
 from boilerplate_generator.src.app.adapter\
     .feature.list_feature.list_feature_adapter\
     import ListFeatureAdapter
+from boilerplate_generator.src.app.adapter\
+    .constraint.list_constraint.list_constraint_adapter\
+    import ListConstraintAdapter
+from boilerplate_generator.src.app.adapter\
+    .entity.list_entity.list_entity_adapter\
+    import ListEntityAdapter
 
 
 class Factory:
@@ -134,3 +140,121 @@ class Factory:
             feature_name = wanted_feature
 
         return feature_name
+
+    @staticmethod
+    def select_constraint(project_name, wanted_constraint, save_path):
+
+        constraint_name = None
+
+        contract = ListConstraintAdapter.execute({"project_name": project_name})
+        all_constraints = contract.all_constraints
+        all_constraints.sort()
+        if wanted_constraint is None or wanted_constraint not in all_constraints:
+            if len(all_constraints) == 0:
+                print(f"\r\nNo constraint found in: {save_path}")
+                exit(1)
+
+            min_elmnt = 0
+            max_elmnt = len(all_constraints)
+            paginate = 5
+
+            actual_page = 0
+            first_elmnt = min_elmnt
+            last_elemnt = paginate if max_elmnt >= paginate else max_elmnt
+
+            number_page = int(ceil(max_elmnt / paginate) - 1)
+
+            constraint_name = "Get next constraints"
+            while ("Get next constraints" in constraint_name) \
+                    or ("Get previous constraints" in constraint_name):
+
+                choices = []
+                choices.append("Get previous constraints")
+                choices.append("Get next constraints")
+
+                choices.append(Separator('-= The Constraints =-'))
+                choices.extend(all_constraints[first_elmnt:last_elemnt])
+                if number_page > 0:
+                    choices.append(Separator(
+                        f'-= Pages {actual_page+1}/{number_page+1} =-'))
+
+                constraint_name = questionary.select(
+                    "Select one constraint in all of that:",
+                    choices=choices,
+                    use_pointer=True,
+                    use_shortcuts=True,
+                    use_arrow_keys=True,).ask()
+
+                if "Get next constraints" in constraint_name:
+                    actual_page = actual_page + 1 \
+                        if actual_page + 1 < number_page else number_page
+                elif "Get previous constraints" in constraint_name:
+                    actual_page = actual_page - 1 \
+                        if actual_page - 1 > 0 else 0
+
+                first_elmnt = 5 * actual_page
+                last_elemnt = (5 * actual_page + paginate) \
+                    if (5 * actual_page + paginate) <= max_elmnt else max_elmnt
+        else:
+            constraint_name = wanted_constraint
+
+        return constraint_name
+
+    @staticmethod
+    def select_entity(project_name, wanted_entity, save_path):
+
+        entity_name = None
+
+        contract = ListEntityAdapter.execute({"project_name": project_name})
+        all_entitys = contract.all_entitys
+        all_entitys.sort()
+        if wanted_entity is None or wanted_entity not in all_entitys:
+            if len(all_entitys) == 0:
+                print(f"\r\nNo entity found in: {save_path}")
+                exit(1)
+
+            min_elmnt = 0
+            max_elmnt = len(all_entitys)
+            paginate = 5
+
+            actual_page = 0
+            first_elmnt = min_elmnt
+            last_elemnt = paginate if max_elmnt >= paginate else max_elmnt
+
+            number_page = int(ceil(max_elmnt / paginate) - 1)
+
+            entity_name = "Get next entitys"
+            while ("Get next entitys" in entity_name) \
+                    or ("Get previous entitys" in entity_name):
+
+                choices = []
+                choices.append("Get previous entitys")
+                choices.append("Get next entitys")
+
+                choices.append(Separator('-= The Entitys =-'))
+                choices.extend(all_entitys[first_elmnt:last_elemnt])
+                if number_page > 0:
+                    choices.append(Separator(
+                        f'-= Pages {actual_page+1}/{number_page+1} =-'))
+
+                entity_name = questionary.select(
+                    "Select one entity in all of that:",
+                    choices=choices,
+                    use_pointer=True,
+                    use_shortcuts=True,
+                    use_arrow_keys=True,).ask()
+
+                if "Get next entitys" in entity_name:
+                    actual_page = actual_page + 1 \
+                        if actual_page + 1 < number_page else number_page
+                elif "Get previous entitys" in entity_name:
+                    actual_page = actual_page - 1 \
+                        if actual_page - 1 > 0 else 0
+
+                first_elmnt = 5 * actual_page
+                last_elemnt = (5 * actual_page + paginate) \
+                    if (5 * actual_page + paginate) <= max_elmnt else max_elmnt
+        else:
+            entity_name = wanted_entity
+
+        return entity_name

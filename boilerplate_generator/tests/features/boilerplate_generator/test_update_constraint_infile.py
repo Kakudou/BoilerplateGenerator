@@ -41,7 +41,7 @@ def given_update_constraint(context):
     CreateProjectAdapter.execute(context["project"], STORAGE_ENGINE)
     context["constraint"] = Factory.create_constraint("UpdateConstraintInFile")
     context["constraint"]["project_name"] = context["project"]["name"]
-    output_contract = CreateConstraintAdapter.execute(context["constraint"], STORAGE_ENGINE)
+    CreateConstraintAdapter.execute(context["constraint"], STORAGE_ENGINE)
 
 @when("i use UpdateConstraint with <constraint_name>.")
 def when_update_constraint(context):

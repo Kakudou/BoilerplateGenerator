@@ -40,6 +40,17 @@ from boilerplate_generator.src.app.cli.view.constraint.delete_constraint\
 from boilerplate_generator.src.app.cli.view.constraint.list_constraints\
     import ListConstraints
 
+from boilerplate_generator.src.app.cli.view.entity.create_entity\
+    import CreateEntity
+from boilerplate_generator.src.app.cli.view.entity.read_entity\
+    import ReadEntity
+from boilerplate_generator.src.app.cli.view.entity.update_entity\
+    import UpdateEntity
+from boilerplate_generator.src.app.cli.view.entity.delete_entity\
+    import DeleteEntity
+from boilerplate_generator.src.app.cli.view.entity.list_entitys\
+    import ListEntitys
+
 
 class OrderedGroup(click.Group):
     def __init__(self, name=None, commands=None, **attrs):
@@ -201,3 +212,50 @@ class LaunchCLI:
         """List all constraints"""
         click.echo("let's list all constraints")
         ListConstraints.show(project_name, files_dir)
+
+    @start.command()
+    def ______________________entities______________________():
+        pass
+
+    @start.command(short_help="Create a Entity.")
+    @click.option("-p", "--project", "project_name", help="The name of the targeted project")
+    @click.option("-d", "--dir", "files_dir", help="The dir of the yaml files")
+    def create_entity(project_name, files_dir):
+        """Create a entity"""
+        click.echo("let's create a new entity")
+        CreateEntity.show(project_name, files_dir)
+
+    @start.command(short_help="Read a Entity.")
+    @click.option("-p", "--project", "project_name", help="The name of the targeted project")
+    @click.option("-e", "--entity", "entity_name", help="The name of the targeted entity")
+    @click.option("-d", "--dir", "files_dir", help="The dir of the yaml files")
+    def read_entity(project_name, entity_name, files_dir):
+        """Read a entity"""
+        click.echo("let's read a entity")
+        ReadEntity.show(project_name, entity_name, files_dir)
+
+    @start.command(short_help="Update a Entity.")
+    @click.option("-p", "--project", "project_name", help="The name of the targeted project")
+    @click.option("-e", "--entity", "entity_name", help="The name of the targeted entity")
+    @click.option("-d", "--dir", "files_dir", help="The dir of the yaml files")
+    def update_entity(project_name, entity_name, files_dir):
+        """Update a entity"""
+        click.echo("let's read a entity")
+        UpdateEntity.show(project_name, entity_name, files_dir)
+
+    @start.command(short_help="Delete a Entity.")
+    @click.option("-p", "--project", "project_name", help="The name of the targeted project")
+    @click.option("-e", "--entity", "entity_name", help="The name of the targeted entity")
+    @click.option("-d", "--dir", "files_dir", help="The dir of the yaml files")
+    def delete_entity(project_name, entity_name, files_dir):
+        """Delete a entity"""
+        click.echo("let's delete a entity")
+        DeleteEntity.show(project_name, entity_name, files_dir)
+
+    @start.command(short_help="List all Entities.")
+    @click.option("-p", "--project", "project_name", help="The name of the targeted project")
+    @click.option("-d", "--dir", "files_dir", help="The dir of the yaml files")
+    def list_entities(project_name, files_dir):
+        """List all entities"""
+        click.echo("let's list all entities")
+        ListEntitys.show(project_name, files_dir)

@@ -43,3 +43,29 @@ class Factory:
         constraint["then"] = "Then for the scenario"
 
         return constraint
+
+    @staticmethod
+    def create_entity(name: str) -> Dict:
+        """Will create an entity based on the name """
+        entity = {}
+
+        entity["name"] = f"Name{name}"
+        entity["domain"] = "Domain for the entity"
+        entity["attributes"] = [{
+            "name": "attr1",
+            "description": "desc attr1",
+            "type": "str",
+            "identifier": True,
+        }, {
+            "name": "attr2",
+            "description": "desc attr2",
+            "type": "int",
+            "identifier": False,
+        }, {
+            "name": "attr3",
+            "description": "desc attr3",
+            "type": "List",
+            "identifier": False,
+        }]
+
+        return entity

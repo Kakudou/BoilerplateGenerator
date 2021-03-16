@@ -1,0 +1,7 @@
+Constraint: A Entity should'nt be create if another one exist with the same name.
+
+    Scenario: Create a Entity who already exist to check the error.
+        Given I have a <entity> already created.
+        When I try to create another <entity> with the same <entity_name>.
+        Then I have an error telling me <entity_name> already exist.
+

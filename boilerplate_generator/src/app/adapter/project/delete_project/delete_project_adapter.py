@@ -17,13 +17,13 @@ class DeleteProjectAdapter:
 
     Functions:
     ----------
-    execute: classmethod
+    execute: staticmethod
         will consume the usecase DeleteProject.
 
     """
 
-    @classmethod
-    def execute(cls, inputs: Dict, storage_engine=STORAGE_ENGINE):
+    @staticmethod
+    def execute(inputs: Dict, storage_engine=STORAGE_ENGINE):
         """This function will convert inputs into DeleteProjectInputPort
         with the use of DeleteProjectInputPortBuilder.
         Then this contract will be gave to DeleteProject usecase.

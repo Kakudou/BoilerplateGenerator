@@ -12,7 +12,8 @@ from boilerplate_generator.src.app.repository.infile.infile_persist\
 
 class ListProjects:
 
-    def show(self, file_dir=None):
+    @staticmethod
+    def show(file_dir=None):
 
         ifr = InFilePersist()
         if file_dir is not None:

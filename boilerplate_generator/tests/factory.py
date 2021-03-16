@@ -2,10 +2,11 @@
 from typing\
     import Dict
 
+
 class Factory:
 
-    @classmethod
-    def create_project(cls, name: str) -> Dict:
+    @staticmethod
+    def create_project(name: str) -> Dict:
         """Will create a project based on the name """
         project = {}
 
@@ -15,8 +16,8 @@ class Factory:
 
         return project
 
-    @classmethod
-    def create_feature(cls, name: str) -> Dict:
+    @staticmethod
+    def create_feature(name: str) -> Dict:
         """Will create a feature based on the name """
         feature = {}
 

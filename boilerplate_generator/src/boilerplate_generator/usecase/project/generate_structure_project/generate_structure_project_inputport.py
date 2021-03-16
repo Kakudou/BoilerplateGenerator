@@ -17,5 +17,4 @@ class GenerateStructureProjectInputPort:
     """
 
     project_name: str = None
-
     force: bool = None

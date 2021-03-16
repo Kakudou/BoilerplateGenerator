@@ -17,13 +17,13 @@ class ReadProjectAdapter:
 
     Functions:
     ----------
-    execute: classmethod
+    execute: staticmethod
         will consume the usecase ReadProject.
 
     """
 
-    @classmethod
-    def execute(cls, inputs: Dict, storage_engine=STORAGE_ENGINE):
+    @staticmethod
+    def execute(inputs: Dict, storage_engine=STORAGE_ENGINE):
         """This function will convert inputs into ReadProjectInputPort
         with the use of ReadProjectInputPortBuilder.
         Then this contract will be gave to ReadProject usecase.

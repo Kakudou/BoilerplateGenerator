@@ -51,8 +51,8 @@ class ProjectView:
     def types(self, types: List[str]):
         self.__types = types
 
-    @classmethod
-    def from_contract(cls, contract):
+    @staticmethod
+    def from_contract(contract):
         project = ProjectView()
         project.name = contract.name
         project.path = contract.path

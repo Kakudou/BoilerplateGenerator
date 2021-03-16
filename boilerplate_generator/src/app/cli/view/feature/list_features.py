@@ -6,9 +6,6 @@ from boilerplate_generator.src.app.adapter\
     .feature.list_feature.list_feature_adapter\
     import ListFeatureAdapter
 
-from boilerplate_generator.src.app.cli.entity_view.feature.feature_view\
-    import FeatureView
-
 from boilerplate_generator.src.app.cli.view.factory\
     import Factory
 
@@ -18,7 +15,8 @@ from boilerplate_generator.src.app.repository.infile.infile_persist\
 
 class ListFeatures:
 
-    def show(self, wanted_project=None, wanted_feature=None, file_dir=None):
+    @staticmethod
+    def show(wanted_project=None, file_dir=None):
 
         ifr = InFilePersist()
         if file_dir is not None:
@@ -29,7 +27,6 @@ class ListFeatures:
         if project_name is None:
             print(f"\r\nWhoups, we found no project in: {ifr.save_path}.")
             exit(1)
-
 
         inputs = {}
         inputs["project_name"] = project_name

@@ -19,7 +19,8 @@ from boilerplate_generator.src.app.repository.infile.infile_persist\
 
 class CreateFeature:
 
-    def show(self, wanted_project=None, file_dir=None):
+    @staticmethod
+    def show(wanted_project=None, file_dir=None):
 
         ifr = InFilePersist()
         if file_dir is not None:
@@ -74,7 +75,7 @@ class CreateFeature:
 
         if not confirm:
             print("\r\n Ok, let's try again")
-            self.show(wanted_project, file_dir)
+            CreateFeature.show(wanted_project, file_dir)
 
         contract = CreateFeatureAdapter.execute(inputs)
 

@@ -16,8 +16,8 @@ class UsecaseContainer:
 
     """
 
-    @classmethod
-    def get(cls, usecase: str, method: str):
+    @staticmethod
+    def get(usecase: str, method: str):
         """This function will make the usecase with the good DAO implementation
 
         Parameters:

@@ -28,7 +28,8 @@ from boilerplate_generator.src.app.repository.infile.infile_persist\
 
 class UpdateProject:
 
-    def show(self, wanted_project=None, file_dir=None):
+    @staticmethod
+    def show(wanted_project=None, file_dir=None):
 
         ifr = InFilePersist()
         if file_dir is not None:
@@ -80,7 +81,7 @@ class UpdateProject:
 
         if not confirm:
             print("\r\n Ok, let's try again")
-            self.show()
+            UpdateProject.show()
 
         answers["name"] = project_name
 

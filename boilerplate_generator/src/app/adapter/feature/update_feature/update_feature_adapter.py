@@ -17,13 +17,13 @@ class UpdateFeatureAdapter:
 
     Functions:
     ----------
-    execute: classmethod
+    execute: staticmethod
         will consume the usecase UpdateFeature.
 
     """
 
-    @classmethod
-    def execute(cls, inputs: Dict, storage_engine=STORAGE_ENGINE):
+    @staticmethod
+    def execute(inputs: Dict, storage_engine=STORAGE_ENGINE):
         """This function will convert inputs into UpdateFeatureInputPort
         with the use of UpdateFeatureInputPortBuilder.
         Then this contract will be gave to UpdateFeature usecase.

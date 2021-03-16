@@ -93,8 +93,8 @@ class FeatureView:
     def then(self, then: str):
         self.__then = then
 
-    @classmethod
-    def from_contract(cls, contract):
+    @staticmethod
+    def from_contract(contract):
         feature = FeatureView()
         feature.name = contract.name
         feature.project_name = contract.project_name

@@ -23,7 +23,8 @@ from boilerplate_generator.src.app.repository.infile.infile_persist\
 
 class UpdateFeature:
 
-    def show(self, wanted_project=None, wanted_feature=None, file_dir=None):
+    @staticmethod
+    def show(wanted_project=None, wanted_feature=None, file_dir=None):
 
         ifr = InFilePersist()
         if file_dir is not None:
@@ -93,7 +94,7 @@ class UpdateFeature:
 
         if not confirm:
             print("\r\n Ok, let's try again")
-            self.show()
+            UpdateFeature.show()
 
         answers["project_name"] = project_name
         answers["name"] = feature_name

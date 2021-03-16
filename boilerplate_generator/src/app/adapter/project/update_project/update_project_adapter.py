@@ -17,13 +17,13 @@ class UpdateProjectAdapter:
 
     Functions:
     ----------
-    execute: classmethod
+    execute: staticmethod
         will consume the usecase UpdateProject.
 
     """
 
-    @classmethod
-    def execute(cls, inputs: Dict, storage_engine=STORAGE_ENGINE):
+    @staticmethod
+    def execute(inputs: Dict, storage_engine=STORAGE_ENGINE):
         """This function will convert inputs into UpdateProjectInputPort
         with the use of UpdateProjectInputPortBuilder.
         Then this contract will be gave to UpdateProject usecase.

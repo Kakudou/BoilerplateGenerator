@@ -17,8 +17,8 @@ from boilerplate_generator.src.app.adapter\
 
 class Factory:
 
-    @classmethod
-    def select_project(cls, wanted_project, save_path):
+    @staticmethod
+    def select_project(wanted_project, save_path):
 
         project_name = None
 
@@ -76,8 +76,8 @@ class Factory:
 
         return project_name
 
-    @classmethod
-    def select_feature(cls, project_name, wanted_feature, save_path):
+    @staticmethod
+    def select_feature(project_name, wanted_feature, save_path):
 
         feature_name = None
 

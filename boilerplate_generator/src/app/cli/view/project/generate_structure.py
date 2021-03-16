@@ -15,7 +15,8 @@ from boilerplate_generator.src.app.repository.infile.infile_persist\
 
 class GenerateStructure:
 
-    def show(self, wanted_project=None, file_dir=None, force=False):
+    @staticmethod
+    def show(wanted_project=None, file_dir=None, force=False):
 
         ifr = InFilePersist()
         if file_dir is not None:

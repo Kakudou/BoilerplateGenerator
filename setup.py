@@ -15,7 +15,7 @@ setuptools.setup(
                       "Jinja2",
                       "questionary",
                       "click",
-    ],
+                      ],
     entry_points="""
         [console_scripts]
         BoilerplateGenerator=boilerplate_generator.__main__:boilerplate_generator

@@ -1,6 +1,5 @@
 """This module handle the data access in file"""
-from os import listdir, path, remove
-from os.path import isfile, join
+from os import path
 
 from hashlib\
     import sha256

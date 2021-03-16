@@ -48,15 +48,14 @@ class LaunchCLI:
         pass
 
     @start.command()
-    def ______________________projects______________________ ():
+    def ______________________projects______________________():
         pass
 
     @start.command()
     def create_project():
         """Create a project"""
         click.echo("let's create a new project")
-        cp = CreateProject()
-        cp.show()
+        CreateProject.show()
 
     @start.command()
     @click.option("-p", "--project", "project_name", help="The name of the targeted project")
@@ -64,8 +63,7 @@ class LaunchCLI:
     def read_project(project_name, files_dir):
         """Read a project"""
         click.echo("Let me read you that project")
-        sp = ReadProject()
-        sp.show(project_name, files_dir)
+        ReadProject.show(project_name, files_dir)
 
     @start.command()
     @click.option("-p", "--project", "project_name", help="The name of the targeted project")
@@ -73,8 +71,7 @@ class LaunchCLI:
     def update_project(project_name, files_dir):
         """Update a project"""
         click.echo("Let's update that project")
-        up = UpdateProject()
-        up.show(project_name, files_dir)
+        UpdateProject.show(project_name, files_dir)
 
     @start.command()
     @click.option("-p", "--project", "project_name", help="The name of the targeted project")
@@ -82,16 +79,14 @@ class LaunchCLI:
     def delete_project(project_name, files_dir):
         """Delete a project"""
         click.echo("Let's delete a project")
-        up = DeleteProject()
-        up.show(project_name, files_dir)
+        DeleteProject.show(project_name, files_dir)
 
     @start.command()
     @click.option("-d", "--dir", "files_dir", help="The dir of the yaml files")
     def list_projects(files_dir):
         """List all projects"""
         click.echo("Let me show you all projects")
-        lp = ListProjects()
-        lp.show(files_dir)
+        ListProjects.show(files_dir)
 
     @start.command()
     @click.option("-p", "--project", "project_name", help="The name of the targeted project")
@@ -100,11 +95,10 @@ class LaunchCLI:
     def generate_structure(project_name, files_dir, force):
         """Generate structure"""
         click.echo("let's generate a project structure")
-        gs = GenerateStructure()
-        gs.show(project_name, files_dir, force)
+        GenerateStructure.show(project_name, files_dir, force)
 
     @start.command()
-    def ______________________features______________________ ():
+    def ______________________features______________________():
         pass
 
     @start.command()
@@ -113,8 +107,7 @@ class LaunchCLI:
     def create_feature(project_name, files_dir):
         """Create a feature"""
         click.echo("let's create a new feature")
-        cf = CreateFeature()
-        cf.show(project_name, files_dir)
+        CreateFeature.show(project_name, files_dir)
 
     @start.command()
     @click.option("-p", "--project", "project_name", help="The name of the targeted project")
@@ -123,8 +116,7 @@ class LaunchCLI:
     def read_feature(project_name, feature_name, files_dir):
         """Read a feature"""
         click.echo("let's read a feature")
-        rf = ReadFeature()
-        rf.show(project_name, feature_name, files_dir)
+        ReadFeature.show(project_name, feature_name, files_dir)
 
     @start.command()
     @click.option("-p", "--project", "project_name", help="The name of the targeted project")
@@ -133,8 +125,7 @@ class LaunchCLI:
     def update_feature(project_name, feature_name, files_dir):
         """Update a feature"""
         click.echo("let's read a feature")
-        uf = UpdateFeature()
-        uf.show(project_name, feature_name, files_dir)
+        UpdateFeature.show(project_name, feature_name, files_dir)
 
     @start.command()
     @click.option("-p", "--project", "project_name", help="The name of the targeted project")
@@ -143,8 +134,7 @@ class LaunchCLI:
     def delete_feature(project_name, feature_name, files_dir):
         """Delete a feature"""
         click.echo("let's delete a feature")
-        df = DeleteFeature()
-        df.show(project_name, feature_name, files_dir)
+        DeleteFeature.show(project_name, feature_name, files_dir)
 
     @start.command()
     @click.option("-p", "--project", "project_name", help="The name of the targeted project")
@@ -152,5 +142,4 @@ class LaunchCLI:
     def list_features(project_name, files_dir):
         """List all features"""
         click.echo("let's list all features")
-        lf = ListFeatures()
-        lf.show(project_name, files_dir)
+        ListFeatures.show(project_name, files_dir)

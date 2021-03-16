@@ -17,13 +17,13 @@ class ListFeatureAdapter:
 
     Functions:
     ----------
-    execute: classmethod
+    execute: staticmethod
         will consume the usecase ListFeature.
 
     """
 
-    @classmethod
-    def execute(cls, inputs: Dict, storage_engine=STORAGE_ENGINE):
+    @staticmethod
+    def execute(inputs: Dict, storage_engine=STORAGE_ENGINE):
         """This function will convert inputs into ListFeatureInputPort
         with the use of ListFeatureInputPortBuilder.
         Then this contract will be gave to ListFeature usecase.

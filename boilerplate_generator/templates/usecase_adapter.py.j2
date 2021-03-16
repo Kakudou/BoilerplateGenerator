@@ -17,13 +17,13 @@ class {{ usecase.name }}Adapter:
 
     Functions:
     ----------
-    execute: classmethod
+    execute: staticmethod
         will consume the usecase {{ usecase.name }}.
 
     """
 
-    @classmethod
-    def execute(cls, inputs: Dict, storage_engine=STORAGE_ENGINE):
+    @staticmethod
+    def execute(inputs: Dict, storage_engine=STORAGE_ENGINE):
         """This function will convert inputs into {{ usecase.name }}InputPort
         with the use of {{ usecase.name }}InputPortBuilder.
         Then this contract will be gave to {{ usecase.name }} usecase.

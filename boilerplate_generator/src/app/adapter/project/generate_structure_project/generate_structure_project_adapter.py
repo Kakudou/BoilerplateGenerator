@@ -17,13 +17,13 @@ class GenerateStructureProjectAdapter:
 
     Functions:
     ----------
-    execute: classmethod
+    execute: staticmethod
         will consume the usecase GenerateStructureProject.
 
     """
 
-    @classmethod
-    def execute(cls, inputs: Dict, storage_engine=STORAGE_ENGINE):
+    @staticmethod
+    def execute(inputs: Dict, storage_engine=STORAGE_ENGINE):
         """This function will convert inputs into GenerateStructureProjectInputPort
         with the use of GenerateStructureProjectInputPortBuilder.
         Then this contract will be gave to GenerateStructureProject usecase.

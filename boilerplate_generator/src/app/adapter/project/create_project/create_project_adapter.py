@@ -17,13 +17,13 @@ class CreateProjectAdapter:
 
     Functions:
     ----------
-    execute: classmethod
+    execute: staticmethod
         will consume the usecase CreateProject.
 
     """
 
-    @classmethod
-    def execute(cls, inputs: Dict, storage_engine=STORAGE_ENGINE):
+    @staticmethod
+    def execute(inputs: Dict, storage_engine=STORAGE_ENGINE):
         """This function will convert inputs into CreateProjectInputPort
         with the use of CreateProjectInputPortBuilder.
         Then this contract will be gave to CreateProject usecase.

@@ -43,8 +43,8 @@ class {{ entity.name }}View:
         self.__{{ attribute.name }} = {{ attribute.name }}
 {% endfor %}
 
-    @classmethod
-    def from_contract(cls, contract):
+    @staticmethod
+    def from_contract(contract):
         {{ entity.snakename }} = {{ entity.name }}View()
         {% for attribute in entity.attributes %}
         {{ entity.snakename }}.{{ attribute.name }} = contract.{{ attribute.name }}

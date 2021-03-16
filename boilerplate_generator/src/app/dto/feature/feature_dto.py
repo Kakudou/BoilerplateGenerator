@@ -1,6 +1,8 @@
 """This module is the FeatureDTO that will be persist"""
 from dataclasses\
     import dataclass
+from typing\
+    import Dict
 
 
 @dataclass
@@ -104,7 +106,7 @@ class FeatureDTO:
     def then(self, then: str):
         self.__then = then
 
-    def to_yaml(self) -> str:
+    def to_yaml(self) -> Dict[str, str]:
         obj_to_yaml = {
             "name": self.name,
             "description": self.description,

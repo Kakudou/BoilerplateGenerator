@@ -2,7 +2,7 @@
 from dataclasses\
     import dataclass
 from typing\
-    import List
+    import List, Dict
 
 
 @dataclass
@@ -62,7 +62,7 @@ class ProjectDTO:
     def types(self, types: List[str]):
         self.__types = types
 
-    def to_yaml(self) -> str:
+    def to_yaml(self) -> Dict[str, Dict]:
         obj_to_yaml = {
             "project": {
                 "name": self.name,

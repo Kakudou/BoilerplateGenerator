@@ -18,7 +18,8 @@ from boilerplate_generator.src.app.repository.infile.infile_persist\
 
 class ReadProject:
 
-    def show(self, wanted_project=None, file_dir=None):
+    @staticmethod
+    def show(wanted_project=None, file_dir=None):
 
         ifr = InFilePersist()
         if file_dir is not None:

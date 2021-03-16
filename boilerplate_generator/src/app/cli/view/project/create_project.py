@@ -16,7 +16,8 @@ from boilerplate_generator.src.app.cli.entity_view.project.project_view\
 
 class CreateProject:
 
-    def show(self):
+    @staticmethod
+    def show():
         answers = questionary.form(
             name=questionary.text(
                 "What's the project name?",
@@ -43,7 +44,7 @@ class CreateProject:
 
         if not confirm:
             print("\r\n Ok, let's try again")
-            self.show()
+            CreateProject.show()
 
         contract = CreateProjectAdapter.execute(answers)
 

@@ -4,6 +4,8 @@ PyYAML
 click
 questionary
 
+# Dev Tools
 flake8
+autopep8
 pynvim
 pytest-bdd

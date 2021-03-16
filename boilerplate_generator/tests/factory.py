@@ -29,3 +29,17 @@ class Factory:
         feature["then"] = "Then for the scenario"
 
         return feature
+
+    @staticmethod
+    def create_constraint(name: str) -> Dict:
+        """Will create a constraint based on the name """
+        constraint = {}
+
+        constraint["name"] = f"Name{name}"
+        constraint["description"] = "Description for the constraint"
+        constraint["scenario"] = "Description for the scenario"
+        constraint["given"] = "Given for the scenario"
+        constraint["when"] = "When for the scenario"
+        constraint["then"] = "Then for the scenario"
+
+        return constraint

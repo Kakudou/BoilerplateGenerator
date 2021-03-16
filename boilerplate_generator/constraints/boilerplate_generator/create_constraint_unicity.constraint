@@ -1,0 +1,7 @@
+Constraint: A Constraint should'nt be create if another one exist with the same name.
+
+    Scenario: Create a Constraint who already exist to check the error.
+        Given I have a <constraint> already created.
+        When I try to create another <constraint> with the same <constraint_name>.
+        Then I have an error telling me <constraint_name> already exist.
+

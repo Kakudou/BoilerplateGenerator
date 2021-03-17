@@ -55,38 +55,7 @@ class UpdateConstraint:
 
         constraint = ConstraintView.from_contract(contract)
 
-        answers = questionary.form(
-            description=questionary.text(
-                "Can you describe the constraint?",
-                validate=lambda val: "That constraint need a description!"
-                if len(val) == 0 else True,
-                default=constraint.description
-            ),
-            scenario=questionary.text(
-                "Can you describe the scenario?",
-                validate=lambda val: "That constraint need a scenario!"
-                if len(val) == 0 else True,
-                default=constraint.scenario
-            ),
-            given=questionary.text(
-                "Can you describe the 'Given' of that scenario?",
-                validate=lambda val: "That scenario need a Given!"
-                if len(val) == 0 else True,
-                default=constraint.given
-            ),
-            when=questionary.text(
-                "Can you describe the 'When' of that scenario?",
-                validate=lambda val: "That scenario need a When!"
-                if len(val) == 0 else True,
-                default=constraint.when
-            ),
-            then=questionary.text(
-                "Can you describe the 'Then' of that scenario?",
-                validate=lambda val: "That scenario need a Then!"
-                if len(val) == 0 else True,
-                default=constraint.then
-            ),
-        ).ask()
+        answers = Factory.create_constraint_form(constraint)
 
         print("")
         confirm = questionary.confirm("Are you sure of the above inputs?",

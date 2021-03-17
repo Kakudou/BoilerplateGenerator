@@ -15,8 +15,6 @@ from boilerplate_generator.src.app.cli.view.project.delete_project\
     import DeleteProject
 from boilerplate_generator.src.app.cli.view.project.list_projects\
     import ListProjects
-from boilerplate_generator.src.app.cli.view.project.generate_structure\
-    import GenerateStructure
 
 from boilerplate_generator.src.app.cli.view.feature.create_feature\
     import CreateFeature
@@ -61,6 +59,9 @@ from boilerplate_generator.src.app.cli.view.usecase.delete_usecase\
     import DeleteUsecase
 from boilerplate_generator.src.app.cli.view.usecase.list_usecases\
     import ListUsecases
+
+from boilerplate_generator.src.app.cli.view.project.generate_structure\
+    import GenerateStructure
 
 
 class OrderedGroup(click.Group):
@@ -120,15 +121,6 @@ class LaunchCLI:
         """List all projects"""
         click.echo("Let me show you all projects")
         ListProjects.show(files_dir)
-
-    @start.command(short_help="Generate the structure of a Project.")
-    @click.option("-p", "--project", "project_name", help="The name of the targeted project")
-    @click.option("-d", "--dir", "files_dir", help="The dir of the yaml files")
-    @click.option("--force", "force", help="Will force the generation", is_flag=True)
-    def generate_structure(project_name, files_dir, force):
-        """Generate structure"""
-        click.echo("let's generate a project structure")
-        GenerateStructure.show(project_name, files_dir, force)
 
     @start.command()
     def ______________________features______________________():
@@ -318,3 +310,16 @@ class LaunchCLI:
         """List all usecases"""
         click.echo("let's list all entities")
         ListUsecases.show(project_name, files_dir)
+
+    @start.command()
+    def ______________________generate______________________():
+        pass
+
+    @start.command(short_help="Generate the structure of a Project.")
+    @click.option("-p", "--project", "project_name", help="The name of the targeted project")
+    @click.option("-d", "--dir", "files_dir", help="The dir of the yaml files")
+    @click.option("--force", "force", help="Will force the generation", is_flag=True)
+    def generate_structure(project_name, files_dir, force):
+        """Generate structure"""
+        click.echo("let's generate a project structure")
+        GenerateStructure.show(project_name, files_dir, force)

@@ -55,38 +55,7 @@ class UpdateFeature:
 
         feature = FeatureView.from_contract(contract)
 
-        answers = questionary.form(
-            description=questionary.text(
-                "Can you describe the feature?",
-                validate=lambda val: "That feature need a description!"
-                if len(val) == 0 else True,
-                default=feature.description
-            ),
-            scenario=questionary.text(
-                "Can you describe the scenario?",
-                validate=lambda val: "That feature need a scenario!"
-                if len(val) == 0 else True,
-                default=feature.scenario
-            ),
-            given=questionary.text(
-                "Can you describe the 'Given' of that scenario?",
-                validate=lambda val: "That scenario need a Given!"
-                if len(val) == 0 else True,
-                default=feature.given
-            ),
-            when=questionary.text(
-                "Can you describe the 'When' of that scenario?",
-                validate=lambda val: "That scenario need a When!"
-                if len(val) == 0 else True,
-                default=feature.when
-            ),
-            then=questionary.text(
-                "Can you describe the 'Then' of that scenario?",
-                validate=lambda val: "That scenario need a Then!"
-                if len(val) == 0 else True,
-                default=feature.then
-            ),
-        ).ask()
+        answers = Factory.create_feature_form(feature)
 
         print("")
         confirm = questionary.confirm("Are you sure of the above inputs?",

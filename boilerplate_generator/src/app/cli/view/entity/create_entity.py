@@ -32,52 +32,7 @@ class CreateEntity:
             print(f"\r\nWhoups, we found no project in: {ifr.save_path}.")
             exit(1)
 
-        inputs = {}
-
-        inputs["name"] = questionary.text(
-            "What's the entity name?",
-            validate=lambda val: "That entity need a name!"
-            if len(val) == 0 else True,
-        ).ask()
-
-        inputs["domain"] = questionary.text(
-            "What's the entity domain?",
-            validate=lambda val: "That domain need a name!"
-            if len(val) == 0 else True,
-            default=inputs["name"]
-        ).ask()
-
-        inputs["attributes"] = []
-
-        print("")
-        create_attr = questionary.confirm(
-            "Would you like to add an attribute?", default=True).ask()
-
-        while create_attr:
-            attribute = questionary.form(
-                name=questionary.text(
-                    "What's the attribute name?",
-                    validate=lambda val: "That attribute need a name!"
-                    if len(val) == 0 else True,
-                ),
-                description=questionary.text(
-                    "What's the attribute description?",
-                    validate=lambda val: "That attribute need a description!"
-                    if len(val) == 0 else True,
-                ),
-                type=questionary.text(
-                    "What's the attribute type?",
-                    default="str"
-                ),
-                identifier=questionary.confirm(
-                    "That attribute should be consider as an identifier?",
-                    default=False)
-            ).ask()
-
-            inputs["attributes"].append(attribute)
-            print("")
-            create_attr = questionary.confirm(
-                "Would you like to add another attribute?").ask()
+        inputs = Factory.create_entity_form()
 
         inputs["project_name"] = project_name
 

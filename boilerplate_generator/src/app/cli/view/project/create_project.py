@@ -3,8 +3,6 @@ from sys import\
     exit
 
 import questionary
-from prompt_toolkit.shortcuts\
-    import CompleteStyle
 
 from boilerplate_generator.src.app.adapter\
     .project.create_project.create_project_adapter\
@@ -13,30 +11,16 @@ from boilerplate_generator.src.app.adapter\
 from boilerplate_generator.src.app.cli.entity_view.project.project_view\
     import ProjectView
 
+from boilerplate_generator.src.app.cli.view.factory\
+    import Factory
+
 
 class CreateProject:
 
     @staticmethod
     def show():
-        answers = questionary.form(
-            name=questionary.text(
-                "What's the project name?",
-                validate=lambda val: "That project need a name!"
-                if len(val) == 0 else True,
-            ),
-            path=questionary.path(
-                "What's the path for this project?",
-                complete_style=CompleteStyle.MULTI_COLUMN,
-                validate=lambda val: "That project need to be somewhere!"
-                if len(val) == 0 else True,
-                only_directories=True,
-            ),
-            types=questionary.checkbox(
-                "What types of project this will be?",
-                choices=["web", "cli", "api"],
-                use_pointer=True,
-            ),
-        ).ask()
+
+        answers = Factory.create_project_form()
 
         print("")
         confirm = questionary.confirm("Are you sure of the above inputs?",

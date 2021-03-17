@@ -3,10 +3,6 @@ from sys import\
     exit
 
 import questionary
-from questionary\
-    import Choice
-from prompt_toolkit.shortcuts\
-    import CompleteStyle
 
 from boilerplate_generator.src.app.adapter\
     .project.read_project.read_project_adapter\
@@ -53,27 +49,7 @@ class UpdateProject:
 
         project = ProjectView.from_contract(contract)
 
-        choices = ["web", "cli", "api"]
-        for choice in project.types:
-            choices.remove(choice)
-            choices.append(Choice(choice, checked=True))
-        choices.reverse()
-
-        answers = questionary.form(
-            path=questionary.path(
-                "What's the path for this project?",
-                complete_style=CompleteStyle.MULTI_COLUMN,
-                validate=lambda val: "That project need to be somewhere!"
-                if len(val) == 0 else True,
-                only_directories=True,
-                default=project.path
-            ),
-            types=questionary.checkbox(
-                "What types of project this will be?",
-                choices=choices,
-                use_pointer=True,
-            ),
-        ).ask()
+        answers = Factory.create_project_form(project)
 
         print("")
         confirm = questionary.confirm("Are you sure of the above inputs?",

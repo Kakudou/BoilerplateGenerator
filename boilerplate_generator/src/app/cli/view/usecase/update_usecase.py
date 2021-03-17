@@ -58,135 +58,15 @@ class UpdateUsecase:
         print("")
         answers = {}
 
-        if "Custom" == usecase.type_:
-            answers["description"] = questionary.text(
-                "What's the usecase description?",
-                validate=lambda val: "That usecase need a description!"
-                if len(val) == 0 else True,
-                default=usecase.description
-            ).ask()
-            print("")
+        answers = Factory.create_usecase_form(usecase)
 
-            print("\r\nLet see the existing input_attrs.")
-            answers["input_attrs"] = []
-            for attribute in usecase.input_attrs:
-                print("")
-                attribute = questionary.form(
-                    name=questionary.text(
-                        "What's the attribute name?",
-                        validate=lambda val: "That attribute need a name!"
-                        if len(val) == 0 else True,
-                        default=attribute["name"]
-                    ),
-                    description=questionary.text(
-                        "What's the attribute description?",
-                        validate=lambda val: "That attribute need a description!"
-                        if len(val) == 0 else True,
-                        default=attribute["description"]
-                    ),
-                    type=questionary.text(
-                        "What's the attribute type?",
-                        default=attribute["type"]
-                    ),
-                    identifier=questionary.confirm(
-                        "That attribute should be consider as an identifier?",
-                        default=attribute["identifier"]
-                    )
-                ).ask()
+        print("")
+        confirm = questionary.confirm("Are you sure of the above inputs?",
+                                      default=True).ask()
 
-                answers["input_attrs"].append(attribute)
-
-            print("\r\nThat's all for the existing input_attrs.")
-            create_attr = questionary.confirm(
-                "Would you like to add another attribute?", default=True).ask()
-
-            while create_attr:
-                attribute = questionary.form(
-                    name=questionary.text(
-                        "What's the attribute name?",
-                        validate=lambda val: "That attribute need a name!"
-                        if len(val) == 0 else True,
-                    ),
-                    description=questionary.text(
-                        "What's the attribute description?",
-                        validate=lambda val: "That attribute need a description!"
-                        if len(val) == 0 else True,
-                    ),
-                    type=questionary.text(
-                        "What's the attribute type?",
-                        default="str"
-                    ),
-                    identifier=questionary.confirm(
-                        "That attribute should be consider as an identifier?",
-                        default=False)
-                ).ask()
-
-                answers["input_attrs"].append(attribute)
-                print("")
-                create_attr = questionary.confirm(
-                    "Would you like to add another attribute?").ask()
-
-            print("\r\nLet see the existing output_attrs.")
-            answers["output_attrs"] = []
-            for attribute in usecase.output_attrs:
-                print("")
-                attribute = questionary.form(
-                    name=questionary.text(
-                        "What's the attribute name?",
-                        validate=lambda val: "That attribute need a name!"
-                        if len(val) == 0 else True,
-                        default=attribute["name"]
-                    ),
-                    description=questionary.text(
-                        "What's the attribute description?",
-                        validate=lambda val: "That attribute need a description!"
-                        if len(val) == 0 else True,
-                        default=attribute["description"]
-                    ),
-                    type=questionary.text(
-                        "What's the attribute type?",
-                        default=attribute["type"]
-                    ),
-                    identifier=questionary.confirm(
-                        "That attribute should be consider as an identifier?",
-                        default=attribute["identifier"]
-                    )
-                ).ask()
-
-                answers["output_attrs"].append(attribute)
-
-            print("\r\nThat's all for the existing output_attrs.")
-            create_attr = questionary.confirm(
-                "Would you like to add another attribute?", default=True).ask()
-
-            while create_attr:
-                attribute = questionary.form(
-                    name=questionary.text(
-                        "What's the attribute name?",
-                        validate=lambda val: "That attribute need a name!"
-                        if len(val) == 0 else True,
-                    ),
-                    description=questionary.text(
-                        "What's the attribute description?",
-                        validate=lambda val: "That attribute need a description!"
-                        if len(val) == 0 else True,
-                    ),
-                    type=questionary.text(
-                        "What's the attribute type?",
-                        default="str"
-                    ),
-                    identifier=questionary.confirm(
-                        "That attribute should be consider as an identifier?",
-                        default=False)
-                ).ask()
-
-                answers["output_attrs"].append(attribute)
-                print("")
-                create_attr = questionary.confirm(
-                    "Would you like to add another attribute?").ask()
-        else:
-            print("Only the update for Custom usecase are allowed.")
-            exit(1)
+        if not confirm:
+            print("\r\n Ok, let's try again")
+            UpdateUsecase.show()
 
         answers["project_name"] = project_name
         answers["entity_name"] = usecase.entity_name

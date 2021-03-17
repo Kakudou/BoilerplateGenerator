@@ -55,72 +55,7 @@ class UpdateEntity:
 
         entity = EntityView.from_contract(contract)
 
-        answers = {}
-        answers["domain"] = questionary.text(
-            "What's the entity domain?",
-            validate=lambda val: "That domain need a name!"
-            if len(val) == 0 else True,
-            default=entity.domain
-        ).ask()
-
-        print("\r\nLet see the existing attributes.")
-        answers["attributes"] = []
-        for attribute in entity.attributes:
-            print("")
-            attribute = questionary.form(
-                name=questionary.text(
-                    "What's the attribute name?",
-                    validate=lambda val: "That attribute need a name!"
-                    if len(val) == 0 else True,
-                    default=attribute["name"]
-                ),
-                description=questionary.text(
-                    "What's the attribute description?",
-                    validate=lambda val: "That attribute need a description!"
-                    if len(val) == 0 else True,
-                    default=attribute["description"]
-                ),
-                type=questionary.text(
-                    "What's the attribute type?",
-                    default=attribute["type"]
-                ),
-                identifier=questionary.confirm(
-                    "That attribute should be consider as an identifier?",
-                    default=attribute["identifier"]
-                )
-            ).ask()
-
-            answers["attributes"].append(attribute)
-
-        print("\r\nThat's all for the existing attributes.")
-        create_attr = questionary.confirm(
-            "Would you like to add another attribute?", default=True).ask()
-
-        while create_attr:
-            attribute = questionary.form(
-                name=questionary.text(
-                    "What's the attribute name?",
-                    validate=lambda val: "That attribute need a name!"
-                    if len(val) == 0 else True,
-                ),
-                description=questionary.text(
-                    "What's the attribute description?",
-                    validate=lambda val: "That attribute need a description!"
-                    if len(val) == 0 else True,
-                ),
-                type=questionary.text(
-                    "What's the attribute type?",
-                    default="str"
-                ),
-                identifier=questionary.confirm(
-                    "That attribute should be consider as an identifier?",
-                    default=False)
-            ).ask()
-
-            answers["attributes"].append(attribute)
-            print("")
-            create_attr = questionary.confirm(
-                "Would you like to add another attribute?").ask()
+        answers = Factory.create_entity_form(entity)
 
         print("")
         confirm = questionary.confirm("Are you sure of the above inputs?",

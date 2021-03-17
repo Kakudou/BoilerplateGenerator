@@ -2,7 +2,9 @@ from sys import exit
 
 import questionary
 from questionary\
-    import Separator
+    import Separator, Choice
+from prompt_toolkit.shortcuts\
+    import CompleteStyle
 
 from math\
     import ceil
@@ -320,3 +322,274 @@ class Factory:
             usecase_name = wanted_usecase
 
         return usecase_name
+
+    @staticmethod
+    def create_project_form(project_update=None):
+
+        project = {}
+
+        if project_update is None:
+            project["name"] = questionary.text(
+                "What's the project name?",
+                validate=lambda val: "That project need a name!"
+                if len(val) == 0 else True,
+            ).ask()
+
+        project["path"] = questionary.path(
+            "What's the path for this project?",
+            complete_style=CompleteStyle.MULTI_COLUMN,
+            validate=lambda val: "That project need to be somewhere!"
+            if len(val) == 0 else True,
+            only_directories=True,
+            default=project_update.path
+            if project_update is not None else "",
+        ).ask()
+
+        choices = ["web", "cli", "api"]
+        if project_update is not None:
+            for choice in project_update.types:
+                choices.remove(choice)
+                choices.append(Choice(choice, checked=True))
+
+            choices.reverse()
+        project["types"] = questionary.checkbox(
+            "What types of project this will be?",
+            choices=choices,
+            use_pointer=True,
+        ).ask()
+
+        return project
+
+    @staticmethod
+    def create_feature_form(feature_update=None):
+        feature = {}
+
+        if feature_update is None:
+            feature["name"] = questionary.text(
+                "What's the name of the feature ?",
+                validate=lambda val: "That feature need a name!"
+                if len(val) == 0 else True,
+            ).ask()
+        feature["description"] = questionary.text(
+            "Can you describe the feature?",
+            validate=lambda val: "That feature need a description!"
+            if len(val) == 0 else True,
+            default=feature_update.description
+            if feature_update is not None else ""
+        ).ask()
+        feature["scenario"] = questionary.text(
+            "Can you describe the scenario?",
+            validate=lambda val: "That feature need a scenario!"
+            if len(val) == 0 else True,
+            default=feature_update.scenario
+            if feature_update is not None else ""
+        ).ask()
+        feature["given"] = questionary.text(
+            "Can you describe the 'Given' of that scenario?",
+            validate=lambda val: "That scenario need a Given!"
+            if len(val) == 0 else True,
+            default=feature_update.given
+            if feature_update is not None else ""
+        ).ask()
+        feature["when"] = questionary.text(
+            "Can you describe the 'When' of that scenario?",
+            validate=lambda val: "That scenario need a When!"
+            if len(val) == 0 else True,
+            default=feature_update.when
+            if feature_update is not None else ""
+        ).ask()
+        feature["then"] = questionary.text(
+            "Can you describe the 'Then' of that scenario?",
+            validate=lambda val: "That scenario need a Then!"
+            if len(val) == 0 else True,
+            default=feature_update.then
+            if feature_update is not None else ""
+        ).ask()
+
+        return feature
+
+    @staticmethod
+    def create_constraint_form(constraint_update=None):
+        constraint = {}
+
+        if constraint_update is None:
+            constraint["name"] = questionary.text(
+                "What's the name of the constraint ?",
+                validate=lambda val: "That constraint need a name!"
+                if len(val) == 0 else True,
+            ).ask()
+        constraint["description"] = questionary.text(
+            "Can you describe the constraint?",
+            validate=lambda val: "That constraint need a description!"
+            if len(val) == 0 else True,
+            default=constraint_update.description
+            if constraint_update is not None else ""
+        ).ask()
+        constraint["scenario"] = questionary.text(
+            "Can you describe the scenario?",
+            validate=lambda val: "That constraint need a scenario!"
+            if len(val) == 0 else True,
+            default=constraint_update.scenario
+            if constraint_update is not None else ""
+        ).ask()
+        constraint["given"] = questionary.text(
+            "Can you describe the 'Given' of that scenario?",
+            validate=lambda val: "That scenario need a Given!"
+            if len(val) == 0 else True,
+            default=constraint_update.given
+            if constraint_update is not None else ""
+        ).ask()
+        constraint["when"] = questionary.text(
+            "Can you describe the 'When' of that scenario?",
+            validate=lambda val: "That scenario need a When!"
+            if len(val) == 0 else True,
+            default=constraint_update.when
+            if constraint_update is not None else ""
+        ).ask()
+        constraint["then"] = questionary.text(
+            "Can you describe the 'Then' of that scenario?",
+            validate=lambda val: "That scenario need a Then!"
+            if len(val) == 0 else True,
+            default=constraint_update.then
+            if constraint_update is not None else ""
+        ).ask()
+
+        return constraint
+
+    @staticmethod
+    def create_entity_form(entity_update=None):
+        entity = {}
+
+        if entity_update is None:
+            entity["name"] = questionary.text(
+                "What's the entity name?",
+                validate=lambda val: "That entity need a name!"
+                if len(val) == 0 else True,
+            ).ask()
+
+        entity["domain"] = questionary.text(
+            "What's the entity domain?",
+            validate=lambda val: "That domain need a name!"
+            if len(val) == 0 else True,
+            default=entity["name"]
+            if entity_update is None else entity_update.domain
+        ).ask()
+
+        attrs = None
+        if entity_update is not None:
+            attrs = entity_update.attributes
+        print("")
+        entity["attributes"] = Factory._create_attributes_form(attrs)
+
+        return entity
+
+    @staticmethod
+    def _create_attributes_form(attrs_update=None):
+        attrs = []
+
+        if attrs_update is not None and len(attrs_update) > 0:
+            print("Let see the existing attributes.")
+
+            for attribute in attrs_update:
+                print("")
+                attribute = questionary.form(
+                    name=questionary.text(
+                        "What's the attribute name?",
+                        validate=lambda val: "That attribute need a name!"
+                        if len(val) == 0 else True,
+                        default=attribute["name"]
+                    ),
+                    description=questionary.text(
+                        "What's the attribute description?",
+                        validate=lambda val: "That attribute need a description!"
+                        if len(val) == 0 else True,
+                        default=attribute["description"]
+                    ),
+                    type=questionary.text(
+                        "What's the attribute type?",
+                        default=attribute["type"]
+                    ),
+                    identifier=questionary.confirm(
+                        "That attribute should be consider as an identifier?",
+                        default=attribute["identifier"]
+                    )
+                ).ask()
+
+                attrs.append(attribute)
+
+            print("\r\nThat's all for the existing attributes.")
+        create_attr = questionary.confirm(
+            "Would you like to add another attribute?", default=True).ask()
+
+        while create_attr:
+            attribute = questionary.form(
+                name=questionary.text(
+                    "What's the attribute name?",
+                    validate=lambda val: "That attribute need a name!"
+                    if len(val) == 0 else True,
+                ),
+                description=questionary.text(
+                    "What's the attribute description?",
+                    validate=lambda val: "That attribute need a description!"
+                    if len(val) == 0 else True,
+                ),
+                type=questionary.text(
+                    "What's the attribute type?",
+                    default="str"
+                ),
+                identifier=questionary.confirm(
+                    "That attribute should be consider as an identifier?",
+                    default=False)
+            ).ask()
+
+            attrs.append(attribute)
+            print("")
+            create_attr = questionary.confirm(
+                "Would you like to add another attribute?").ask()
+
+        return attrs
+
+    @staticmethod
+    def create_usecase_form(usecase_update=None):
+        usecase = {}
+        print("")
+        if usecase_update is None:
+            usecase["type_"] = questionary.select(
+                "What types of usecase this will be?",
+                choices=["Create", "Read", "Update", "Delete", "List", "Custom"],
+                use_pointer=True,
+            ).ask()
+        elif usecase_update is not None and "Custom" not in usecase_update.type_:
+            print("Only the update for Custom usecase are allowed.")
+            exit(1)
+
+        input_attrs = None
+        output_attrs = None
+
+        type_ = usecase["type_"] if usecase_update is None else usecase_update.type_
+        if usecase_update is not None:
+            input_attrs = usecase_update.input_attrs
+            output_attrs = usecase_update.output_attrs
+
+        if "Custom" == type_:
+            if usecase_update is None:
+                usecase["name"] = questionary.text(
+                    "What's the usecase name?",
+                    validate=lambda val: "That usecase need a name!"
+                    if len(val) == 0 else True,
+                ).ask()
+
+            usecase["description"] = questionary.text(
+                "What's the usecase description?",
+                validate=lambda val: "That usecase need a description!"
+                if len(val) == 0 else True,
+                default=usecase_update.description
+                if usecase_update is not None else ""
+            ).ask()
+
+            print("\r\nLet's fill the inputs")
+            usecase["input_attrs"] = Factory._create_attributes_form(input_attrs)
+            print("\r\nLet's fill the outputs")
+            usecase["output_attrs"] = Factory._create_attributes_form(output_attrs)
+
+        return usecase

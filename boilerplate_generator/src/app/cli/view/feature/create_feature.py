@@ -32,40 +32,7 @@ class CreateFeature:
             print(f"\r\nWhoups, we found no project in: {ifr.save_path}.")
             exit(1)
 
-        inputs = {}
-
-        inputs = questionary.form(
-            name=questionary.text(
-                "What's the name of the feature ?",
-                validate=lambda val: "That feature need a name!"
-                if len(val) == 0 else True,
-            ),
-            description=questionary.text(
-                "Can you describe the feature?",
-                validate=lambda val: "That feature need a description!"
-                if len(val) == 0 else True,
-            ),
-            scenario=questionary.text(
-                "Can you describe the scenario?",
-                validate=lambda val: "That feature need a scenario!"
-                if len(val) == 0 else True,
-            ),
-            given=questionary.text(
-                "Can you describe the 'Given' of that scenario?",
-                validate=lambda val: "That scenario need a Given!"
-                if len(val) == 0 else True,
-            ),
-            when=questionary.text(
-                "Can you describe the 'When' of that scenario?",
-                validate=lambda val: "That scenario need a When!"
-                if len(val) == 0 else True,
-            ),
-            then=questionary.text(
-                "Can you describe the 'Then' of that scenario?",
-                validate=lambda val: "That scenario need a Then!"
-                if len(val) == 0 else True,
-            ),
-        ).ask()
+        inputs = Factory.create_feature_form()
 
         inputs["project_name"] = project_name
 

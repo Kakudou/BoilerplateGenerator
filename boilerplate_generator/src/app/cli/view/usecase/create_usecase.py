@@ -41,89 +41,12 @@ class CreateUsecase:
             print(f"\r\nWhoups, we found no entity in: {ifr.save_path}.")
             exit(1)
 
-        inputs["entity_name"] = entity_name
         print("-----")
 
-        print("")
-        inputs["type_"] = questionary.select(
-            "What types of usecase this will be?",
-            choices=["Create", "Read", "Update", "Delete", "List", "Custom"],
-            use_pointer=True,
-        ).ask()
+        inputs = Factory.create_usecase_form()
 
-        inputs["input_attrs"] = []
-        inputs["output_attrs"] = []
-
-        if "Custom" == inputs["type_"]:
-            inputs["name"] = questionary.text(
-                "What's the usecase name?",
-                validate=lambda val: "That usecase need a name!"
-                if len(val) == 0 else True,
-            ).ask()
-            inputs["description"] = questionary.text(
-                "What's the usecase description?",
-                validate=lambda val: "That usecase need a description!"
-                if len(val) == 0 else True,
-            ).ask()
-            print("")
-            create_attr = questionary.confirm(
-                "Would you like to add an input_attr?", default=False).ask()
-
-            while create_attr:
-                input_attr = questionary.form(
-                    name=questionary.text(
-                        "What's the input_attr name?",
-                        validate=lambda val: "That input_attr need a name!"
-                        if len(val) == 0 else True,
-                    ),
-                    description=questionary.text(
-                        "What's the input_attr description?",
-                        validate=lambda val: "That input_attr need a description!"
-                        if len(val) == 0 else True,
-                    ),
-                    type=questionary.text(
-                        "What's the input_attr type?",
-                        default="str"
-                    ),
-                    identifier=questionary.confirm(
-                        "That input_attr should be consider as an identifier?",
-                        default=False)
-                ).ask()
-
-                inputs["input_attrs"].append(input_attr)
-                print("")
-                create_attr = questionary.confirm(
-                    "Would you like to add another input_attr?").ask()
-
-            print("")
-            create_attr = questionary.confirm(
-                "Would you like to add an output_attr?", default=False).ask()
-
-            while create_attr:
-                output_attr = questionary.form(
-                    name=questionary.text(
-                        "What's the output_attr name?",
-                        validate=lambda val: "That output_attr need a name!"
-                        if len(val) == 0 else True,
-                    ),
-                    description=questionary.text(
-                        "What's the output_attr description?",
-                        validate=lambda val: "That output_attr need a description!"
-                        if len(val) == 0 else True,
-                    ),
-                    type=questionary.text(
-                        "What's the output_attr type?",
-                        default="str"
-                    ),
-                    identifier=questionary.confirm(
-                        "That output_attr should be consider as an identifier?",
-                        default=False)
-                ).ask()
-
-                inputs["output_attrs"].append(output_attr)
-                print("")
-                create_attr = questionary.confirm(
-                    "Would you like to add another output_attr?").ask()
+        inputs["entity_name"] = entity_name
+        inputs["project_name"] = project_name
 
         print("")
         confirm = questionary.confirm("Are you sure of the above inputs?",

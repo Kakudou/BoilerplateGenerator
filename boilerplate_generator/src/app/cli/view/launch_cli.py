@@ -334,3 +334,68 @@ class LaunchCLI:
         """Generate structure"""
         click.echo("let's generate a project structure")
         GenerateStructure.show(project_name, files_dir, force)
+
+    @start.command(short_help="Generate a feature.")
+    @click.option("-p", "--project", "project_name", help="The name of the targeted project")
+    @click.option("-f", "--feature", "feature_name", help="The name of the targeted feature")
+    @click.option("-d", "--dir", "files_dir", help="The dir of the yaml files")
+    @click.option("--force", "force", help="Will force the generation", is_flag=True)
+    def TODO_generate_feature(project_name, feature_name, files_dir, force):
+        """Generate feature"""
+        click.echo("let's generate a feature")
+#?        GenerateFeature.show(project_name, feature_name, files_dir, force)
+        raise NotImplementedError
+
+    @start.command(short_help="Generate a constraint.")
+    @click.option("-p", "--project", "project_name", help="The name of the targeted project")
+    @click.option("-c", "--constraint", "constraint_name", help="The name of the targeted constraint")
+    @click.option("-d", "--dir", "files_dir", help="The dir of the yaml files")
+    @click.option("--force", "force", help="Will force the generation", is_flag=True)
+    def TODO_generate_constraint(project_name, constraint_name, files_dir, force):
+        """Generate constraint"""
+        click.echo("let's generate a constraint")
+#?        GenerateConstraint.show(project_name, constraint_name, files_dir, force)
+        raise NotImplementedError
+
+    @start.command(short_help="Generate an entity.")
+    @click.option("-p", "--project", "project_name", help="The name of the targeted project")
+    @click.option("-e", "--entity", "entity_name", help="The name of the targeted entity")
+    @click.option("-d", "--dir", "files_dir", help="The dir of the yaml files")
+    @click.option("--force", "force", help="Will force the generation", is_flag=True)
+    def TODO_generate_entity(project_name, entity_name, files_dir, force):
+        """Generate entity"""
+        click.echo("let's generate an entity")
+#?        GenerateEntity.show(project_name, entity_name, files_dir, force)
+        raise NotImplementedError
+
+    @start.command(short_help="Generate the crudl.")
+    @click.option("-p", "--project", "project_name", help="The name of the targeted project")
+    @click.option("-e", "--entity", "entity_name", help="The name of the targeted entity")
+    @click.option("-d", "--dir", "files_dir", help="The dir of the yaml files")
+    @click.option("--force", "force", help="Will force the generation", is_flag=True)
+    def TODO_generate_crudl(project_name, entity_name, files_dir, force):
+        """Generate crudl"""
+        click.echo("let's generate the CRUDL")
+#?        GenerateCrudl.show(project_name, entity_name, files_dir, force)
+        raise NotImplementedError
+
+    @start.command(short_help="Generate a usecase.")
+    @click.option("-p", "--project", "project_name", help="The name of the targeted project")
+    @click.option("-u", "--usecase", "usecase_name", help="The name of the targeted usecase")
+    @click.option("-d", "--dir", "files_dir", help="The dir of the yaml files")
+    @click.option("--force", "force", help="Will force the generation", is_flag=True)
+    def TODO_generate_usecase(project_name, usecase_name, files_dir, force):
+        """Generate usecase"""
+        click.echo("let's generate a usecase")
+#?        GenerateUsecase.show(project_name, usecase_name, files_dir, force)
+        raise NotImplementedError
+
+    @start.command(short_help="Generate everything, the whole Project.")
+    @click.option("-p", "--project", "project_name", help="The name of the targeted project")
+    @click.option("-d", "--dir", "files_dir", help="The dir of the yaml files")
+    @click.option("--force", "force", help="Will force the generation", is_flag=True)
+    def TODO_generate_project(project_name, files_dir, force):
+        """Generate everything"""
+        click.echo("let's generate a everything")
+#?        GenerateProject.show(project_name, files_dir, force)
+        raise NotImplementedError

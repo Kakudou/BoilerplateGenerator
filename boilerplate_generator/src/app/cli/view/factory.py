@@ -56,14 +56,17 @@ class Factory:
                     or ("Get previous projects" in project_name):
 
                 choices = []
-                choices.append("Get previous projects")
-                choices.append("Get next projects")
+                if number_page > 0:
+                    if actual_page > 0:
+                        choices.append("Get previous projects")
+                    if actual_page != number_page:
+                        choices.append("Get next projects")
 
-                choices.append(Separator('-= The Projects =-'))
-                choices.extend(all_projects[first_elmnt:last_elemnt])
                 if number_page > 0:
                     choices.append(Separator(
-                        f'-= Pages {actual_page+1}/{number_page+1} =-'))
+                        f'-= Pages {actual_page+1}/{number_page+1} =-\n'))
+                choices.append(Separator('-= The Projects =-\n'))
+                choices.extend(all_projects[first_elmnt:last_elemnt])
 
                 project_name = questionary.select(
                     "Select one project in all of that:",
@@ -115,14 +118,18 @@ class Factory:
                     or ("Get previous features" in feature_name):
 
                 choices = []
-                choices.append("Get previous features")
-                choices.append("Get next features")
+                choices = []
+                if number_page > 0:
+                    if actual_page > 0:
+                        choices.append("Get previous features")
+                    if actual_page != number_page:
+                        choices.append("Get next features")
 
-                choices.append(Separator('-= The Features =-'))
-                choices.extend(all_features[first_elmnt:last_elemnt])
                 if number_page > 0:
                     choices.append(Separator(
-                        f'-= Pages {actual_page+1}/{number_page+1} =-'))
+                        f'-= Pages {actual_page+1}/{number_page+1} =-\n'))
+                choices.append(Separator('-= The Features =-\n'))
+                choices.extend(all_features[first_elmnt:last_elemnt])
 
                 feature_name = questionary.select(
                     "Select one feature in all of that:",
@@ -174,14 +181,17 @@ class Factory:
                     or ("Get previous constraints" in constraint_name):
 
                 choices = []
-                choices.append("Get previous constraints")
-                choices.append("Get next constraints")
+                if number_page > 0:
+                    if actual_page > 0:
+                        choices.append("Get previous constraints")
+                    if actual_page != number_page:
+                        choices.append("Get next constraints")
 
-                choices.append(Separator('-= The Constraints =-'))
-                choices.extend(all_constraints[first_elmnt:last_elemnt])
                 if number_page > 0:
                     choices.append(Separator(
-                        f'-= Pages {actual_page+1}/{number_page+1} =-'))
+                        f'-= Pages {actual_page+1}/{number_page+1} =-\n'))
+                choices.append(Separator('-= The Constraints =-\n'))
+                choices.extend(all_constraints[first_elmnt:last_elemnt])
 
                 constraint_name = questionary.select(
                     "Select one constraint in all of that:",
@@ -233,14 +243,17 @@ class Factory:
                     or ("Get previous entitys" in entity_name):
 
                 choices = []
-                choices.append("Get previous entitys")
-                choices.append("Get next entitys")
+                if number_page > 0:
+                    if actual_page > 0:
+                        choices.append("Get previous entitys")
+                    if actual_page != number_page:
+                        choices.append("Get next entitys")
 
-                choices.append(Separator('-= The Entitys =-'))
-                choices.extend(all_entitys[first_elmnt:last_elemnt])
                 if number_page > 0:
                     choices.append(Separator(
-                        f'-= Pages {actual_page+1}/{number_page+1} =-'))
+                        f'-= Pages {actual_page+1}/{number_page+1} =-\n'))
+                choices.append(Separator('-= The Entitys =-\n'))
+                choices.extend(all_entitys[first_elmnt:last_elemnt])
 
                 entity_name = questionary.select(
                     "Select one entity in all of that:",
@@ -292,14 +305,17 @@ class Factory:
                     or ("Get previous usecases" in usecase_name):
 
                 choices = []
-                choices.append("Get previous usecases")
-                choices.append("Get next usecases")
+                if number_page > 0:
+                    if actual_page > 0:
+                        choices.append("Get previous usecases")
+                    if actual_page != number_page:
+                        choices.append("Get next usecases")
 
-                choices.append(Separator('-= The Usecases =-'))
-                choices.extend(all_usecases[first_elmnt:last_elemnt])
                 if number_page > 0:
                     choices.append(Separator(
-                        f'-= Pages {actual_page+1}/{number_page+1} =-'))
+                        f'-= Pages {actual_page+1}/{number_page+1} =-\n'))
+                choices.append(Separator('-= The Usecases =-\n'))
+                choices.extend(all_usecases[first_elmnt:last_elemnt])
 
                 usecase_name = questionary.select(
                     "Select one usecase in all of that:",

@@ -110,7 +110,7 @@ class UsecaseDTO:
         obj_to_yaml = {
             "name": self.name,
             "description": self.description,
-            "type_": self.type_,
+            "type": self.type_,
         }
         if self.input_attrs is not None and len(self.input_attrs) > 0:
             obj_to_yaml["input_attrs"] = self.input_attrs
@@ -122,7 +122,7 @@ class UsecaseDTO:
     def from_yaml(self, yaml):
         self.name = yaml["name"]
         self.description = yaml["description"]
-        self.type_ = yaml["type_"]
+        self.type_ = yaml["type"]
         self.input_attrs = yaml["input_attrs"]\
             if "input_attrs" in yaml.keys() else {}
         self.output_attrs = yaml["output_attrs"]\

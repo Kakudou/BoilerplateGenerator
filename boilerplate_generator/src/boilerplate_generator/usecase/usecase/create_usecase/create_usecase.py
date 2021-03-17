@@ -78,7 +78,7 @@ class CreateUsecase:
         name = inputp.name\
             if "Custom" == type_ else f"{type_}{entity_name}"
         description = inputp.description\
-            if "Custom" == type_ else f"{type_}"
+            if "Custom" == type_ else f"{type_} a {entity_name}"
         input_attrs = inputp.input_attrs
         output_attrs = inputp.output_attrs
 

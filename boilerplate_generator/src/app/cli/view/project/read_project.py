@@ -42,8 +42,8 @@ class ReadProject:
             exit(1)
 
         project = ProjectView.from_contract(contract)
-        print(f"\r\nThe project name is: {project.name}")
-        print(f"The project path is: {project.path}")
-        print(f"The project types are: {', '.join(project.types)}")
+        print(f"\r\nThe project 'Name' is: {project.name}")
+        print(f"The project 'Path' is: {project.path}")
+        print(f"The project 'Types' are: {', '.join(project.types)}")
 
         exit(0)

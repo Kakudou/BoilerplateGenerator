@@ -49,11 +49,11 @@ class ReadFeature:
             exit(1)
 
         feature = FeatureView.from_contract(contract)
-        print(f"\r\nThe feature 'name' is: {feature.name}")
-        print(f"The feature 'description' is: {feature.description}")
-        print(f"The feature 'scenario' is: {feature.scenario}")
-        print(f"The feature 'given' is: {feature.given}")
-        print(f"The feature 'when' is: {feature.when}")
-        print(f"The feature 'then' is: {feature.then}")
+        print(f"\r\nThe feature 'Name' is: {feature.name}")
+        print(f"The feature 'Description' is: {feature.description}")
+        print(f"The feature 'Scenario' is: {feature.scenario}")
+        print(f"The feature 'Given' is: {feature.given}")
+        print(f"The feature 'When' is: {feature.when}")
+        print(f"The feature 'Then' is: {feature.then}")
 
         exit(0)

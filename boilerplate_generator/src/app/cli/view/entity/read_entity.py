@@ -49,14 +49,14 @@ class ReadEntity:
             exit(1)
 
         entity = EntityView.from_contract(contract)
-        print(f"\r\nThe entity 'name' is: {entity.name}")
-        print(f"The entity 'domain' is: {entity.domain}")
+        print(f"\r\nThe entity 'Name' is: {entity.name}")
+        print(f"The entity 'Domain' is: {entity.domain}")
         if len(entity.attributes) > 0:
-            print("\r\nThe entity 'attributes' are:")
+            print("\r\nThe entity 'Attributes' are:")
             for attr in entity.attributes:
-                print(f"\r\nAttribute name: {attr['name']}")
-                print(f"Attribute description: {attr['description']}")
-                print(f"Attribute type: {attr['type']}")
-                print(f"Attribute identifier flag: {attr['identifier']}")
+                print(f"\r\nAttribute 'Name': {attr['name']}")
+                print(f"Attribute 'Description': {attr['description']}")
+                print(f"Attribute 'Type': {attr['type']}")
+                print(f"Attribute 'identifier' flag: {attr['identifier']}")
 
         exit(0)

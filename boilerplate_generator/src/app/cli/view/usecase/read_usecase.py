@@ -49,22 +49,22 @@ class ReadUsecase:
             exit(1)
 
         usecase = UsecaseView.from_contract(contract)
-        print(f"\r\nThe usecase 'name' is: {usecase.name}")
-        print(f"The usecase 'description' is: {usecase.description}")
-        print(f"The usecase 'type_' is: {usecase.type_}")
+        print(f"\r\nThe usecase 'Name' is: {usecase.name}")
+        print(f"The usecase 'Description' is: {usecase.description}")
+        print(f"The usecase 'Type' is: {usecase.type_}")
         if len(usecase.input_attrs) > 0:
-            print("\r\nThe usecase 'input_attrs' are:")
+            print("\r\nThe usecase 'Input attributes' are:")
             for attr in usecase.input_attrs:
-                print(f"\r\nAttribute name: {attr['name']}")
-                print(f"Attribute description: {attr['description']}")
-                print(f"Attribute type: {attr['type']}")
-                print(f"Attribute identifier flag: {attr['identifier']}")
+                print(f"\r\nAttribute 'Name': {attr['name']}")
+                print(f"Attribute 'Description': {attr['description']}")
+                print(f"Attribute 'Type': {attr['type']}")
+                print(f"Attribute 'Identifier' flag: {attr['identifier']}")
         if len(usecase.output_attrs) > 0:
-            print("\r\nThe usecase 'output_attrs' are:")
+            print("\r\nThe usecase 'output attributes' are:")
             for attr in usecase.output_attrs:
-                print(f"\r\nAttribute name: {attr['name']}")
-                print(f"Attribute description: {attr['description']}")
-                print(f"Attribute type: {attr['type']}")
-                print(f"Attribute identifier flag: {attr['identifier']}")
+                print(f"\r\nAttribute 'Name': {attr['name']}")
+                print(f"Attribute 'Description': {attr['description']}")
+                print(f"Attribute 'Type': {attr['type']}")
+                print(f"Attribute 'Identifier' flag: {attr['identifier']}")
 
         exit(0)

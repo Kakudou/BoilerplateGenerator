@@ -49,11 +49,11 @@ class ReadConstraint:
             exit(1)
 
         constraint = ConstraintView.from_contract(contract)
-        print(f"\r\nThe constraint 'name' is: {constraint.name}")
-        print(f"The constraint 'description' is: {constraint.description}")
-        print(f"The constraint 'scenario' is: {constraint.scenario}")
-        print(f"The constraint 'given' is: {constraint.given}")
-        print(f"The constraint 'when' is: {constraint.when}")
-        print(f"The constraint 'then' is: {constraint.then}")
+        print(f"\r\nThe constraint 'Name' is: {constraint.name}")
+        print(f"The constraint 'Description' is: {constraint.description}")
+        print(f"The constraint 'Scenario' is: {constraint.scenario}")
+        print(f"The constraint 'Given' is: {constraint.given}")
+        print(f"The constraint 'When' is: {constraint.when}")
+        print(f"The constraint 'Then' is: {constraint.then}")
 
         exit(0)

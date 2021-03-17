@@ -49,6 +49,8 @@ from boilerplate_generator.src.app.cli.view.entity.delete_entity\
 from boilerplate_generator.src.app.cli.view.entity.list_entitys\
     import ListEntitys
 
+from boilerplate_generator.src.app.cli.view.usecase.create_crudl\
+    import CreateCrudl
 from boilerplate_generator.src.app.cli.view.usecase.create_usecase\
     import CreateUsecase
 from boilerplate_generator.src.app.cli.view.usecase.read_usecase\
@@ -266,6 +268,15 @@ class LaunchCLI:
     @start.command()
     def ______________________usecases______________________():
         pass
+
+    @start.command(short_help="Create CRUDL for an Entity.")
+    @click.option("-p", "--project", "project_name", help="The name of the targeted project")
+    @click.option("-e", "--entity", "entity_name", help="The name of the targeted entity")
+    @click.option("-d", "--dir", "files_dir", help="The dir of the yaml files")
+    def create_crudl(project_name, entity_name, files_dir):
+        """Create a crudl"""
+        click.echo("let's create a full CRUDL")
+        CreateCrudl.show(project_name, entity_name, files_dir)
 
     @start.command(short_help="Create a Usecase.")
     @click.option("-p", "--project", "project_name", help="The name of the targeted project")

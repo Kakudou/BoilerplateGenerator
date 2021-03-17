@@ -17,5 +17,4 @@ class DeleteEntityInputPort:
     """
 
     project_name: str = None
-
     name: str = None

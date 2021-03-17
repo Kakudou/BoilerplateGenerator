@@ -25,8 +25,8 @@ class {{ usecase.name }}InputPort:
 {% endfor %}
 
     """
-{% for input_attrs in usecase.input_attrs %}
 
+{% for input_attrs in usecase.input_attrs %}
     {{ input_attrs.name }}: {{ input_attrs.type}} = None
 {% endfor %}
 

@@ -29,15 +29,9 @@ class UpdateUsecaseInputPort:
     """
 
     name: str = None
-
     description: str = None
-
     type_: str = None
-
     entity_name: str = None
-
     project_name: str = None
-
     input_attrs: List = None
-
     output_attrs: List = None

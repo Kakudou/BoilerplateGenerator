@@ -23,9 +23,6 @@ class CreateEntityInputPort:
     """
 
     project_name: str = None
-
     name: str = None
-
     domain: str = None
-
     attributes: List = None

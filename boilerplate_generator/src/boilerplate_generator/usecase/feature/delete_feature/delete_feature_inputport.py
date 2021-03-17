@@ -17,5 +17,4 @@ class DeleteFeatureInputPort:
     """
 
     name: str = None
-
     project_name: str = None

@@ -27,15 +27,9 @@ class UpdateConstraintInputPort:
     """
 
     name: str = None
-
     project_name: str = None
-
     description: str = None
-
     scenario: str = None
-
     given: str = None
-
     when: str = None
-
     then: str = None

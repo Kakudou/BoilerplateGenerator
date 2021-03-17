@@ -66,6 +66,7 @@ class {{ entity.name }}INMEMORYRepository({{ entity.name }}Gateway):
             the identifier hash
 
         """
+
         id = sha256(str(identifier).encode()).hexdigest()
 
         return id

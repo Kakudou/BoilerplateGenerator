@@ -44,8 +44,8 @@ class {{ usecase.name }}Adapter:
             the output contract of the usecase {{ usecase.name }}
 
         """
-{% for input_attrs in usecase.input_attrs %}
 
+{% for input_attrs in usecase.input_attrs %}
         sanitize_{{ input_attrs.name }} = inputs["{{ input_attrs.name }}"]
 {% endfor %}
 

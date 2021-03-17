@@ -1,0 +1,7 @@
+Constraint: A Usecase should'nt be create if another one exist with the same name.
+
+    Scenario: Create a Usecase who already exist to check the error.
+        Given I have a <usecase> already created.
+        When I try to create another <usecase> with the same <usecase_name>.
+        Then I have an error telling me <usecase_name> already exist.
+

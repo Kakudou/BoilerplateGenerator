@@ -166,7 +166,8 @@ class EntityINFILERepository(EntityGateway):
             if "entitys" in yaml_to_dict["project"].keys():
                 if identifier[1] in yaml_to_dict["project"]["entitys"].keys():
                     yaml_to_dict["project"]["entitys"][identifier[1]]["domain"] = entity.domain
-                    yaml_to_dict["project"]["entitys"][identifier[1]]["attributes"] = entity.attributes
+                    if len(entity.attributes) > 0:
+                        yaml_to_dict["project"]["entitys"][identifier[1]]["attributes"] = entity.attributes
 
                     with open(file_dest, "w") as file:
                         dump(yaml_to_dict, file, Dumper=Dumper)

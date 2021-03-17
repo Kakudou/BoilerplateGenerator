@@ -51,6 +51,17 @@ from boilerplate_generator.src.app.cli.view.entity.delete_entity\
 from boilerplate_generator.src.app.cli.view.entity.list_entitys\
     import ListEntitys
 
+from boilerplate_generator.src.app.cli.view.usecase.create_usecase\
+    import CreateUsecase
+from boilerplate_generator.src.app.cli.view.usecase.read_usecase\
+    import ReadUsecase
+from boilerplate_generator.src.app.cli.view.usecase.update_usecase\
+    import UpdateUsecase
+from boilerplate_generator.src.app.cli.view.usecase.delete_usecase\
+    import DeleteUsecase
+from boilerplate_generator.src.app.cli.view.usecase.list_usecases\
+    import ListUsecases
+
 
 class OrderedGroup(click.Group):
     def __init__(self, name=None, commands=None, **attrs):
@@ -259,3 +270,51 @@ class LaunchCLI:
         """List all entities"""
         click.echo("let's list all entities")
         ListEntitys.show(project_name, files_dir)
+
+    @start.command()
+    def ______________________usecases______________________():
+        pass
+
+    @start.command(short_help="Create a Usecase.")
+    @click.option("-p", "--project", "project_name", help="The name of the targeted project")
+    @click.option("-e", "--entity", "entity_name", help="The name of the targeted entity")
+    @click.option("-d", "--dir", "files_dir", help="The dir of the yaml files")
+    def create_usecase(project_name, entity_name, files_dir):
+        """Create a usecase"""
+        click.echo("let's create a new usecase")
+        CreateUsecase.show(project_name, entity_name, files_dir)
+
+    @start.command(short_help="Read a Usecase.")
+    @click.option("-p", "--project", "project_name", help="The name of the targeted project")
+    @click.option("-u", "--usecase", "usecase_name", help="The name of the targeted usecase")
+    @click.option("-d", "--dir", "files_dir", help="The dir of the yaml files")
+    def read_usecase(project_name, usecase_name, files_dir):
+        """Read a usecase"""
+        click.echo("let's read a usecase")
+        ReadUsecase.show(project_name, usecase_name, files_dir)
+
+    @start.command(short_help="Update a Usecase.")
+    @click.option("-p", "--project", "project_name", help="The name of the targeted project")
+    @click.option("-u", "--usecase", "usecase_name", help="The name of the targeted usecase")
+    @click.option("-d", "--dir", "files_dir", help="The dir of the yaml files")
+    def update_usecase(project_name, usecase_name, files_dir):
+        """Update a usecase"""
+        click.echo("let's read a usecase")
+        UpdateUsecase.show(project_name, usecase_name, files_dir)
+
+    @start.command(short_help="Delete a Usecase.")
+    @click.option("-p", "--project", "project_name", help="The name of the targeted project")
+    @click.option("-u", "--usecase", "usecase_name", help="The name of the targeted usecase")
+    @click.option("-d", "--dir", "files_dir", help="The dir of the yaml files")
+    def delete_usecase(project_name, usecase_name, files_dir):
+        """Delete a usecase"""
+        click.echo("let's delete a usecase")
+        DeleteUsecase.show(project_name, usecase_name, files_dir)
+
+    @start.command(short_help="List all Usecases.")
+    @click.option("-p", "--project", "project_name", help="The name of the targeted project")
+    @click.option("-d", "--dir", "files_dir", help="The dir of the yaml files")
+    def list_usecases(project_name, files_dir):
+        """List all usecases"""
+        click.echo("let's list all entities")
+        ListUsecases.show(project_name, files_dir)

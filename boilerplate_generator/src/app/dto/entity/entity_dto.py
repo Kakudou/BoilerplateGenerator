@@ -77,12 +77,14 @@ class EntityDTO:
         obj_to_yaml = {
             "name": self.name,
             "domain": self.domain,
-            "attributes": self.attributes,
         }
+        if len(self.attributes) > 0:
+            obj_to_yaml["attributes"] = self.attributes
 
         return obj_to_yaml
 
     def from_yaml(self, yaml):
         self.name = yaml["name"]
         self.domain = yaml["domain"]
-        self.attributes = yaml["attributes"]
+        self.attributes = yaml["attributes"]\
+            if "attributes" in yaml.keys() else {}

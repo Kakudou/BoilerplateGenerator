@@ -69,3 +69,46 @@ class Factory:
         }]
 
         return entity
+
+    @staticmethod
+    def create_usecase(name: str) -> Dict:
+        """Will create an usecase based on the name """
+        usecase = {}
+
+        usecase["name"] = f"Name{name}"
+        usecase["description"] = "Description for the usecase"
+        usecase["type_"] = "Custom"
+        usecase["input_attrs"] = [{
+            "name": "attr1",
+            "description": "desc attr1",
+            "type": "str",
+            "identifier": True,
+        }, {
+            "name": "attr2",
+            "description": "desc attr2",
+            "type": "int",
+            "identifier": False,
+        }, {
+            "name": "attr3",
+            "description": "desc attr3",
+            "type": "List",
+            "identifier": False,
+        }]
+        usecase["output_attrs"] = [{
+            "name": "attr4",
+            "description": "desc attr4",
+            "type": "str",
+            "identifier": True,
+        }, {
+            "name": "attr5",
+            "description": "desc attr5",
+            "type": "int",
+            "identifier": False,
+        }, {
+            "name": "attr6",
+            "description": "desc attr6",
+            "type": "List",
+            "identifier": False,
+        }]
+
+        return usecase

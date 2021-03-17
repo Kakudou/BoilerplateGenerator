@@ -19,6 +19,9 @@ from boilerplate_generator.src.app.adapter\
 from boilerplate_generator.src.app.adapter\
     .entity.list_entity.list_entity_adapter\
     import ListEntityAdapter
+from boilerplate_generator.src.app.adapter\
+    .usecase.list_usecase.list_usecase_adapter\
+    import ListUsecaseAdapter
 
 
 class Factory:
@@ -258,3 +261,62 @@ class Factory:
             entity_name = wanted_entity
 
         return entity_name
+
+    @staticmethod
+    def select_usecase(project_name, wanted_usecase, save_path):
+
+        usecase_name = None
+
+        contract = ListUsecaseAdapter.execute({"project_name": project_name})
+        all_usecases = contract.all_usecases
+        all_usecases.sort()
+        if wanted_usecase is None or wanted_usecase not in all_usecases:
+            if len(all_usecases) == 0:
+                print(f"\r\nNo usecase found in: {save_path}")
+                exit(1)
+
+            min_elmnt = 0
+            max_elmnt = len(all_usecases)
+            paginate = 5
+
+            actual_page = 0
+            first_elmnt = min_elmnt
+            last_elemnt = paginate if max_elmnt >= paginate else max_elmnt
+
+            number_page = int(ceil(max_elmnt / paginate) - 1)
+
+            usecase_name = "Get next usecases"
+            while ("Get next usecases" in usecase_name) \
+                    or ("Get previous usecases" in usecase_name):
+
+                choices = []
+                choices.append("Get previous usecases")
+                choices.append("Get next usecases")
+
+                choices.append(Separator('-= The Usecases =-'))
+                choices.extend(all_usecases[first_elmnt:last_elemnt])
+                if number_page > 0:
+                    choices.append(Separator(
+                        f'-= Pages {actual_page+1}/{number_page+1} =-'))
+
+                usecase_name = questionary.select(
+                    "Select one usecase in all of that:",
+                    choices=choices,
+                    use_pointer=True,
+                    use_shortcuts=True,
+                    use_arrow_keys=True,).ask()
+
+                if "Get next usecases" in usecase_name:
+                    actual_page = actual_page + 1 \
+                        if actual_page + 1 < number_page else number_page
+                elif "Get previous usecases" in usecase_name:
+                    actual_page = actual_page - 1 \
+                        if actual_page - 1 > 0 else 0
+
+                first_elmnt = 5 * actual_page
+                last_elemnt = (5 * actual_page + paginate) \
+                    if (5 * actual_page + paginate) <= max_elmnt else max_elmnt
+        else:
+            usecase_name = wanted_usecase
+
+        return usecase_name

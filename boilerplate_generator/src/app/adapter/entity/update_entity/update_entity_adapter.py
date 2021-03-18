@@ -50,11 +50,8 @@ class UpdateEntityAdapter:
         """
 
         sanitize_project_name = inputs["project_name"]
-
         sanitize_name = inputs["name"]
-
         sanitize_domain = inputs["domain"]
-
         sanitize_attributes = inputs["attributes"]
 
         update_entity_icb = UpdateEntityInputPortBuilder()

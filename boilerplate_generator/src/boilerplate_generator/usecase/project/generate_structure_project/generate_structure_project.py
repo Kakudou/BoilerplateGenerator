@@ -159,7 +159,8 @@ class GenerateStructureProject:
 
         return self.__output
 
-    def _create_folder(self, path: str) -> bool:
+    @staticmethod
+    def _create_folder(path: str) -> bool:
         """This function will be used to create a folder if it doesn't exists
 
         Parameters:
@@ -183,7 +184,8 @@ class GenerateStructureProject:
                 raise PermissionError
         return created
 
-    def _create_file(self, path: str, project: Project, force) -> bool:
+    @staticmethod
+    def _create_file(path: str, project: Project, force) -> bool:
         """This function will be used to create a file if it doesn't exists
         based on a jinja2 template
 

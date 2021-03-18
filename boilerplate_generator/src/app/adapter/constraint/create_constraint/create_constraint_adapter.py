@@ -56,17 +56,11 @@ class CreateConstraintAdapter:
         """
 
         sanitize_name = inputs["name"]
-
         sanitize_project_name = inputs["project_name"]
-
         sanitize_description = inputs["description"]
-
         sanitize_scenario = inputs["scenario"]
-
         sanitize_given = inputs["given"]
-
         sanitize_when = inputs["when"]
-
         sanitize_then = inputs["then"]
 
         create_constraint_icb = CreateConstraintInputPortBuilder()

@@ -64,7 +64,8 @@ from boilerplate_generator.src.app.cli.view.usecase.list_usecases\
 
 from boilerplate_generator.src.app.cli.view.project.generate_structure\
     import GenerateStructure
-
+from boilerplate_generator.src.app.cli.view.feature.generate_feature\
+    import GenerateFeature
 
 class OrderedGroup(click.Group):
     def __init__(self, name=None, commands=None, **attrs):
@@ -340,11 +341,10 @@ class LaunchCLI:
     @click.option("-f", "--feature", "feature_name", help="The name of the targeted feature")
     @click.option("-d", "--dir", "files_dir", help="The dir of the yaml files")
     @click.option("--force", "force", help="Will force the generation", is_flag=True)
-    def TODO_generate_feature(project_name, feature_name, files_dir, force):
+    def generate_feature(project_name, feature_name, files_dir, force):
         """Generate feature"""
         click.echo("let's generate a feature")
-#?        GenerateFeature.show(project_name, feature_name, files_dir, force)
-        raise NotImplementedError
+        GenerateFeature.show(project_name, feature_name, files_dir, force)
 
     @start.command(short_help="Generate a constraint.")
     @click.option("-p", "--project", "project_name", help="The name of the targeted project")

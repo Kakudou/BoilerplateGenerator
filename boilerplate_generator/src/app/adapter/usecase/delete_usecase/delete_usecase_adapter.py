@@ -46,7 +46,6 @@ class DeleteUsecaseAdapter:
         """
 
         sanitize_name = inputs["name"]
-
         sanitize_project_name = inputs["project_name"]
 
         delete_usecase_icb = DeleteUsecaseInputPortBuilder()

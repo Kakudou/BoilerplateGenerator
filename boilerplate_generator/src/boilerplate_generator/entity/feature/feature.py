@@ -1,4 +1,6 @@
-"""This module is the core defined entity for Feature"""
+"""This module is the core de fined entity for Feature"""
+import re
+
 from dataclasses\
     import dataclass
 
@@ -11,6 +13,8 @@ class Feature:
     -----------
     __name: str
         The name of the feature
+    __snakename: str
+        The snakename of the feature
     __project_name: str
         The name of the project
     __description: str
@@ -30,6 +34,7 @@ class Feature:
     """
 
     __name: str = None
+    __snakename: str = None
     __project_name: str = None
     __description: str = None
     __scenario: str = None
@@ -44,6 +49,11 @@ class Feature:
     @name.setter
     def name(self, name: str):
         self.__name = name
+        self.__snakename = re.sub(r'(?!^)([A-Z]+)', r'_\1', name).lower()
+
+    @property
+    def snakename(self) -> str:
+        return self.__snakename
 
     @property
     def project_name(self) -> str:

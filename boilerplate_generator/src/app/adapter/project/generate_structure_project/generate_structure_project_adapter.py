@@ -46,7 +46,6 @@ class GenerateStructureProjectAdapter:
         """
 
         sanitize_project_name = inputs["project_name"]
-
         sanitize_force = inputs["force"]
 
         generate_structure_project_icb = GenerateStructureProjectInputPortBuilder()

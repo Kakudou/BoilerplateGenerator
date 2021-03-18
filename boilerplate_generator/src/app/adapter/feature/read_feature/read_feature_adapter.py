@@ -46,7 +46,6 @@ class ReadFeatureAdapter:
         """
 
         sanitize_name = inputs["name"]
-
         sanitize_project_name = inputs["project_name"]
 
         read_feature_icb = ReadFeatureInputPortBuilder()

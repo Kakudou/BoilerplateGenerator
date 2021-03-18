@@ -46,7 +46,6 @@ class DeleteFeatureAdapter:
         """
 
         sanitize_name = inputs["name"]
-
         sanitize_project_name = inputs["project_name"]
 
         delete_feature_icb = DeleteFeatureInputPortBuilder()

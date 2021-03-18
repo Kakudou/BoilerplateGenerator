@@ -46,7 +46,6 @@ class ReadEntityAdapter:
         """
 
         sanitize_project_name = inputs["project_name"]
-
         sanitize_name = inputs["name"]
 
         read_entity_icb = ReadEntityInputPortBuilder()

@@ -10,7 +10,7 @@ class Factory:
         """Will create a project based on the name """
         project = {}
 
-        project["name"] = f"Name{name}"
+        project["name"] = f"{name}"
         project["path"] = "/tmp"
         project["types"] = ["cli", "web", "api"]
 
@@ -21,7 +21,7 @@ class Factory:
         """Will create a feature based on the name """
         feature = {}
 
-        feature["name"] = f"Name{name}"
+        feature["name"] = f"{name}"
         feature["description"] = "Description for the feature"
         feature["scenario"] = "Description for the scenario"
         feature["given"] = "Given for the scenario"
@@ -35,7 +35,7 @@ class Factory:
         """Will create a constraint based on the name """
         constraint = {}
 
-        constraint["name"] = f"Name{name}"
+        constraint["name"] = f"{name}"
         constraint["description"] = "Description for the constraint"
         constraint["scenario"] = "Description for the scenario"
         constraint["given"] = "Given for the scenario"
@@ -49,7 +49,7 @@ class Factory:
         """Will create an entity based on the name """
         entity = {}
 
-        entity["name"] = f"Name{name}"
+        entity["name"] = f"{name}"
         entity["domain"] = "Domain for the entity"
         entity["attributes"] = [{
             "name": "attr1",
@@ -75,7 +75,7 @@ class Factory:
         """Will create an usecase based on the name """
         usecase = {}
 
-        usecase["name"] = f"Name{name}"
+        usecase["name"] = f"{name}"
         usecase["description"] = "Description for the usecase"
         usecase["type_"] = "Custom"
         usecase["input_attrs"] = [{

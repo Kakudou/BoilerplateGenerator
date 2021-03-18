@@ -46,7 +46,6 @@ class ReadConstraintAdapter:
         """
 
         sanitize_name = inputs["name"]
-
         sanitize_project_name = inputs["project_name"]
 
         read_constraint_icb = ReadConstraintInputPortBuilder()

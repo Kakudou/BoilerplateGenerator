@@ -52,7 +52,6 @@ class DeleteEntityAdapter:
         """
 
         sanitize_project_name = inputs["project_name"]
-
         sanitize_name = inputs["name"]
 
         delete_entity_icb = DeleteEntityInputPortBuilder()

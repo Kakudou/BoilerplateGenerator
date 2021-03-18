@@ -188,6 +188,30 @@ class UsecaseINMEMORYRepository(UsecaseGateway):
 
         return all_usecases
 
+    def find_all_by_entity(self, project_name, entity_name) -> List[str]:
+        """This function will find all Usecase for a project for an entity.
+
+        Parameters:
+        -----------
+        project_name: str
+            the name of the project
+        entity_name: str
+            the name of the entity
+
+        Returns:
+        --------
+        List[str]:
+            all entities Usecase
+
+        """
+        all_usecases = []
+
+        for usecase_id in self.__persists.usecases:
+            if entity_name == self.__persists.usecases[usecase_id].entity_name:
+                all_usecases.append(self.__persists.usecases[usecase_id].name)
+
+        return all_usecases
+
     def find_by_identifier(self, identifier: str) -> Usecase:
         """This function will find Usecase by is identifier
 

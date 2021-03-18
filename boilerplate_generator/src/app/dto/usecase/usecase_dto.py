@@ -108,6 +108,7 @@ class UsecaseDTO:
 
     def to_yaml(self) -> Dict[str, str]:
         obj_to_yaml = {
+            "entity": self.entity_name,
             "name": self.name,
             "description": self.description,
             "type": self.type_,
@@ -120,6 +121,7 @@ class UsecaseDTO:
         return obj_to_yaml
 
     def from_yaml(self, yaml):
+        self.entity_name = yaml["entity"]
         self.name = yaml["name"]
         self.description = yaml["description"]
         self.type_ = yaml["type"]

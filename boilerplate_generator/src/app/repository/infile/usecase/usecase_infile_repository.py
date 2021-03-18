@@ -224,6 +224,37 @@ class UsecaseINFILERepository(UsecaseGateway):
 
         return all_usecases
 
+    def find_all_by_entity(self, project_name, entity_name) -> List[str]:
+        """This function will find all Usecase for a project for an entity.
+
+        Parameters:
+        -----------
+        project_name: str
+            the name of the project
+        entity_name: str
+            the name of the entity
+
+        Returns:
+        --------
+        List[str]:
+            all entities Usecase
+
+        """
+        all_usecases = []
+
+        file_dest = f"{self.__persists.save_path}/{project_name}.yml"
+        project_exist = path.exists(file_dest)
+
+        if project_exist:
+            with open(file_dest, "r") as file:
+                yaml_to_dict = load(file, Loader=FullLoader)
+            if "usecases" in yaml_to_dict["project"].keys():
+                for usecase in yaml_to_dict["project"]["usecases"]:
+                    if entity_name == yaml_to_dict["project"]["usecases"][usecase]["entity"]:
+                        all_usecases.append(usecase)
+
+        return all_usecases
+
     def find_by_identifier(self, identifier: str) -> Usecase:
         """This function will find Usecase by is identifier
 

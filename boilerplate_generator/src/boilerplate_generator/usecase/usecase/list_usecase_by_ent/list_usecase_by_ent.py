@@ -5,23 +5,23 @@ from typing\
     import Any
 
 from boilerplate_generator.src.boilerplate_generator.usecase.\
-    usecase.read_usecase.read_usecase_inputport\
-    import ReadUsecaseInputPort
+    usecase.list_usecase_by_ent.list_usecase_by_ent_inputport\
+    import ListUsecaseByEntInputPort
 from boilerplate_generator.src.boilerplate_generator.usecase.\
-    usecase.read_usecase.read_usecase_outputport_builder\
-    import ReadUsecaseOutputPortBuilder
+    usecase.list_usecase_by_ent.list_usecase_by_ent_outputport_builder\
+    import ListUsecaseByEntOutputPortBuilder
 from boilerplate_generator.src.boilerplate_generator.usecase.\
-    usecase.read_usecase.read_usecase_outputport\
-    import ReadUsecaseOutputPort
+    usecase.list_usecase_by_ent.list_usecase_by_ent_outputport\
+    import ListUsecaseByEntOutputPort
 
 
 @dataclass
-class ReadUsecase:
+class ListUsecaseByEnt:
     """This class is the usecase to create a Entity
 
     Attributes:
     -----------
-    __output: ReadUsecaseOutputPort
+    __output: ListUsecaseByEntOutputPort
         is the outputport information who gonna travel to the adapter
 
     Functions:
@@ -46,21 +46,21 @@ class ReadUsecase:
         """
 
         self.gateway = implemented_gateway
-        self.builder = ReadUsecaseOutputPortBuilder()
+        self.builder = ListUsecaseByEntOutputPortBuilder()
 
-    def execute(self, inputp: ReadUsecaseInputPort) -> ReadUsecaseOutputPort:
+    def execute(self, inputp: ListUsecaseByEntInputPort) -> ListUsecaseByEntOutputPort:
         """This function will from the inputport create a Usecase
         and save it if none with the same identifier is found.
         And then return the appropriate outputport.
 
         Parameters:
         -----------
-        inputport: ReadUsecaseInputPort
+        inputport: ListUsecaseByEntInputPort
             the inputport who come from the adapter
 
         Returns:
         --------
-        ReadUsecaseOutputPort:
+        ListUsecaseByEntOutputPort:
             The output contract
 
         """
@@ -68,32 +68,25 @@ class ReadUsecase:
         executed = False
         usecase = None
 
-        name = inputp.name
         project_name = inputp.project_name
+        entity_name = inputp.entity_name
 
-        identifier = (name, project_name)
+        all_usecases = self.gateway.find_all_by_entity(project_name, entity_name)
 
-        usecase = self.gateway.find_by_identifier(identifier)
-
-        if usecase is None:
-            error = "This Usecase, doesn't look like to exist"
+        if all_usecases is None:
+            error = "Nothing was found."
             self.__output = self.builder.create().with_error(error).build()
         else:
             executed = True
+            usecase = True
 
         if executed:
             self.__output = self.builder.create()\
-                                .with_name(usecase.name)\
-                                .with_description(usecase.description)\
-                                .with_type_(usecase.type_)\
-                                .with_entity_name(usecase.entity_name)\
-                                .with_project_name(usecase.project_name)\
-                                .with_input_attrs(usecase.input_attrs)\
-                                .with_output_attrs(usecase.output_attrs)\
+                                .with_all_usecases(all_usecases)\
                                 .build()
 
         elif not executed and usecase is None:
-            error = "This Usecase, doesn't look like to exist"
+            error = "An error occured during persistence"
             self.__output = self.builder.create().with_error(error).build()
 
         return self.__output

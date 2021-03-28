@@ -29,15 +29,9 @@ class GenerateUsecaseInputPort:
     """
 
     usecase_name: str = None
-
     entity_name: str = None
-
     entity_domain: str = None
-
     entity_attributes: List[str] = None
-
     project_name: str = None
-
     project_path: str = None
-
     project_types: List[str] = None

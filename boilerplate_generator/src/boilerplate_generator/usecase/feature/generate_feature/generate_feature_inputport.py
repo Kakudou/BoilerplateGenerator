@@ -25,11 +25,7 @@ class GenerateFeatureInputPort:
     """
 
     feature_name: str = None
-
     force: bool = None
-
     project_name: str = None
-
     project_path: str = None
-
     project_types: List[str] = None

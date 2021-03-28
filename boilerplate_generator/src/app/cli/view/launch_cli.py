@@ -66,6 +66,8 @@ from boilerplate_generator.src.app.cli.view.project.generate_structure\
     import GenerateStructure
 from boilerplate_generator.src.app.cli.view.feature.generate_feature\
     import GenerateFeature
+from boilerplate_generator.src.app.cli.view.constraint.generate_constraint\
+    import GenerateConstraint
 
 class OrderedGroup(click.Group):
     def __init__(self, name=None, commands=None, **attrs):
@@ -351,11 +353,10 @@ class LaunchCLI:
     @click.option("-c", "--constraint", "constraint_name", help="The name of the targeted constraint")
     @click.option("-d", "--dir", "files_dir", help="The dir of the yaml files")
     @click.option("--force", "force", help="Will force the generation", is_flag=True)
-    def TODO_generate_constraint(project_name, constraint_name, files_dir, force):
+    def generate_constraint(project_name, constraint_name, files_dir, force):
         """Generate constraint"""
         click.echo("let's generate a constraint")
-#?        GenerateConstraint.show(project_name, constraint_name, files_dir, force)
-        raise NotImplementedError
+        GenerateConstraint.show(project_name, constraint_name, files_dir, force)
 
     @start.command(short_help="Generate an entity.")
     @click.option("-p", "--project", "project_name", help="The name of the targeted project")

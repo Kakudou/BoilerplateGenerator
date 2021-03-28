@@ -1,0 +1,36 @@
+import os
+import pytest
+
+from pytest_bdd\
+    import scenario, given, when, then
+
+STORAGE_ENGINE = "INMEMORY"
+__fullpath = os.path.dirname(os.path.abspath(__file__))
+
+
+@scenario(f"{__fullpath.split('/{{ project.name }}/')[0]}"
+          "/{{ project.name }}/{{ project.snakename }}"
+          "/constraints/{{ project.snakename }}/{{ constraint.snakename }}.constraint",
+          "{{ constraint.description }}")
+def test_{{ constraint.snakename }}():
+    pass
+
+
+@pytest.fixture(scope="function")
+def context():
+    return {}
+
+
+@given("{{ constraint.given }}")
+def given_{{ constraint.snakename }}(context):
+    pass
+
+
+@when("{{ constraint.when }}")
+def when_{{ constraint.snakename }}(context):
+    pass
+
+
+@then("{{ constraint.then }}")
+def then_{{ constraint.snakename }}(context):
+    assert True == False

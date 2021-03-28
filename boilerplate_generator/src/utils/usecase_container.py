@@ -59,8 +59,5 @@ class UsecaseContainer:
                                            f".{entity_name}_"
                                            f"{method.lower()}_repository")
                     klassrepo = getattr(module, f"{entity}{method}Repository")
-        if klassrepo is None:
-            print(f"The repository: {entity_name}_{method.lower()}_repository.py, doesn't look like to exist")
-            exit(1)
 
         return klass(klassrepo())

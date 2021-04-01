@@ -1,4 +1,4 @@
-Constraint: Generate a constraint.
+Feature: Generate a constraint.
 
     Scenario: Generate a constraint.
         Given I have a <constraint>.

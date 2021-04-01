@@ -50,7 +50,7 @@ class Factory:
         entity = {}
 
         entity["name"] = f"{name}"
-        entity["domain"] = "Domain for the entity"
+        entity["domain"] = "DomainEntity"
         entity["attributes"] = [{
             "name": "attr1",
             "description": "desc attr1",

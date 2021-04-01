@@ -68,6 +68,8 @@ from boilerplate_generator.src.app.cli.view.feature.generate_feature\
     import GenerateFeature
 from boilerplate_generator.src.app.cli.view.constraint.generate_constraint\
     import GenerateConstraint
+from boilerplate_generator.src.app.cli.view.entity.generate_entity\
+    import GenerateEntity
 
 class OrderedGroup(click.Group):
     def __init__(self, name=None, commands=None, **attrs):
@@ -363,11 +365,10 @@ class LaunchCLI:
     @click.option("-e", "--entity", "entity_name", help="The name of the targeted entity")
     @click.option("-d", "--dir", "files_dir", help="The dir of the yaml files")
     @click.option("--force", "force", help="Will force the generation", is_flag=True)
-    def TODO_generate_entity(project_name, entity_name, files_dir, force):
+    def generate_entity(project_name, entity_name, files_dir, force):
         """Generate entity"""
         click.echo("let's generate an entity")
-#?        GenerateEntity.show(project_name, entity_name, files_dir, force)
-        raise NotImplementedError
+        GenerateEntity.show(project_name, entity_name, files_dir, force)
 
     @start.command(short_help="Generate the crudl.")
     @click.option("-p", "--project", "project_name", help="The name of the targeted project")

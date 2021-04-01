@@ -1,4 +1,6 @@
 """This module is the core defined entity for Entity"""
+import re
+
 from dataclasses\
     import dataclass
 from typing\
@@ -15,8 +17,12 @@ class Entity:
         The name of the project
     __name: str
         The name of the entity
+    __snakename: str
+          The snake case name of the project
     __domain: str
         The domain of the entity
+    __snakedomain: str
+          The snake case domain of the project
     __attributes: List
         The attributes owned by the entity
 
@@ -27,7 +33,9 @@ class Entity:
 
     __project_name: str = None
     __name: str = None
+    __snakename: str = None
     __domain: str = None
+    __snakedomain: str = None
     __attributes: List = None
 
     @property
@@ -45,6 +53,11 @@ class Entity:
     @name.setter
     def name(self, name: str):
         self.__name = name
+        self.__snakename = re.sub(r'(?!^)([A-Z]+)', r'_\1', name).lower()
+
+    @property
+    def snakename(self) -> str:
+        return self.__snakename
 
     @property
     def domain(self) -> str:
@@ -53,6 +66,11 @@ class Entity:
     @domain.setter
     def domain(self, domain: str):
         self.__domain = domain
+        self.__snakedomain = re.sub(r'(?!^)([A-Z]+)', r'_\1', domain).lower()
+
+    @property
+    def snakedomain(self) -> str:
+        return self.__snakedomain
 
     @property
     def attributes(self) -> List:

@@ -83,7 +83,6 @@ class GenerateConstraint:
         constraint_name = inputp.constraint_name
         force = inputp.force
 
-
         identifier = (constraint_name, project_name)
         constraint = self.gateway.find_by_identifier(identifier)
 

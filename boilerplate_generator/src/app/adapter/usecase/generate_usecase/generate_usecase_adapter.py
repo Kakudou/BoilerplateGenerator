@@ -35,6 +35,8 @@ class GenerateUsecaseAdapter:
             a Dict containing the inputs:
             usecase_name: str
                 The name of the usecase
+            force: bool
+                Force the generation
             entity_name: str
                 The name of the entity
             entity_domain: str
@@ -56,6 +58,7 @@ class GenerateUsecaseAdapter:
         """
 
         sanitize_usecase_name = inputs["usecase_name"]
+        sanitize_force = inputs["force"]
         sanitize_entity_name = inputs["entity_name"]
         sanitize_entity_domain = inputs["entity_domain"]
         sanitize_entity_attributes = inputs["entity_attributes"]
@@ -67,6 +70,7 @@ class GenerateUsecaseAdapter:
         generate_usecase_ic = generate_usecase_icb\
             .create()\
             .with_usecase_name(sanitize_usecase_name)\
+            .with_force(sanitize_force)\
             .with_entity_name(sanitize_entity_name)\
             .with_entity_domain(sanitize_entity_domain)\
             .with_entity_attributes(sanitize_entity_attributes)\

@@ -60,7 +60,6 @@ class CreateCrudl:
 
             if contract.error is not None:
                 print(f"Whoups, we got some error here: {contract.error}")
-                exit(1)
             else:
                 usecase = UsecaseView.from_contract(contract)
                 print(f"The usecase {usecase.name} has been created.")

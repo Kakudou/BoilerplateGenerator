@@ -70,6 +70,8 @@ from boilerplate_generator.src.app.cli.view.constraint.generate_constraint\
     import GenerateConstraint
 from boilerplate_generator.src.app.cli.view.entity.generate_entity\
     import GenerateEntity
+from boilerplate_generator.src.app.cli.view.usecase.generate_usecase\
+    import GenerateUsecase
 
 class OrderedGroup(click.Group):
     def __init__(self, name=None, commands=None, **attrs):
@@ -386,11 +388,10 @@ class LaunchCLI:
     @click.option("-u", "--usecase", "usecase_name", help="The name of the targeted usecase")
     @click.option("-d", "--dir", "files_dir", help="The dir of the yaml files")
     @click.option("--force", "force", help="Will force the generation", is_flag=True)
-    def TODO_generate_usecase(project_name, usecase_name, files_dir, force):
+    def generate_usecase(project_name, usecase_name, files_dir, force):
         """Generate usecase"""
         click.echo("let's generate a usecase")
-#?        GenerateUsecase.show(project_name, usecase_name, files_dir, force)
-        raise NotImplementedError
+        GenerateUsecase.show(project_name, usecase_name, files_dir, force)
 
     @start.command(short_help="Generate everything, the whole Project.")
     @click.option("-p", "--project", "project_name", help="The name of the targeted project")

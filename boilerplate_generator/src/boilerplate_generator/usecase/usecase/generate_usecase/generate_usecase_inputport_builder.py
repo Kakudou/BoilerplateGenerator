@@ -23,6 +23,8 @@ class GenerateUsecaseInputPortBuilder:
         create the input contract
     with_usecase_name: str
         fill the usecase_name in the contract
+    with_force: bool
+        fill the force in the contract
     with_entity_name: str
         fill the entity_name in the contract
     with_entity_domain: str
@@ -71,6 +73,24 @@ class GenerateUsecaseInputPortBuilder:
         """
 
         self.__input.usecase_name = usecase_name
+        return self
+
+    def with_force(self, force: bool):
+        """ This function fill the force in the contract
+
+        Parameters:
+        -----------
+        force: bool
+            the force of the GenerateUsecase
+
+        Returns:
+        --------
+        GenerateUsecaseOutputPortBuilder
+            this builder with the contract to fill
+
+        """
+
+        self.__input.force = force
         return self
 
     def with_entity_name(self, entity_name: str):

@@ -13,6 +13,8 @@ class GenerateUsecaseInputPort:
     -----------
     usecase_name: str
         The name of the usecase
+    force: bool
+        Force the generation
     entity_name: str
         The name of the entity
     entity_domain: str
@@ -29,6 +31,7 @@ class GenerateUsecaseInputPort:
     """
 
     usecase_name: str = None
+    force: bool = None
     entity_name: str = None
     entity_domain: str = None
     entity_attributes: List[str] = None

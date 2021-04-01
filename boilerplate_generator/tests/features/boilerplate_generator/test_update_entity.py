@@ -43,6 +43,7 @@ def given_update_entity(context):
     context["entity"]["project_name"] = context["project"]["name"]
     CreateEntityAdapter.execute(context["entity"], STORAGE_ENGINE)
 
+
 @when("i use UpdateEntity with <entity_name>.")
 def when_update_entity(context):
     context["entity"]["given"] = "changed"

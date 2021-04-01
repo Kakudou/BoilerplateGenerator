@@ -50,6 +50,7 @@ def given_update_usecase(context):
     context["usecase"]["entity_name"] = context["entity"]["name"]
     CreateUsecaseAdapter.execute(context["usecase"], STORAGE_ENGINE)
 
+
 @when("i use UpdateUsecase with <usecase_name>.")
 def when_update_usecase(context):
     context["usecase"]["description"] = "changed"

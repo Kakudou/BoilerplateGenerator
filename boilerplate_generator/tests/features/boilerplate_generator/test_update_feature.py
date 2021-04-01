@@ -43,6 +43,7 @@ def given_update_feature(context):
     context["feature"]["project_name"] = context["project"]["name"]
     CreateFeatureAdapter.execute(context["feature"], STORAGE_ENGINE)
 
+
 @when("i use UpdateFeature with <feature_name>.")
 def when_update_feature(context):
     context["feature"]["given"] = "changed"

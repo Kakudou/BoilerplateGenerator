@@ -1,6 +1,7 @@
 """This module is the entrance of the cli application."""
 from boilerplate_generator.src.app.cli.view import *
 
+
 class OrderedGroup(click.Group):
     def __init__(self, name=None, commands=None, **attrs):
         super(OrderedGroup, self).__init__(name, commands, **attrs)

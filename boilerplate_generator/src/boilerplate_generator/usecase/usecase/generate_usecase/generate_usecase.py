@@ -28,6 +28,7 @@ from boilerplate_generator.src.boilerplate_generator.entity.\
     usecase.usecase\
     import Usecase
 
+
 @dataclass
 class GenerateUsecase:
     """This class is the usecase to create a Entity

@@ -83,7 +83,6 @@ class GenerateFeature:
         feature_name = inputp.feature_name
         force = inputp.force
 
-
         identifier = (feature_name, project_name)
         feature = self.gateway.find_by_identifier(identifier)
 

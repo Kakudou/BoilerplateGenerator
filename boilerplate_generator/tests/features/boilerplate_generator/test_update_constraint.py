@@ -43,6 +43,7 @@ def given_update_constraint(context):
     context["constraint"]["project_name"] = context["project"]["name"]
     CreateConstraintAdapter.execute(context["constraint"], STORAGE_ENGINE)
 
+
 @when("i use UpdateConstraint with <constraint_name>.")
 def when_update_constraint(context):
     context["constraint"]["given"] = "changed"

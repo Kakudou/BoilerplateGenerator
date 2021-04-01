@@ -51,6 +51,7 @@ def given_generate_usecase(context):
     context["usecase"]["entity_name"] = context["entity"]["name"]
     CreateUsecaseAdapter.execute(context["usecase"], STORAGE_ENGINE)
 
+
 @when("I execute GenerateUsecase.")
 def when_generate_usecase(context):
     context["generate"] = {}

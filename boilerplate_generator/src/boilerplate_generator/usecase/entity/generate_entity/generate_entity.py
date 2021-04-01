@@ -107,8 +107,8 @@ class GenerateEntity:
         ]
         if len(project.types) != 0:
             for project_type in project.types:
-                files.append(f"{dest_path}/src/app/{project_type}/entity_view/{entity.snakedomain}/{entity.snakename}_view.py")
-                folders.append(f"{dest_path}/src/app/{project_type}/entity_view/{entity.snakedomain}/")
+                files.append(f"{dest_path}/{project.snakename}/src/app/{project_type}/entity_view/{entity.snakedomain}/{entity.snakename}_view.py")
+                folders.append(f"{dest_path}/{project.snakename}/src/app/{project_type}/entity_view/{entity.snakedomain}/")
 
         created_folders = []
         for folder in folders:

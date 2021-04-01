@@ -97,10 +97,10 @@ class EntityINFILERepository(EntityGateway):
         with open(file_dest, "r") as file:
             yaml_to_dict = load(file, Loader=FullLoader)
 
-        if "entitys" not in yaml_to_dict["project"].keys():
-            yaml_to_dict["project"]["entitys"] = {}
+        if "entities" not in yaml_to_dict["project"].keys():
+            yaml_to_dict["project"]["entities"] = {}
 
-        yaml_to_dict["project"]["entitys"][entity_dto.name] = yaml
+        yaml_to_dict["project"]["entities"][entity_dto.name] = yaml
 
         with open(file_dest, "w") as file:
             dump(yaml_to_dict, file, Dumper=Dumper)
@@ -132,8 +132,8 @@ class EntityINFILERepository(EntityGateway):
         if project_exist:
             with open(file_dest, "r") as file:
                 yaml_to_dict = load(file, Loader=FullLoader)
-            if "entitys" in yaml_to_dict["project"].keys():
-                if identifier[1] in yaml_to_dict["project"]["entitys"].keys():
+            if "entities" in yaml_to_dict["project"].keys():
+                if identifier[1] in yaml_to_dict["project"]["entities"].keys():
                     exist = True
 
         return exist
@@ -163,11 +163,11 @@ class EntityINFILERepository(EntityGateway):
         if project_exist:
             with open(file_dest, "r") as file:
                 yaml_to_dict = load(file, Loader=FullLoader)
-            if "entitys" in yaml_to_dict["project"].keys():
-                if identifier[1] in yaml_to_dict["project"]["entitys"].keys():
-                    yaml_to_dict["project"]["entitys"][identifier[1]]["domain"] = entity.domain
+            if "entities" in yaml_to_dict["project"].keys():
+                if identifier[1] in yaml_to_dict["project"]["entities"].keys():
+                    yaml_to_dict["project"]["entities"][identifier[1]]["domain"] = entity.domain
                     if len(entity.attributes) > 0:
-                        yaml_to_dict["project"]["entitys"][identifier[1]]["attributes"] = entity.attributes
+                        yaml_to_dict["project"]["entities"][identifier[1]]["attributes"] = entity.attributes
 
                     with open(file_dest, "w") as file:
                         dump(yaml_to_dict, file, Dumper=Dumper)
@@ -209,7 +209,7 @@ class EntityINFILERepository(EntityGateway):
             all entities Entity
 
         """
-        all_entitys = []
+        all_entities = []
 
         file_dest = f"{self.__persists.save_path}/{project_name}.yml"
         project_exist = path.exists(file_dest)
@@ -217,11 +217,11 @@ class EntityINFILERepository(EntityGateway):
         if project_exist:
             with open(file_dest, "r") as file:
                 yaml_to_dict = load(file, Loader=FullLoader)
-            if "entitys" in yaml_to_dict["project"].keys():
-                for entity in yaml_to_dict["project"]["entitys"]:
-                    all_entitys.append(entity)
+            if "entities" in yaml_to_dict["project"].keys():
+                for entity in yaml_to_dict["project"]["entities"]:
+                    all_entities.append(entity)
 
-        return all_entitys
+        return all_entities
 
     def find_by_identifier(self, identifier: str) -> Entity:
         """This function will find Entity by is identifier
@@ -246,10 +246,10 @@ class EntityINFILERepository(EntityGateway):
         if project_exist:
             with open(file_dest, "r") as file:
                 yaml_to_dict = load(file, Loader=FullLoader)
-            if "entitys" in yaml_to_dict["project"].keys():
-                if identifier[1] in yaml_to_dict["project"]["entitys"].keys():
+            if "entities" in yaml_to_dict["project"].keys():
+                if identifier[1] in yaml_to_dict["project"]["entities"].keys():
                     entity_dto = EntityDTO()
-                    entity_dto.from_yaml(yaml_to_dict["project"]["entitys"][identifier[1]])
+                    entity_dto.from_yaml(yaml_to_dict["project"]["entities"][identifier[1]])
 
                     entity = self._convert_to_entity(entity_dto)
 
@@ -278,9 +278,9 @@ class EntityINFILERepository(EntityGateway):
         if project_exist:
             with open(file_dest, "r") as file:
                 yaml_to_dict = load(file, Loader=FullLoader)
-            if "entitys" in yaml_to_dict["project"].keys():
-                if identifier[1] in yaml_to_dict["project"]["entitys"].keys():
-                    del yaml_to_dict["project"]["entitys"][identifier[1]]
+            if "entities" in yaml_to_dict["project"].keys():
+                if identifier[1] in yaml_to_dict["project"]["entities"].keys():
+                    del yaml_to_dict["project"]["entities"][identifier[1]]
 
                     with open(file_dest, "w") as file:
                         dump(yaml_to_dict, file, Dumper=Dumper)

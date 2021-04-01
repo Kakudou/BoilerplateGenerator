@@ -53,7 +53,7 @@ class EntityINMEMORYRepository(EntityGateway):
         """Init InMemoryPersist who will be used for inmemory storage"""
 
         self.__persists = InMemoryPersist()
-        self.__persists.entitys = {}
+        self.__persists.entities = {}
 
     def _generate_id(self, identifier) -> str:
         """This function will generate an ID for the entity
@@ -87,7 +87,7 @@ class EntityINMEMORYRepository(EntityGateway):
         saved = False
 
         entity_dto = self._convert_to_dto(entity)
-        self.__persists.entitys[entity_dto.id] = entity_dto
+        self.__persists.entities[entity_dto.id] = entity_dto
 
         saved = True
 
@@ -113,7 +113,7 @@ class EntityINMEMORYRepository(EntityGateway):
         hash_id = sha256(str(identifier).encode()).hexdigest()
 
         try:
-            found = self.__persists.entitys[hash_id]
+            found = self.__persists.entities[hash_id]
         except KeyError:
             found = None
 
@@ -142,7 +142,7 @@ class EntityINMEMORYRepository(EntityGateway):
         updated = False
 
         entity_dto = self._convert_to_dto(entity)
-        self.__persists.entitys[entity_dto.id] = entity_dto
+        self.__persists.entities[entity_dto.id] = entity_dto
 
         updated = True
 
@@ -162,8 +162,8 @@ class EntityINMEMORYRepository(EntityGateway):
         """
 
         entity_names = []
-        for entity_id in self.__persists.entitys:
-            entity_names.append(self.__persists.entitys[entity_id].name)
+        for entity_id in self.__persists.entities:
+            entity_names.append(self.__persists.entities[entity_id].name)
 
         return entity_names
 
@@ -181,12 +181,12 @@ class EntityINMEMORYRepository(EntityGateway):
             all entities Entity
 
         """
-        all_entitys = []
+        all_entities = []
 
-        for entity_id in self.__persists.entitys:
-            all_entitys.append(self.__persists.entitys[entity_id].name)
+        for entity_id in self.__persists.entities:
+            all_entities.append(self.__persists.entities[entity_id].name)
 
-        return all_entitys
+        return all_entities
 
     def find_by_identifier(self, identifier: str) -> Entity:
         """This function will find Entity by is identifier
@@ -208,7 +208,7 @@ class EntityINMEMORYRepository(EntityGateway):
         hash_id = sha256(str(identifier).encode()).hexdigest()
 
         try:
-            entity_dto = self.__persists.entitys[hash_id]
+            entity_dto = self.__persists.entities[hash_id]
         except KeyError:
             entity_dto = None
 
@@ -235,7 +235,7 @@ class EntityINMEMORYRepository(EntityGateway):
         deleted = False
 
         entity_id = self._generate_id(identifier)
-        del self.__persists.entitys[entity_id]
+        del self.__persists.entities[entity_id]
 
         deleted = True
 

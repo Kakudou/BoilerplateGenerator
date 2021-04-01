@@ -221,15 +221,15 @@ class Factory:
         entity_name = None
 
         contract = ListEntityAdapter.execute({"project_name": project_name})
-        all_entitys = contract.all_entitys
-        all_entitys.sort()
-        if wanted_entity is None or wanted_entity not in all_entitys:
-            if len(all_entitys) == 0:
+        all_entities = contract.all_entities
+        all_entities.sort()
+        if wanted_entity is None or wanted_entity not in all_entities:
+            if len(all_entities) == 0:
                 print(f"\r\nNo entity found in: {save_path}")
                 exit(1)
 
             min_elmnt = 0
-            max_elmnt = len(all_entitys)
+            max_elmnt = len(all_entities)
             paginate = 5
 
             actual_page = 0
@@ -238,22 +238,22 @@ class Factory:
 
             number_page = int(ceil(max_elmnt / paginate) - 1)
 
-            entity_name = "Get next entitys"
-            while ("Get next entitys" in entity_name) \
-                    or ("Get previous entitys" in entity_name):
+            entity_name = "Get next entities"
+            while ("Get next entities" in entity_name) \
+                    or ("Get previous entities" in entity_name):
 
                 choices = []
                 if number_page > 0:
                     if actual_page > 0:
-                        choices.append("Get previous entitys")
+                        choices.append("Get previous entities")
                     if actual_page != number_page:
-                        choices.append("Get next entitys")
+                        choices.append("Get next entities")
 
                 if number_page > 0:
                     choices.append(Separator(
                         f'-= Pages {actual_page+1}/{number_page+1} =-\n'))
-                choices.append(Separator('-= The Entitys =-\n'))
-                choices.extend(all_entitys[first_elmnt:last_elemnt])
+                choices.append(Separator('-= The Entities =-\n'))
+                choices.extend(all_entities[first_elmnt:last_elemnt])
 
                 entity_name = questionary.select(
                     "Select one entity in all of that:",
@@ -262,10 +262,10 @@ class Factory:
                     use_shortcuts=True,
                     use_arrow_keys=True,).ask()
 
-                if "Get next entitys" in entity_name:
+                if "Get next entities" in entity_name:
                     actual_page = actual_page + 1 \
                         if actual_page + 1 < number_page else number_page
-                elif "Get previous entitys" in entity_name:
+                elif "Get previous entities" in entity_name:
                     actual_page = actual_page - 1 \
                         if actual_page - 1 > 0 else 0
 

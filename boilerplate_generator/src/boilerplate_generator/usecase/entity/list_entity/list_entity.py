@@ -70,9 +70,9 @@ class ListEntity:
 
         project_name = inputp.project_name
 
-        all_entitys = self.gateway.find_all_by_project(project_name)
+        all_entities = self.gateway.find_all_by_project(project_name)
 
-        if all_entitys is None:
+        if all_entities is None:
             error = "Nothing was found."
             self.__output = self.builder.create().with_error(error).build()
         else:
@@ -81,7 +81,7 @@ class ListEntity:
 
         if executed:
             self.__output = self.builder.create()\
-                                .with_all_entitys(all_entitys)\
+                                .with_all_entities(all_entities)\
                                 .build()
 
         elif not executed and entity is None:

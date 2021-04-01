@@ -13,7 +13,7 @@ from boilerplate_generator.src.app.repository.infile.infile_persist\
     import InFilePersist
 
 
-class ListEntitys:
+class ListEntities:
 
     @staticmethod
     def show(wanted_project=None, file_dir=None):
@@ -32,19 +32,19 @@ class ListEntitys:
         inputs["project_name"] = project_name
 
         contract = ListEntityAdapter.execute(inputs)
-        all_entitys = contract.all_entitys
-        all_entitys.sort()
+        all_entities = contract.all_entities
+        all_entities.sort()
         print("-----")
 
         if contract.error is not None:
             print(f"\r\nWhoups, we got some error here: {contract.error}")
             exit(1)
 
-        if len(all_entitys) == 0:
+        if len(all_entities) == 0:
             print(f"\r\nI can't find any entity in: {ifr.save_path}/{project_name}")
         else:
-            print(f"\r\nI've found all of this entitys in: {ifr.save_path}/{project_name}")
-            for entity_name in all_entitys:
+            print(f"\r\nI've found all of this entities in: {ifr.save_path}/{project_name}")
+            for entity_name in all_entities:
                 print(f"{entity_name}")
 
         exit(0)

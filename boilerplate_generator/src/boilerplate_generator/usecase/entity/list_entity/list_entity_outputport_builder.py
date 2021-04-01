@@ -21,8 +21,8 @@ class ListEntityOutputPortBuilder:
     ----------
     create:
         create the output contract
-    with_all_entitys: List[str]
-        fill the all_entitys in the contract
+    with_all_entities: List[str]
+        fill the all_entities in the contract
     with_error:
         fill the possible usecase error
     build:
@@ -45,13 +45,13 @@ class ListEntityOutputPortBuilder:
         self.__output = ListEntityOutputPort()
         return self
 
-    def with_all_entitys(self, all_entitys: List[str]):
-        """ This function fill the all_entitys in the contract
+    def with_all_entities(self, all_entities: List[str]):
+        """ This function fill the all_entities in the contract
 
         Parameters:
         -----------
-        all_entitys: List[str]
-            the all_entitys of the ListEntity
+        all_entities: List[str]
+            the all_entities of the ListEntity
 
         Returns:
         --------
@@ -60,7 +60,7 @@ class ListEntityOutputPortBuilder:
 
         """
 
-        self.__output.all_entitys = all_entitys
+        self.__output.all_entities = all_entities
         return self
 
     def with_error(self, error: str):

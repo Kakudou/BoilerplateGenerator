@@ -58,9 +58,9 @@ def when_list_entity(context):
 @then("I have a list with the 3 <entity_name>.")
 def then_list_entity(context):
     assert context\
-        ["entity1"]["name"] in context["output_contract"].all_entitys
+        ["entity1"]["name"] in context["output_contract"].all_entities
     assert context\
-        ["entity2"]["name"] in context["output_contract"].all_entitys
+        ["entity2"]["name"] in context["output_contract"].all_entities
     assert context\
-        ["entity3"]["name"] in context["output_contract"].all_entitys
+        ["entity3"]["name"] in context["output_contract"].all_entities
     os.remove(f"{context['project']['path']}/{context['project']['name']}.yml")

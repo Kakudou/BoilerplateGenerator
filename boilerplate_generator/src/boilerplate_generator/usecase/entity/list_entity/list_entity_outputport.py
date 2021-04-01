@@ -13,10 +13,10 @@ class ListEntityOutputPort:
     -----------
     error: str
         if an error happened during the usecase
-    all_entitys: List[str]
-        List of all entitys
+    all_entities: List[str]
+        List of all entities
 
     """
 
     error: str = None
-    all_entitys: List[str] = None
+    all_entities: List[str] = None

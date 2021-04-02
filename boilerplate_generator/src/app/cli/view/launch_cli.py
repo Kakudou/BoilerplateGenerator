@@ -329,3 +329,32 @@ class LaunchCLI:
         """Generate everything"""
         click.echo("let's generate a everything")
         GenerateProject.show(project_name, files_dir, force)
+
+    @start.command()
+    def ______________________usage______________________():
+        pass
+
+    @start.command(short_help="Common Usage.")
+    def usage():
+        click.echo("""
+This tool will generate the boilerplate for a Clean Architecture, with Behavior Driven Development.
+
+The most common workflow will be:
+    create-project:
+        Will be used to generate the project.yml file and identify the type of project.
+    create-feature:
+        Will be used to create the feature for the project.
+    create-constraint:
+        Will be used to create the constraint for the previous feature.
+    create-entity:
+        Will be used to create the entity involved in the previous feature.
+    create-crudl:
+        Will be used to create the CRUDL usecases for the previous entity.
+    create-usecase:
+        Will be used to create custom usecase involving the previous entity.
+    generate-project:
+        Will be used to generate the whole project.
+
+If you want more informations on the architecture behind, or to really understand what will be generated and how to use it.
+Please refer to the README.md.
+        """)

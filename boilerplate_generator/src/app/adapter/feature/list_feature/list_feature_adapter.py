@@ -5,8 +5,8 @@ from typing\
 from boilerplate_generator.src\
     import STORAGE_ENGINE
 
-from boilerplate_generator.src.utils.usecase_container\
-    import UsecaseContainer
+from boilerplate_generator.src.utils.container\
+    import Container
 from boilerplate_generator.src.boilerplate_generator.usecase.\
     feature.list_feature.list_feature_inputport_builder\
     import ListFeatureInputPortBuilder
@@ -48,8 +48,8 @@ class ListFeatureAdapter:
             .with_project_name(sanitize_project_name)\
             .build()
 
-        list_feature_oc = UsecaseContainer\
-            .get("ListFeature", storage_engine)\
+        list_feature_oc = Container\
+            .get_usecase("ListFeature", storage_engine)\
             .execute(list_feature_ic)
 
         return list_feature_oc

@@ -5,8 +5,8 @@ from typing\
 from boilerplate_generator.src\
     import STORAGE_ENGINE
 
-from boilerplate_generator.src.utils.usecase_container\
-    import UsecaseContainer
+from boilerplate_generator.src.utils.container\
+    import Container
 from boilerplate_generator.src.boilerplate_generator.usecase.\
     usecase.create_usecase.create_usecase_inputport_builder\
     import CreateUsecaseInputPortBuilder
@@ -79,8 +79,8 @@ class CreateUsecaseAdapter:
             .with_output_attrs(sanitize_output_attrs)\
             .build()
 
-        create_usecase_oc = UsecaseContainer\
-            .get("CreateUsecase", storage_engine)\
+        create_usecase_oc = Container\
+            .get_usecase("CreateUsecase", storage_engine)\
             .execute(create_usecase_ic)
 
         return create_usecase_oc

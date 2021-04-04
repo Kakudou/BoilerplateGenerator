@@ -5,8 +5,8 @@ from typing\
 from boilerplate_generator.src\
     import STORAGE_ENGINE
 
-from boilerplate_generator.src.utils.usecase_container\
-    import UsecaseContainer
+from boilerplate_generator.src.utils.container\
+    import Container
 from boilerplate_generator.src.boilerplate_generator.usecase.\
     project.delete_project.delete_project_inputport_builder\
     import DeleteProjectInputPortBuilder
@@ -51,8 +51,8 @@ class DeleteProjectAdapter:
             .with_name(sanitize_name)\
             .build()
 
-        delete_project_oc = UsecaseContainer\
-            .get("DeleteProject", storage_engine)\
+        delete_project_oc = Container\
+            .get_usecase("DeleteProject", storage_engine)\
             .execute(delete_project_ic)
 
         return delete_project_oc

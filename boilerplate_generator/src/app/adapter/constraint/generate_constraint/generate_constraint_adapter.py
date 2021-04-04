@@ -5,8 +5,8 @@ from typing\
 from boilerplate_generator.src\
     import STORAGE_ENGINE
 
-from boilerplate_generator.src.utils.usecase_container\
-    import UsecaseContainer
+from boilerplate_generator.src.utils.container\
+    import Container
 from boilerplate_generator.src.boilerplate_generator.usecase.\
     constraint.generate_constraint.generate_constraint_inputport_builder\
     import GenerateConstraintInputPortBuilder
@@ -67,8 +67,8 @@ class GenerateConstraintAdapter:
             .with_project_types(sanitize_project_types)\
             .build()
 
-        generate_constraint_oc = UsecaseContainer\
-            .get("GenerateConstraint", storage_engine)\
+        generate_constraint_oc = Container\
+            .get_usecase("GenerateConstraint", storage_engine)\
             .execute(generate_constraint_ic)
 
         return generate_constraint_oc

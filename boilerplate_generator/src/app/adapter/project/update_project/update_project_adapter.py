@@ -5,8 +5,8 @@ from typing\
 from boilerplate_generator.src\
     import STORAGE_ENGINE
 
-from boilerplate_generator.src.utils.usecase_container\
-    import UsecaseContainer
+from boilerplate_generator.src.utils.container\
+    import Container
 from boilerplate_generator.src.boilerplate_generator.usecase.\
     project.update_project.update_project_inputport_builder\
     import UpdateProjectInputPortBuilder
@@ -59,8 +59,8 @@ class UpdateProjectAdapter:
             .with_types(sanitize_types)\
             .build()
 
-        update_project_oc = UsecaseContainer\
-            .get("UpdateProject", storage_engine)\
+        update_project_oc = Container\
+            .get_usecase("UpdateProject", storage_engine)\
             .execute(update_project_ic)
 
         return update_project_oc

@@ -5,8 +5,8 @@ from typing\
 from boilerplate_generator.src\
     import STORAGE_ENGINE
 
-from boilerplate_generator.src.utils.usecase_container\
-    import UsecaseContainer
+from boilerplate_generator.src.utils.container\
+    import Container
 from boilerplate_generator.src.boilerplate_generator.usecase.\
     entity.delete_entity.delete_entity_inputport_builder\
     import DeleteEntityInputPortBuilder
@@ -61,8 +61,8 @@ class DeleteEntityAdapter:
             .with_name(sanitize_name)\
             .build()
 
-        delete_entity_oc = UsecaseContainer\
-            .get("DeleteEntity", storage_engine)\
+        delete_entity_oc = Container\
+            .get_usecase("DeleteEntity", storage_engine)\
             .execute(delete_entity_ic)
 
         list_usecase_icb = ListUsecaseByEntInputPortBuilder()
@@ -72,8 +72,8 @@ class DeleteEntityAdapter:
             .with_entity_name(sanitize_name)\
             .build()
 
-        list_usecase_oc = UsecaseContainer\
-            .get("ListUsecaseByEnt", storage_engine)\
+        list_usecase_oc = Container\
+            .get_usecase("ListUsecaseByEnt", storage_engine)\
             .execute(list_usecase_ic)
 
         for usecase_name in list_usecase_oc.all_usecases:
@@ -85,8 +85,8 @@ class DeleteEntityAdapter:
                 .with_name(usecase_name)\
                 .build()
 
-            UsecaseContainer\
-                .get("DeleteUsecase", storage_engine)\
+            Container\
+                .get_usecase("DeleteUsecase", storage_engine)\
                 .execute(delete_usecase_ic)
 
         return delete_entity_oc

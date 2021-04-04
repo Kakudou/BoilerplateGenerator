@@ -5,8 +5,8 @@ from typing\
 from boilerplate_generator.src\
     import STORAGE_ENGINE
 
-from boilerplate_generator.src.utils.usecase_container\
-    import UsecaseContainer
+from boilerplate_generator.src.utils.container\
+    import Container
 from boilerplate_generator.src.boilerplate_generator.usecase.\
     constraint.read_constraint.read_constraint_inputport_builder\
     import ReadConstraintInputPortBuilder
@@ -55,8 +55,8 @@ class ReadConstraintAdapter:
             .with_project_name(sanitize_project_name)\
             .build()
 
-        read_constraint_oc = UsecaseContainer\
-            .get("ReadConstraint", storage_engine)\
+        read_constraint_oc = Container\
+            .get_usecase("ReadConstraint", storage_engine)\
             .execute(read_constraint_ic)
 
         return read_constraint_oc

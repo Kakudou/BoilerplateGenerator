@@ -5,8 +5,8 @@ from typing\
 from boilerplate_generator.src\
     import STORAGE_ENGINE
 
-from boilerplate_generator.src.utils.usecase_container\
-    import UsecaseContainer
+from boilerplate_generator.src.utils.container\
+    import Container
 from boilerplate_generator.src.boilerplate_generator.usecase.\
     entity.read_entity.read_entity_inputport_builder\
     import ReadEntityInputPortBuilder
@@ -55,8 +55,8 @@ class ReadEntityAdapter:
             .with_name(sanitize_name)\
             .build()
 
-        read_entity_oc = UsecaseContainer\
-            .get("ReadEntity", storage_engine)\
+        read_entity_oc = Container\
+            .get_usecase("ReadEntity", storage_engine)\
             .execute(read_entity_ic)
 
         return read_entity_oc

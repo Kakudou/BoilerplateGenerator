@@ -106,6 +106,6 @@ def then_generate_entity(context):
         assert os.path.isfile(f"{dest_path}/generate_structure/src/generate_structure/gateway/abstract_gateway.py")
         assert os.path.isfile(f"{dest_path}/generate_structure/src/utils/debug.py")
         assert os.path.isfile(f"{dest_path}/generate_structure/src/utils/singleton.py")
-        assert os.path.isfile(f"{dest_path}/generate_structure/src/utils/usecase_container.py")
+        assert os.path.isfile(f"{dest_path}/generate_structure/src/utils/container.py")
     finally:
         shutil.rmtree(f"{context['project']['path']}/{context['project']['name']}")

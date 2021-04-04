@@ -5,8 +5,8 @@ from typing\
 from boilerplate_generator.src\
     import STORAGE_ENGINE
 
-from boilerplate_generator.src.utils.usecase_container\
-    import UsecaseContainer
+from boilerplate_generator.src.utils.container\
+    import Container
 from boilerplate_generator.src.boilerplate_generator.usecase.\
     feature.generate_feature.generate_feature_inputport_builder\
     import GenerateFeatureInputPortBuilder
@@ -67,8 +67,8 @@ class GenerateFeatureAdapter:
             .with_project_types(sanitize_project_types)\
             .build()
 
-        generate_feature_oc = UsecaseContainer\
-            .get("GenerateFeature", storage_engine)\
+        generate_feature_oc = Container\
+            .get_usecase("GenerateFeature", storage_engine)\
             .execute(generate_feature_ic)
 
         return generate_feature_oc

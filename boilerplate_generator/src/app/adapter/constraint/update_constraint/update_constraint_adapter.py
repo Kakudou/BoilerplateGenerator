@@ -5,8 +5,8 @@ from typing\
 from boilerplate_generator.src\
     import STORAGE_ENGINE
 
-from boilerplate_generator.src.utils.usecase_container\
-    import UsecaseContainer
+from boilerplate_generator.src.utils.container\
+    import Container
 from boilerplate_generator.src.boilerplate_generator.usecase.\
     constraint.update_constraint.update_constraint_inputport_builder\
     import UpdateConstraintInputPortBuilder
@@ -75,8 +75,8 @@ class UpdateConstraintAdapter:
             .with_then(sanitize_then)\
             .build()
 
-        update_constraint_oc = UsecaseContainer\
-            .get("UpdateConstraint", storage_engine)\
+        update_constraint_oc = Container\
+            .get_usecase("UpdateConstraint", storage_engine)\
             .execute(update_constraint_ic)
 
         return update_constraint_oc

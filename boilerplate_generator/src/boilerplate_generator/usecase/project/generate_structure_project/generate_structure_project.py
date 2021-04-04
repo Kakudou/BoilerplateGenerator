@@ -44,7 +44,7 @@ class GenerateStructureProject:
 
     def __init__(self, implemented_gateway):
         """This function is the constructor particularity:
-        the usecase_container utils class give it the good implemented_gateway
+        the container utils class give it the good implemented_gateway
 
         Parameters:
         -----------
@@ -120,7 +120,7 @@ class GenerateStructureProject:
             f"{dest_path}/{project.snakename}/src/{project.snakename}/gateway/abstract_gateway.py",
             f"{dest_path}/{project.snakename}/src/utils/debug.py",
             f"{dest_path}/{project.snakename}/src/utils/singleton.py",
-            f"{dest_path}/{project.snakename}/src/utils/usecase_container.py",
+            f"{dest_path}/{project.snakename}/src/utils/container.py",
         ]
 
         if len(project.types) != 0:

@@ -5,8 +5,8 @@ from typing\
 from boilerplate_generator.src\
     import STORAGE_ENGINE
 
-from boilerplate_generator.src.utils.usecase_container\
-    import UsecaseContainer
+from boilerplate_generator.src.utils.container\
+    import Container
 from boilerplate_generator.src.boilerplate_generator.usecase.\
     feature.update_feature.update_feature_inputport_builder\
     import UpdateFeatureInputPortBuilder
@@ -75,8 +75,8 @@ class UpdateFeatureAdapter:
             .with_then(sanitize_then)\
             .build()
 
-        update_feature_oc = UsecaseContainer\
-            .get("UpdateFeature", storage_engine)\
+        update_feature_oc = Container\
+            .get_usecase("UpdateFeature", storage_engine)\
             .execute(update_feature_ic)
 
         return update_feature_oc

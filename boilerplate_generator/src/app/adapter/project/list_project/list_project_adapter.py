@@ -5,8 +5,8 @@ from typing\
 from boilerplate_generator.src\
     import STORAGE_ENGINE
 
-from boilerplate_generator.src.utils.usecase_container\
-    import UsecaseContainer
+from boilerplate_generator.src.utils.container\
+    import Container
 from boilerplate_generator.src.boilerplate_generator.usecase.\
     project.list_project.list_project_inputport_builder\
     import ListProjectInputPortBuilder
@@ -46,8 +46,8 @@ class ListProjectAdapter:
             .create()\
             .build()
 
-        list_project_oc = UsecaseContainer\
-            .get("ListProject", storage_engine)\
+        list_project_oc = Container\
+            .get_usecase("ListProject", storage_engine)\
             .execute(list_project_ic)
 
         return list_project_oc

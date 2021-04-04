@@ -5,8 +5,8 @@ from typing\
 from {{ project.snakename }}.src\
     import STORAGE_ENGINE
 
-from {{ project.snakename }}.src.utils.usecase_container\
-    import UsecaseContainer
+from {{ project.snakename }}.src.utils.container\
+    import Container
 from {{ project.snakename }}.src.{{ project.snakename }}.usecase.\
     {{ entity.snakedomain }}.{{ usecase.snakename }}.{{ usecase.snakename }}_inputport_builder\
     import {{ usecase.name }}InputPortBuilder
@@ -57,8 +57,8 @@ class {{ usecase.name }}Adapter:
 {% endfor %}
             .build()
 
-        {{ usecase.snakename }}_oc = UsecaseContainer\
-            .get("{{ usecase.name }}", storage_engine)\
+        {{ usecase.snakename }}_oc = Container\
+            .get_usecase("{{ usecase.name }}", storage_engine)\
             .execute({{ usecase.snakename }}_ic)
 
         return {{ usecase.snakename }}_oc

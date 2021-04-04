@@ -5,8 +5,8 @@ from typing\
 from boilerplate_generator.src\
     import STORAGE_ENGINE
 
-from boilerplate_generator.src.utils.usecase_container\
-    import UsecaseContainer
+from boilerplate_generator.src.utils.container\
+    import Container
 from boilerplate_generator.src.boilerplate_generator.usecase.\
     feature.delete_feature.delete_feature_inputport_builder\
     import DeleteFeatureInputPortBuilder
@@ -55,8 +55,8 @@ class DeleteFeatureAdapter:
             .with_project_name(sanitize_project_name)\
             .build()
 
-        delete_feature_oc = UsecaseContainer\
-            .get("DeleteFeature", storage_engine)\
+        delete_feature_oc = Container\
+            .get_usecase("DeleteFeature", storage_engine)\
             .execute(delete_feature_ic)
 
         return delete_feature_oc

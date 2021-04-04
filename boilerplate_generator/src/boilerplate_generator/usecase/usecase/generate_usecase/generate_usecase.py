@@ -51,7 +51,7 @@ class GenerateUsecase:
 
     def __init__(self, implemented_gateway):
         """This function is the constructor particularity:
-        the usecase_container utils class give it the good implemented_gateway
+        the container utils class give it the good implemented_gateway
 
         Parameters:
         -----------

@@ -5,8 +5,8 @@ from typing\
 from boilerplate_generator.src\
     import STORAGE_ENGINE
 
-from boilerplate_generator.src.utils.usecase_container\
-    import UsecaseContainer
+from boilerplate_generator.src.utils.container\
+    import Container
 from boilerplate_generator.src.boilerplate_generator.usecase.\
     project.generate_structure_project.generate_structure_project_inputport_builder\
     import GenerateStructureProjectInputPortBuilder
@@ -55,8 +55,8 @@ class GenerateStructureProjectAdapter:
             .with_force(sanitize_force)\
             .build()
 
-        generate_structure_project_oc = UsecaseContainer\
-            .get("GenerateStructureProject", storage_engine)\
+        generate_structure_project_oc = Container\
+            .get_usecase("GenerateStructureProject", storage_engine)\
             .execute(generate_structure_project_ic)
 
         return generate_structure_project_oc

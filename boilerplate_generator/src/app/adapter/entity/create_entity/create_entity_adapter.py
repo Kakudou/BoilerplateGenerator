@@ -5,8 +5,8 @@ from typing\
 from boilerplate_generator.src\
     import STORAGE_ENGINE
 
-from boilerplate_generator.src.utils.usecase_container\
-    import UsecaseContainer
+from boilerplate_generator.src.utils.container\
+    import Container
 from boilerplate_generator.src.boilerplate_generator.usecase.\
     entity.create_entity.create_entity_inputport_builder\
     import CreateEntityInputPortBuilder
@@ -63,8 +63,8 @@ class CreateEntityAdapter:
             .with_attributes(sanitize_attributes)\
             .build()
 
-        create_entity_oc = UsecaseContainer\
-            .get("CreateEntity", storage_engine)\
+        create_entity_oc = Container\
+            .get_usecase("CreateEntity", storage_engine)\
             .execute(create_entity_ic)
 
         return create_entity_oc

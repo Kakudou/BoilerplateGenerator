@@ -5,8 +5,8 @@ from typing\
 from boilerplate_generator.src\
     import STORAGE_ENGINE
 
-from boilerplate_generator.src.utils.usecase_container\
-    import UsecaseContainer
+from boilerplate_generator.src.utils.container\
+    import Container
 from boilerplate_generator.src.boilerplate_generator.usecase.\
     entity.update_entity.update_entity_inputport_builder\
     import UpdateEntityInputPortBuilder
@@ -63,8 +63,8 @@ class UpdateEntityAdapter:
             .with_attributes(sanitize_attributes)\
             .build()
 
-        update_entity_oc = UsecaseContainer\
-            .get("UpdateEntity", storage_engine)\
+        update_entity_oc = Container\
+            .get_usecase("UpdateEntity", storage_engine)\
             .execute(update_entity_ic)
 
         return update_entity_oc

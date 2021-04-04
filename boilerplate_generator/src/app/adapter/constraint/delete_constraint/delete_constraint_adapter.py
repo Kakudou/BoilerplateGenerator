@@ -5,8 +5,8 @@ from typing\
 from boilerplate_generator.src\
     import STORAGE_ENGINE
 
-from boilerplate_generator.src.utils.usecase_container\
-    import UsecaseContainer
+from boilerplate_generator.src.utils.container\
+    import Container
 from boilerplate_generator.src.boilerplate_generator.usecase.\
     constraint.delete_constraint.delete_constraint_inputport_builder\
     import DeleteConstraintInputPortBuilder
@@ -55,8 +55,8 @@ class DeleteConstraintAdapter:
             .with_project_name(sanitize_project_name)\
             .build()
 
-        delete_constraint_oc = UsecaseContainer\
-            .get("DeleteConstraint", storage_engine)\
+        delete_constraint_oc = Container\
+            .get_usecase("DeleteConstraint", storage_engine)\
             .execute(delete_constraint_ic)
 
         return delete_constraint_oc

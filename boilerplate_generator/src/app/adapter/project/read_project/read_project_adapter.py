@@ -5,8 +5,8 @@ from typing\
 from boilerplate_generator.src\
     import STORAGE_ENGINE
 
-from boilerplate_generator.src.utils.usecase_container\
-    import UsecaseContainer
+from boilerplate_generator.src.utils.container\
+    import Container
 from boilerplate_generator.src.boilerplate_generator.usecase.\
     project.read_project.read_project_inputport_builder\
     import ReadProjectInputPortBuilder
@@ -51,8 +51,8 @@ class ReadProjectAdapter:
             .with_name(sanitize_name)\
             .build()
 
-        read_project_oc = UsecaseContainer\
-            .get("ReadProject", storage_engine)\
+        read_project_oc = Container\
+            .get_usecase("ReadProject", storage_engine)\
             .execute(read_project_ic)
 
         return read_project_oc

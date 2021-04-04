@@ -5,8 +5,8 @@ from typing\
 from boilerplate_generator.src\
     import STORAGE_ENGINE
 
-from boilerplate_generator.src.utils.usecase_container\
-    import UsecaseContainer
+from boilerplate_generator.src.utils.container\
+    import Container
 from boilerplate_generator.src.boilerplate_generator.usecase.\
     entity.list_entity.list_entity_inputport_builder\
     import ListEntityInputPortBuilder
@@ -49,8 +49,8 @@ class ListEntityAdapter:
             .with_project_name(sanitize_project_name)\
             .build()
 
-        list_entity_oc = UsecaseContainer\
-            .get("ListEntity", storage_engine)\
+        list_entity_oc = Container\
+            .get_usecase("ListEntity", storage_engine)\
             .execute(list_entity_ic)
 
         return list_entity_oc

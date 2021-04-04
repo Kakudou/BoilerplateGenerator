@@ -5,8 +5,8 @@ from typing\
 from boilerplate_generator.src\
     import STORAGE_ENGINE
 
-from boilerplate_generator.src.utils.usecase_container\
-    import UsecaseContainer
+from boilerplate_generator.src.utils.container\
+    import Container
 from boilerplate_generator.src.boilerplate_generator.usecase.\
     feature.read_feature.read_feature_inputport_builder\
     import ReadFeatureInputPortBuilder
@@ -55,8 +55,8 @@ class ReadFeatureAdapter:
             .with_project_name(sanitize_project_name)\
             .build()
 
-        read_feature_oc = UsecaseContainer\
-            .get("ReadFeature", storage_engine)\
+        read_feature_oc = Container\
+            .get_usecase("ReadFeature", storage_engine)\
             .execute(read_feature_ic)
 
         return read_feature_oc

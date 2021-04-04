@@ -5,8 +5,8 @@ from typing\
 from boilerplate_generator.src\
     import STORAGE_ENGINE
 
-from boilerplate_generator.src.utils.usecase_container\
-    import UsecaseContainer
+from boilerplate_generator.src.utils.container\
+    import Container
 from boilerplate_generator.src.boilerplate_generator.usecase.\
     usecase.delete_usecase.delete_usecase_inputport_builder\
     import DeleteUsecaseInputPortBuilder
@@ -55,8 +55,8 @@ class DeleteUsecaseAdapter:
             .with_project_name(sanitize_project_name)\
             .build()
 
-        delete_usecase_oc = UsecaseContainer\
-            .get("DeleteUsecase", storage_engine)\
+        delete_usecase_oc = Container\
+            .get_usecase("DeleteUsecase", storage_engine)\
             .execute(delete_usecase_ic)
 
         return delete_usecase_oc

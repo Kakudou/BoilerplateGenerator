@@ -73,6 +73,7 @@ class CreateFeature:
 
         name = inputp.name
         project_name = inputp.project_name
+        type_ = inputp.type_
         description = inputp.description
         scenario = inputp.scenario
         given = inputp.given
@@ -90,6 +91,7 @@ class CreateFeature:
             feature = Feature()
             feature.name = name
             feature.project_name = project_name
+            feature.type_ = type_
             feature.description = description
             feature.scenario = scenario
             feature.given = given
@@ -102,6 +104,7 @@ class CreateFeature:
             self.__output = self.builder.create()\
                                 .with_name(feature.name)\
                                 .with_project_name(feature.project_name)\
+                                .with_type_(feature.type_)\
                                 .with_description(feature.description)\
                                 .with_scenario(feature.scenario)\
                                 .with_given(feature.given)\

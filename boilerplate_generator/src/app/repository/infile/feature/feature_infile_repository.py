@@ -165,6 +165,7 @@ class FeatureINFILERepository(FeatureGateway):
                 yaml_to_dict = load(file, Loader=FullLoader)
             if "features" in yaml_to_dict["project"].keys():
                 if identifier[0] in yaml_to_dict["project"]["features"].keys():
+                    yaml_to_dict["project"]["features"][identifier[0]]["type"] = feature.type_
                     yaml_to_dict["project"]["features"][identifier[0]]["description"] = feature.description
                     yaml_to_dict["project"]["features"][identifier[0]]["scenario"] = feature.scenario
                     yaml_to_dict["project"]["features"][identifier[0]]["given"] = feature.given
@@ -312,6 +313,7 @@ class FeatureINFILERepository(FeatureGateway):
         feature_dto.id = self._generate_id(identifier)
         feature_dto.name = feature.name
         feature_dto.project_name = feature.project_name
+        feature_dto.type_ = feature.type_
         feature_dto.description = feature.description
         feature_dto.scenario = feature.scenario
         feature_dto.given = feature.given
@@ -338,6 +340,7 @@ class FeatureINFILERepository(FeatureGateway):
         feature = Feature()
         feature.name = feature_dto.name
         feature.project_name = feature_dto.project_name
+        feature.type_ = feature_dto.type_
         feature.description = feature_dto.description
         feature.scenario = feature_dto.scenario
         feature.given = feature_dto.given

@@ -2,7 +2,15 @@
 from sys import\
     exit
 
+import re
+
 import questionary
+
+from boilerplate_generator.src.app.adapter\
+    .project.read_project.read_project_adapter\
+    import ReadProjectAdapter
+from boilerplate_generator.src.app.cli.entity_view.project.project_view\
+    import ProjectView
 
 from boilerplate_generator.src.app.adapter\
     .feature.read_feature.read_feature_adapter\
@@ -55,7 +63,13 @@ class UpdateFeature:
 
         feature = FeatureView.from_contract(contract)
 
-        answers = Factory.create_feature_form(feature)
+        project_inputs = {}
+        project_inputs["name"] = project_name
+
+        contract = ReadProjectAdapter.execute(project_inputs)
+        project = ProjectView.from_contract(contract)
+
+        answers = Factory.create_feature_form(feature, project.types)
 
         print("")
         confirm = questionary.confirm("Are you sure of the above inputs?",
@@ -67,6 +81,9 @@ class UpdateFeature:
 
         answers["project_name"] = project_name
         answers["name"] = feature_name
+        if answers["type_"] == "core":
+            snakename = re.sub(r'(?!^)([A-Z]+)', r'_\1', project_name).lower()
+            answers["type_"] = snakename
 
         contract = UpdateFeatureAdapter.execute(answers)
 

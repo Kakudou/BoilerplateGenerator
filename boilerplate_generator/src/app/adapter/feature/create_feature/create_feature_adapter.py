@@ -37,6 +37,8 @@ class CreateFeatureAdapter:
                 The name of the feature
             project_name: str
                 The name of the project
+            type_: str
+                The type_ of the feature
             description: str
                 The description of the feature
             scenario: str
@@ -57,6 +59,7 @@ class CreateFeatureAdapter:
 
         sanitize_name = inputs["name"]
         sanitize_project_name = inputs["project_name"]
+        sanitize_type_ = inputs["type_"]
         sanitize_description = inputs["description"]
         sanitize_scenario = inputs["scenario"]
         sanitize_given = inputs["given"]
@@ -68,6 +71,7 @@ class CreateFeatureAdapter:
             .create()\
             .with_name(sanitize_name)\
             .with_project_name(sanitize_project_name)\
+            .with_type_(sanitize_type_)\
             .with_description(sanitize_description)\
             .with_scenario(sanitize_scenario)\
             .with_given(sanitize_given)\

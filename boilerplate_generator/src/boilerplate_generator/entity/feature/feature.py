@@ -17,6 +17,8 @@ class Feature:
         The snakename of the feature
     __project_name: str
         The name of the project
+    __type: str
+        The type of feature based on the project type
     __description: str
         The description of the feature
     __scenario: str
@@ -36,6 +38,7 @@ class Feature:
     __name: str = None
     __snakename: str = None
     __project_name: str = None
+    __type: str = None
     __description: str = None
     __scenario: str = None
     __given: str = None
@@ -58,6 +61,14 @@ class Feature:
     @property
     def project_name(self) -> str:
         return self.__project_name
+
+    @property
+    def type_(self) -> str:
+        return self.__type
+
+    @type_.setter
+    def type_(self, type_: str):
+        self.__type = type_
 
     @project_name.setter
     def project_name(self, project_name: str):

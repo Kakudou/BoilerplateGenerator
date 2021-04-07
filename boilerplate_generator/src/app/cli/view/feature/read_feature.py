@@ -50,6 +50,7 @@ class ReadFeature:
 
         feature = FeatureView.from_contract(contract)
         print(f"\r\nThe feature 'Name' is: {feature.name}")
+        print(f"The feature 'Type' is: {feature.type_}")
         print(f"The feature 'Description' is: {feature.description}")
         print(f"The feature 'Scenario' is: {feature.scenario}")
         print(f"The feature 'Given' is: {feature.given}")

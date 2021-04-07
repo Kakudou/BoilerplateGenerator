@@ -15,6 +15,8 @@ class UpdateFeatureOutputPort:
         The name of the feature
     project_name: str
         The name of the project
+    type_: str
+        The type_ of the feature
     description: str
         The description of the feature
     scenario: str
@@ -31,6 +33,7 @@ class UpdateFeatureOutputPort:
     error: str = None
     name: str = None
     project_name: str = None
+    type_: str = None
     description: str = None
     scenario: str = None
     given: str = None

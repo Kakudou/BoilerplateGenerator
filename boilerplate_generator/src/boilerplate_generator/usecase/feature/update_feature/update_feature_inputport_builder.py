@@ -25,6 +25,8 @@ class UpdateFeatureInputPortBuilder:
         fill the name in the contract
     with_project_name: str
         fill the project_name in the contract
+    with_type_: str
+        fill the type_ in the contract
     with_description: str
         fill the description in the contract
     with_scenario: str
@@ -89,6 +91,24 @@ class UpdateFeatureInputPortBuilder:
         """
 
         self.__input.project_name = project_name
+        return self
+
+    def with_type_(self, type_: str):
+        """ This function fill the type_ in the contract
+
+        Parameters:
+        -----------
+        type_: str
+            the type_ of the UpdateFeature
+
+        Returns:
+        --------
+        UpdateFeatureOutputPortBuilder
+            this builder with the contract to fill
+
+        """
+
+        self.__input.type_ = type_
         return self
 
     def with_description(self, description: str):

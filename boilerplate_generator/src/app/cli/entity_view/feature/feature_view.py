@@ -13,6 +13,8 @@ class FeatureView:
         The name of the feature
     __project_name: str
         The name of the project
+    __type_: str
+        The type_ of the feature
     __description: str
         The description of the feature
     __scenario: str
@@ -31,6 +33,7 @@ class FeatureView:
 
     __name: str = None
     __project_name: str = None
+    __type_: str = None
     __description: str = None
     __scenario: str = None
     __given: str = None
@@ -52,6 +55,14 @@ class FeatureView:
     @project_name.setter
     def project_name(self, project_name: str):
         self.__project_name = project_name
+
+    @property
+    def type_(self) -> str:
+        return self.__type_
+
+    @type_.setter
+    def type_(self, type_: str):
+        self.__type_ = type_
 
     @property
     def description(self) -> str:
@@ -98,6 +109,7 @@ class FeatureView:
         feature = FeatureView()
         feature.name = contract.name
         feature.project_name = contract.project_name
+        feature.type_ = contract.type_
         feature.description = contract.description
         feature.scenario = contract.scenario
         feature.given = contract.given

@@ -377,7 +377,7 @@ class Factory:
         return project
 
     @staticmethod
-    def create_feature_form(feature_update=None):
+    def create_feature_form(feature_update=None, project_types=[]):
         feature = {}
 
         if feature_update is None:
@@ -386,6 +386,23 @@ class Factory:
                 validate=lambda val: "That feature need a name!"
                 if len(val) == 0 else True,
             ).ask()
+
+        choices = project_types
+        choices.append("core")
+        if feature_update is not None:
+            choice = feature_update.type_
+            if feature_update.type_ not in project_types:
+                choice = "core"
+            choices.remove(choice)
+            choices.append(Choice(choice, checked=True))
+
+            choices.reverse()
+        feature["type_"] = questionary.select(
+            "What types of feature this will be?",
+            choices=choices,
+            use_pointer=True,
+        ).ask()
+
         feature["description"] = questionary.text(
             "Can you describe the feature?",
             validate=lambda val: "That feature need a description!"

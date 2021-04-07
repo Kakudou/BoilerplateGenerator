@@ -70,6 +70,7 @@ class UpdateConstraint:
 
         name = inputp.name
         project_name = inputp.project_name
+        type_ = inputp.type_
         description = inputp.description
         scenario = inputp.scenario
         given = inputp.given
@@ -86,6 +87,7 @@ class UpdateConstraint:
         else:
             constraint.name = name
             constraint.project_name = project_name
+            constraint.type_ = type_
             constraint.description = description
             constraint.scenario = scenario
             constraint.given = given
@@ -98,6 +100,7 @@ class UpdateConstraint:
             self.__output = self.builder.create()\
                                 .with_name(constraint.name)\
                                 .with_project_name(constraint.project_name)\
+                                .with_type_(constraint.type_)\
                                 .with_description(constraint.description)\
                                 .with_scenario(constraint.scenario)\
                                 .with_given(constraint.given)\

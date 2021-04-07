@@ -262,6 +262,7 @@ class ConstraintINMEMORYRepository(ConstraintGateway):
         constraint_dto.id = self._generate_id(identifier)
         constraint_dto.name = constraint.name
         constraint_dto.project_name = constraint.project_name
+        constraint_dto.type_ = constraint.type_
         constraint_dto.description = constraint.description
         constraint_dto.scenario = constraint.scenario
         constraint_dto.given = constraint.given
@@ -288,6 +289,7 @@ class ConstraintINMEMORYRepository(ConstraintGateway):
         constraint = Constraint()
         constraint.name = constraint_dto.name
         constraint.project_name = constraint_dto.project_name
+        constraint.type_ = constraint_dto.type_
         constraint.description = constraint_dto.description
         constraint.scenario = constraint_dto.scenario
         constraint.given = constraint_dto.given

@@ -2,7 +2,14 @@
 from sys import\
     exit
 
+import re
 import questionary
+
+from boilerplate_generator.src.app.adapter\
+    .project.read_project.read_project_adapter\
+    import ReadProjectAdapter
+from boilerplate_generator.src.app.cli.entity_view.project.project_view\
+    import ProjectView
 
 from boilerplate_generator.src.app.adapter\
     .constraint.create_constraint.create_constraint_adapter\
@@ -32,8 +39,17 @@ class CreateConstraint:
             print(f"\r\nWhoups, we found no project in: {ifr.save_path}.")
             exit(1)
 
-        inputs = Factory.create_constraint_form()
+        project_inputs = {}
+        project_inputs["name"] = project_name
 
+        contract = ReadProjectAdapter.execute(project_inputs)
+        project = ProjectView.from_contract(contract)
+
+        inputs = Factory.create_constraint_form(None, project.types)
+
+        if inputs["type_"] == "core":
+            snakename = re.sub(r'(?!^)([A-Z]+)', r'_\1', project.name).lower()
+            inputs["type_"] = snakename
         inputs["project_name"] = project_name
 
         print("")

@@ -442,7 +442,7 @@ class Factory:
         return feature
 
     @staticmethod
-    def create_constraint_form(constraint_update=None):
+    def create_constraint_form(constraint_update=None, project_types=[]):
         constraint = {}
 
         if constraint_update is None:
@@ -451,6 +451,23 @@ class Factory:
                 validate=lambda val: "That constraint need a name!"
                 if len(val) == 0 else True,
             ).ask()
+
+        choices = project_types
+        choices.append("core")
+        if constraint_update is not None:
+            choice = constraint_update.type_
+            if constraint_update.type_ not in project_types:
+                choice = "core"
+            choices.remove(choice)
+            choices.append(Choice(choice, checked=True))
+
+            choices.reverse()
+        constraint["type_"] = questionary.select(
+            "What types of constraint this will be?",
+            choices=choices,
+            use_pointer=True,
+        ).ask()
+
         constraint["description"] = questionary.text(
             "Can you describe the constraint?",
             validate=lambda val: "That constraint need a description!"

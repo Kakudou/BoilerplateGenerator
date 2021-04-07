@@ -17,6 +17,8 @@ class Constraint:
         The snakename of the constraint
     __project_name: str
         The name of the project
+    __type: str
+        The type of the constraint
     __description: str
         The description of the constraint
     __scenario: str
@@ -36,6 +38,7 @@ class Constraint:
     __name: str = None
     __snakename: str = None
     __project_name: str = None
+    __type: str = None
     __description: str = None
     __scenario: str = None
     __given: str = None
@@ -62,6 +65,14 @@ class Constraint:
     @project_name.setter
     def project_name(self, project_name: str):
         self.__project_name = project_name
+
+    @property
+    def type_(self) -> str:
+        return self.__type
+
+    @type_.setter
+    def type_(self, type_: str):
+        self.__type = type_
 
     @property
     def description(self) -> str:

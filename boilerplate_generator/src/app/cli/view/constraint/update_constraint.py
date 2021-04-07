@@ -2,7 +2,14 @@
 from sys import\
     exit
 
+import re
 import questionary
+
+from boilerplate_generator.src.app.adapter\
+    .project.read_project.read_project_adapter\
+    import ReadProjectAdapter
+from boilerplate_generator.src.app.cli.entity_view.project.project_view\
+    import ProjectView
 
 from boilerplate_generator.src.app.adapter\
     .constraint.read_constraint.read_constraint_adapter\
@@ -55,7 +62,13 @@ class UpdateConstraint:
 
         constraint = ConstraintView.from_contract(contract)
 
-        answers = Factory.create_constraint_form(constraint)
+        project_inputs = {}
+        project_inputs["name"] = project_name
+
+        contract = ReadProjectAdapter.execute(project_inputs)
+        project = ProjectView.from_contract(contract)
+
+        answers = Factory.create_constraint_form(constraint, project.types)
 
         print("")
         confirm = questionary.confirm("Are you sure of the above inputs?",

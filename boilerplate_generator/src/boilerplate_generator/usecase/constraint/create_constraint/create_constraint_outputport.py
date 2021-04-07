@@ -15,6 +15,8 @@ class CreateConstraintOutputPort:
         The name of the constraint
     project_name: str
         The name of the project
+    type_: str
+        The type_ of the constraint
     description: str
         The description of the constraint
     scenario: str
@@ -31,6 +33,7 @@ class CreateConstraintOutputPort:
     error: str = None
     name: str = None
     project_name: str = None
+    type_: str = None
     description: str = None
     scenario: str = None
     given: str = None

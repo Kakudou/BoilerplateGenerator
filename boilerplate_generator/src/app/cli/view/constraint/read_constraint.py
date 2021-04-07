@@ -50,6 +50,7 @@ class ReadConstraint:
 
         constraint = ConstraintView.from_contract(contract)
         print(f"\r\nThe constraint 'Name' is: {constraint.name}")
+        print(f"The constraint 'Type' is: {constraint.type_}")
         print(f"The constraint 'Description' is: {constraint.description}")
         print(f"The constraint 'Scenario' is: {constraint.scenario}")
         print(f"The constraint 'Given' is: {constraint.given}")

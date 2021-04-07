@@ -85,6 +85,7 @@ class ReadConstraint:
             self.__output = self.builder.create()\
                                 .with_name(constraint.name)\
                                 .with_project_name(constraint.project_name)\
+                                .with_type_(constraint.type_)\
                                 .with_description(constraint.description)\
                                 .with_scenario(constraint.scenario)\
                                 .with_given(constraint.given)\

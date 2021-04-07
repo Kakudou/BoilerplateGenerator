@@ -25,6 +25,8 @@ class ReadConstraintOutputPortBuilder:
         fill the name in the contract
     with_project_name: str
         fill the project_name in the contract
+    with_type_: str
+        fill the type_ in the contract
     with_description: str
         fill the description in the contract
     with_scenario: str
@@ -91,6 +93,24 @@ class ReadConstraintOutputPortBuilder:
         """
 
         self.__output.project_name = project_name
+        return self
+
+    def with_type_(self, type_: str):
+        """ This function fill the type_ in the contract
+
+        Parameters:
+        -----------
+        type_: str
+            the type_ of the ReadConstraint
+
+        Returns:
+        --------
+        ReadConstraintOutputPortBuilder
+            this builder with the contract to fill
+
+        """
+
+        self.__output.type_ = type_
         return self
 
     def with_description(self, description: str):

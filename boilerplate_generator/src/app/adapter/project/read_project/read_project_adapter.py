@@ -52,7 +52,7 @@ class ReadProjectAdapter:
             .build()
 
         read_project_oc = Container\
-            .get_usecase("ReadProject", storage_engine)\
+            .get_usecase_repo("ReadProject", storage_engine)\
             .execute(read_project_ic)
 
         return read_project_oc

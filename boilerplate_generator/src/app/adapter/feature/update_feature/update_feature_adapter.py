@@ -76,7 +76,7 @@ class UpdateFeatureAdapter:
             .build()
 
         update_feature_oc = Container\
-            .get_usecase("UpdateFeature", storage_engine)\
+            .get_usecase_repo("UpdateFeature", storage_engine)\
             .execute(update_feature_ic)
 
         return update_feature_oc

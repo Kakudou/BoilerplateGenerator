@@ -56,7 +56,7 @@ class DeleteFeatureAdapter:
             .build()
 
         delete_feature_oc = Container\
-            .get_usecase("DeleteFeature", storage_engine)\
+            .get_usecase_repo("DeleteFeature", storage_engine)\
             .execute(delete_feature_ic)
 
         return delete_feature_oc

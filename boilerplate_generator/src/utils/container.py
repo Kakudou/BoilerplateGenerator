@@ -13,11 +13,11 @@ class Container:
     ----------
     _get_entity_name_from_usecase_name:
         get the entity_name from the usecase_name
-    _get_usecase_from_usecase_name:
+    get_usecase:
         get the usecase from the usecase_name
     get_repository:
         get back the good DAO implementation
-    get_usecase:
+    get_usecase_repo:
         get back the good usecase and DAO implementation
 
     """
@@ -51,7 +51,7 @@ class Container:
         return entity_name
 
     @staticmethod
-    def _get_usecase_from_usecase_name(usecase_name:str):
+    def get_usecase(usecase_name: str):
         """This function will get the usecase
 
         Parameters:
@@ -110,7 +110,7 @@ class Container:
         return klassrepo
 
     @staticmethod
-    def get_usecase(usecase_name: str, method: str):
+    def get_usecase_repo(usecase_name: str, method: str):
         """This function will get the usecase with the good DAO implementation
 
         Parameters:
@@ -127,8 +127,8 @@ class Container:
 
         """
 
+        klass = Container.get_usecase(usecase_name)
         entity_name = Container._get_entity_name_from_usecase_name(usecase_name)
-        klass = Container._get_usecase_from_usecase_name(usecase_name)
         klassrepo = Container.get_repository(entity_name, method)
 
         return klass(klassrepo())

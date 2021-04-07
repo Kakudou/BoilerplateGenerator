@@ -47,7 +47,7 @@ class ListProjectAdapter:
             .build()
 
         list_project_oc = Container\
-            .get_usecase("ListProject", storage_engine)\
+            .get_usecase_repo("ListProject", storage_engine)\
             .execute(list_project_ic)
 
         return list_project_oc

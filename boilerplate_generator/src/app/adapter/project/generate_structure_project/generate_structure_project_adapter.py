@@ -56,7 +56,7 @@ class GenerateStructureProjectAdapter:
             .build()
 
         generate_structure_project_oc = Container\
-            .get_usecase("GenerateStructureProject", storage_engine)\
+            .get_usecase_repo("GenerateStructureProject", storage_engine)\
             .execute(generate_structure_project_ic)
 
         return generate_structure_project_oc

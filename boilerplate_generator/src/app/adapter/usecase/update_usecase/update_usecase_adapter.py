@@ -76,7 +76,7 @@ class UpdateUsecaseAdapter:
             .build()
 
         update_usecase_oc = Container\
-            .get_usecase("UpdateUsecase", storage_engine)\
+            .get_usecase_repo("UpdateUsecase", storage_engine)\
             .execute(update_usecase_ic)
 
         return update_usecase_oc

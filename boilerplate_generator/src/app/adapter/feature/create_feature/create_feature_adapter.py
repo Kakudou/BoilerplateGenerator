@@ -76,7 +76,7 @@ class CreateFeatureAdapter:
             .build()
 
         create_feature_oc = Container\
-            .get_usecase("CreateFeature", storage_engine)\
+            .get_usecase_repo("CreateFeature", storage_engine)\
             .execute(create_feature_ic)
 
         return create_feature_oc

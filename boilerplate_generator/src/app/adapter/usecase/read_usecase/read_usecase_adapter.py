@@ -56,7 +56,7 @@ class ReadUsecaseAdapter:
             .build()
 
         read_usecase_oc = Container\
-            .get_usecase("ReadUsecase", storage_engine)\
+            .get_usecase_repo("ReadUsecase", storage_engine)\
             .execute(read_usecase_ic)
 
         return read_usecase_oc

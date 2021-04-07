@@ -50,7 +50,7 @@ class ListEntityAdapter:
             .build()
 
         list_entity_oc = Container\
-            .get_usecase("ListEntity", storage_engine)\
+            .get_usecase_repo("ListEntity", storage_engine)\
             .execute(list_entity_ic)
 
         return list_entity_oc

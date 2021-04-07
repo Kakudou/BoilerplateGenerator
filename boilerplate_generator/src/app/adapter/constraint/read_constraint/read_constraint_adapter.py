@@ -56,7 +56,7 @@ class ReadConstraintAdapter:
             .build()
 
         read_constraint_oc = Container\
-            .get_usecase("ReadConstraint", storage_engine)\
+            .get_usecase_repo("ReadConstraint", storage_engine)\
             .execute(read_constraint_ic)
 
         return read_constraint_oc

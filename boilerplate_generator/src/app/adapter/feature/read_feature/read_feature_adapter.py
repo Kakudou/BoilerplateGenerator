@@ -56,7 +56,7 @@ class ReadFeatureAdapter:
             .build()
 
         read_feature_oc = Container\
-            .get_usecase("ReadFeature", storage_engine)\
+            .get_usecase_repo("ReadFeature", storage_engine)\
             .execute(read_feature_ic)
 
         return read_feature_oc

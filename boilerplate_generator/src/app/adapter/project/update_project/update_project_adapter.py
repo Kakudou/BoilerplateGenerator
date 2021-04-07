@@ -60,7 +60,7 @@ class UpdateProjectAdapter:
             .build()
 
         update_project_oc = Container\
-            .get_usecase("UpdateProject", storage_engine)\
+            .get_usecase_repo("UpdateProject", storage_engine)\
             .execute(update_project_ic)
 
         return update_project_oc

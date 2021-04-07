@@ -80,7 +80,7 @@ class GenerateUsecaseAdapter:
             .build()
 
         generate_usecase_oc = Container\
-            .get_usecase("GenerateUsecase", storage_engine)\
+            .get_usecase_repo("GenerateUsecase", storage_engine)\
             .execute(generate_usecase_ic)
 
         return generate_usecase_oc

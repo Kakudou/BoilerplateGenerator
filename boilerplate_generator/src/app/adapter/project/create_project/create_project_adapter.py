@@ -60,7 +60,7 @@ class CreateProjectAdapter:
             .build()
 
         create_project_oc = Container\
-            .get_usecase("CreateProject", storage_engine)\
+            .get_usecase_repo("CreateProject", storage_engine)\
             .execute(create_project_ic)
 
         return create_project_oc

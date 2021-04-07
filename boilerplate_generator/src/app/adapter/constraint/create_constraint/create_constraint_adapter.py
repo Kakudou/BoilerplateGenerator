@@ -76,7 +76,7 @@ class CreateConstraintAdapter:
             .build()
 
         create_constraint_oc = Container\
-            .get_usecase("CreateConstraint", storage_engine)\
+            .get_usecase_repo("CreateConstraint", storage_engine)\
             .execute(create_constraint_ic)
 
         return create_constraint_oc

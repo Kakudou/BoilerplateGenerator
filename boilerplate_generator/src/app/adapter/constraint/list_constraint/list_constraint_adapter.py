@@ -49,7 +49,7 @@ class ListConstraintAdapter:
             .build()
 
         list_constraint_oc = Container\
-            .get_usecase("ListConstraint", storage_engine)\
+            .get_usecase_repo("ListConstraint", storage_engine)\
             .execute(list_constraint_ic)
 
         return list_constraint_oc

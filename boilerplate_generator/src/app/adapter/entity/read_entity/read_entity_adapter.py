@@ -56,7 +56,7 @@ class ReadEntityAdapter:
             .build()
 
         read_entity_oc = Container\
-            .get_usecase("ReadEntity", storage_engine)\
+            .get_usecase_repo("ReadEntity", storage_engine)\
             .execute(read_entity_ic)
 
         return read_entity_oc

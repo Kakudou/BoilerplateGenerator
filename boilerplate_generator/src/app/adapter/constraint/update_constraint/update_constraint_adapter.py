@@ -76,7 +76,7 @@ class UpdateConstraintAdapter:
             .build()
 
         update_constraint_oc = Container\
-            .get_usecase("UpdateConstraint", storage_engine)\
+            .get_usecase_repo("UpdateConstraint", storage_engine)\
             .execute(update_constraint_ic)
 
         return update_constraint_oc

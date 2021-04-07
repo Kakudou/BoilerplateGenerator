@@ -56,7 +56,7 @@ class DeleteConstraintAdapter:
             .build()
 
         delete_constraint_oc = Container\
-            .get_usecase("DeleteConstraint", storage_engine)\
+            .get_usecase_repo("DeleteConstraint", storage_engine)\
             .execute(delete_constraint_ic)
 
         return delete_constraint_oc

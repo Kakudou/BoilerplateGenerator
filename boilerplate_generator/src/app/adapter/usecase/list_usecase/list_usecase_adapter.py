@@ -50,7 +50,7 @@ class ListUsecaseAdapter:
             .build()
 
         list_usecase_oc = Container\
-            .get_usecase("ListUsecase", storage_engine)\
+            .get_usecase_repo("ListUsecase", storage_engine)\
             .execute(list_usecase_ic)
 
         return list_usecase_oc

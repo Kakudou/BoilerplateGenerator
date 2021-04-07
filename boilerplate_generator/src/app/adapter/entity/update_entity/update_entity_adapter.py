@@ -64,7 +64,7 @@ class UpdateEntityAdapter:
             .build()
 
         update_entity_oc = Container\
-            .get_usecase("UpdateEntity", storage_engine)\
+            .get_usecase_repo("UpdateEntity", storage_engine)\
             .execute(update_entity_ic)
 
         return update_entity_oc

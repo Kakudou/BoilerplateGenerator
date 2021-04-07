@@ -68,7 +68,7 @@ class GenerateFeatureAdapter:
             .build()
 
         generate_feature_oc = Container\
-            .get_usecase("GenerateFeature", storage_engine)\
+            .get_usecase_repo("GenerateFeature", storage_engine)\
             .execute(generate_feature_ic)
 
         return generate_feature_oc

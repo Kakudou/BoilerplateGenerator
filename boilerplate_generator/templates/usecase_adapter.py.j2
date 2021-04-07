@@ -58,7 +58,7 @@ class {{ usecase.name }}Adapter:
             .build()
 
         {{ usecase.snakename }}_oc = Container\
-            .get_usecase("{{ usecase.name }}", storage_engine)\
+            .get_usecase_repo("{{ usecase.name }}", storage_engine)\
             .execute({{ usecase.snakename }}_ic)
 
         return {{ usecase.snakename }}_oc

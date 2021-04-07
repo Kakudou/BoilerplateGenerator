@@ -62,7 +62,7 @@ class DeleteEntityAdapter:
             .build()
 
         delete_entity_oc = Container\
-            .get_usecase("DeleteEntity", storage_engine)\
+            .get_usecase_repo("DeleteEntity", storage_engine)\
             .execute(delete_entity_ic)
 
         list_usecase_icb = ListUsecaseByEntInputPortBuilder()
@@ -73,7 +73,7 @@ class DeleteEntityAdapter:
             .build()
 
         list_usecase_oc = Container\
-            .get_usecase("ListUsecaseByEnt", storage_engine)\
+            .get_usecase_repo("ListUsecaseByEnt", storage_engine)\
             .execute(list_usecase_ic)
 
         for usecase_name in list_usecase_oc.all_usecases:
@@ -86,7 +86,7 @@ class DeleteEntityAdapter:
                 .build()
 
             Container\
-                .get_usecase("DeleteUsecase", storage_engine)\
+                .get_usecase_repo("DeleteUsecase", storage_engine)\
                 .execute(delete_usecase_ic)
 
         return delete_entity_oc

@@ -49,7 +49,7 @@ class ListFeatureAdapter:
             .build()
 
         list_feature_oc = Container\
-            .get_usecase("ListFeature", storage_engine)\
+            .get_usecase_repo("ListFeature", storage_engine)\
             .execute(list_feature_ic)
 
         return list_feature_oc

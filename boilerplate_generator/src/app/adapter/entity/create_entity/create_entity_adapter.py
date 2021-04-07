@@ -64,7 +64,7 @@ class CreateEntityAdapter:
             .build()
 
         create_entity_oc = Container\
-            .get_usecase("CreateEntity", storage_engine)\
+            .get_usecase_repo("CreateEntity", storage_engine)\
             .execute(create_entity_ic)
 
         return create_entity_oc

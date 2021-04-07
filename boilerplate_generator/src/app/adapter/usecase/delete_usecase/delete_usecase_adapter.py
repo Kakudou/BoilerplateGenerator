@@ -56,7 +56,7 @@ class DeleteUsecaseAdapter:
             .build()
 
         delete_usecase_oc = Container\
-            .get_usecase("DeleteUsecase", storage_engine)\
+            .get_usecase_repo("DeleteUsecase", storage_engine)\
             .execute(delete_usecase_ic)
 
         return delete_usecase_oc

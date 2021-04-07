@@ -52,7 +52,7 @@ class DeleteProjectAdapter:
             .build()
 
         delete_project_oc = Container\
-            .get_usecase("DeleteProject", storage_engine)\
+            .get_usecase_repo("DeleteProject", storage_engine)\
             .execute(delete_project_ic)
 
         return delete_project_oc

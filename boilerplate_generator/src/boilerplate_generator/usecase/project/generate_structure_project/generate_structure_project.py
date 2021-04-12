@@ -118,9 +118,10 @@ class GenerateStructureProject:
             f"{dest_path}/{project.snakename}/src/__init__.py",
             f"{dest_path}/{project.snakename}/src/app/repository/inmemory/inmemory_persist.py",
             f"{dest_path}/{project.snakename}/src/{project.snakename}/gateway/abstract_gateway.py",
+            f"{dest_path}/{project.snakename}/src/utils/container.py",
             f"{dest_path}/{project.snakename}/src/utils/debug.py",
             f"{dest_path}/{project.snakename}/src/utils/singleton.py",
-            f"{dest_path}/{project.snakename}/src/utils/container.py",
+            f"{dest_path}/{project.snakename}/tests/factory.py",
         ]
 
         if len(project.types) != 0:

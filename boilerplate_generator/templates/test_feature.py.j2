@@ -4,6 +4,9 @@ import pytest
 from pytest_bdd\
     import scenario, given, when, then
 
+from {{ project.snakename }}.tests.factory\
+    import Factory
+
 STORAGE_ENGINE = "INMEMORY"
 __fullpath = os.path.dirname(os.path.abspath(__file__))
 
@@ -11,7 +14,7 @@ __fullpath = os.path.dirname(os.path.abspath(__file__))
 @scenario(f"{__fullpath.split('/{{ project.name }}/')[0]}"
           "/{{ project.name }}/{{ project.snakename }}"
           "/features/{{ project.snakename }}/{{ feature.snakename }}.feature",
-          "{{ feature.description }}")
+          "{{ feature.scenario }}")
 def test_{{ feature.snakename }}():
     pass
 

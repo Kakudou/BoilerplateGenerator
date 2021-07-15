@@ -150,7 +150,7 @@ class {{ entity.name }}INMEMORYRepository({{ entity.name }}Gateway):
 
         return updated
 
-    def find_all(self) -> List[str]:
+    def find_all(self) -> List[{{ entity.name }}]:
         """This function will find all {{ entity.name }}
 
         Parameters:
@@ -158,16 +158,18 @@ class {{ entity.name }}INMEMORYRepository({{ entity.name }}Gateway):
 
         Returns:
         --------
-        List[str]:
+        List[{{ entity.name }}]:
             all {{ entity.name }}
 
         """
 
-        {{ entity.snakename }}_names = []
+        {{ entity.snakename }}s = []
         for {{ entity.snakename }}_id in self.__persists.{{ entity.snakename }}s:
-            {{ entity.snakename }}_names.append(self.__persists.{{ entity.snakename }}s[{{ entity.snakename }}_id].name)
+            {{ entity.snakename }}_dto = self.__persists.{{ entity.snakename }}s[{{ entity.snakename }}_id]
+            {{ entity.snakename }} = self._convert_to_entity({{ entity.snakename }}_dto)
+            {{ entity.snakename }}s.append({{ entity.snakename }})
 
-        return {{ entity.snakename }}_names
+        return {{ entity.snakename }}s
 
     def find_by_identifier(self, identifier: str) -> {{ entity.name }}:
         """This function will find {{ entity.name }} by is identifier

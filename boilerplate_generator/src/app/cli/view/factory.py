@@ -71,7 +71,7 @@ class Factory:
                 project_name = questionary.select(
                     "Select one project in all of that:",
                     choices=choices,
-                    use_pointer=True,
+#?                    use_pointer=True,
                     use_shortcuts=True,
                     use_arrow_keys=True,).ask()
 
@@ -134,7 +134,7 @@ class Factory:
                 feature_name = questionary.select(
                     "Select one feature in all of that:",
                     choices=choices,
-                    use_pointer=True,
+#?                    use_pointer=True,
                     use_shortcuts=True,
                     use_arrow_keys=True,).ask()
 
@@ -196,7 +196,7 @@ class Factory:
                 constraint_name = questionary.select(
                     "Select one constraint in all of that:",
                     choices=choices,
-                    use_pointer=True,
+#?                    use_pointer=True,
                     use_shortcuts=True,
                     use_arrow_keys=True,).ask()
 
@@ -258,7 +258,7 @@ class Factory:
                 entity_name = questionary.select(
                     "Select one entity in all of that:",
                     choices=choices,
-                    use_pointer=True,
+#?                    use_pointer=True,
                     use_shortcuts=True,
                     use_arrow_keys=True,).ask()
 
@@ -320,7 +320,7 @@ class Factory:
                 usecase_name = questionary.select(
                     "Select one usecase in all of that:",
                     choices=choices,
-                    use_pointer=True,
+#?                    use_pointer=True,
                     use_shortcuts=True,
                     use_arrow_keys=True,).ask()
 
@@ -371,7 +371,7 @@ class Factory:
         project["types"] = questionary.checkbox(
             "What types of project this will be?",
             choices=choices,
-            use_pointer=True,
+#?            use_pointer=True,
         ).ask()
 
         return project
@@ -400,7 +400,7 @@ class Factory:
         feature["type_"] = questionary.select(
             "What types of feature this will be?",
             choices=choices,
-            use_pointer=True,
+#?            use_pointer=True,
         ).ask()
 
         feature["description"] = questionary.text(
@@ -465,7 +465,7 @@ class Factory:
         constraint["type_"] = questionary.select(
             "What types of constraint this will be?",
             choices=choices,
-            use_pointer=True,
+#?            use_pointer=True,
         ).ask()
 
         constraint["description"] = questionary.text(
@@ -607,7 +607,7 @@ class Factory:
             usecase["type_"] = questionary.select(
                 "What types of usecase this will be?",
                 choices=["Create", "Read", "Update", "Delete", "List", "Custom"],
-                use_pointer=True,
+#?                use_pointer=True,
             ).ask()
         elif usecase_update is not None and "Custom" not in usecase_update.type_:
             print("Only the update for Custom usecase are allowed.")

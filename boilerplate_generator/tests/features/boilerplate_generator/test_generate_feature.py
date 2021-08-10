@@ -62,7 +62,7 @@ def when_generate_feature(context):
 def then_generate_feature(context):
     try:
         dest_path = f"{context['project']['path']}/{context['project']['name']}"
-        assert os.path.exists(f"{dest_path}/generate_feature/features/generate_feature/generate_feature.feature")
-        assert os.path.exists(f"{dest_path}/generate_feature/tests/features/generate_feature/test_generate_feature.py")
+        assert os.path.exists(f"{dest_path}/generate_feature/features/cli/generate_feature.feature")
+        assert os.path.exists(f"{dest_path}/generate_feature/tests/features/cli/test_generate_feature.py")
     finally:
         shutil.rmtree(f"{context['project']['path']}/{context['project']['name']}")

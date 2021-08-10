@@ -22,6 +22,7 @@ class Factory:
         feature = {}
 
         feature["name"] = f"{name}"
+        feature["type_"] = "cli"
         feature["description"] = "Description for the feature"
         feature["scenario"] = "Description for the scenario"
         feature["given"] = "Given for the scenario"
@@ -36,6 +37,7 @@ class Factory:
         constraint = {}
 
         constraint["name"] = f"{name}"
+        constraint["type_"] = "cli"
         constraint["description"] = "Description for the constraint"
         constraint["scenario"] = "Description for the scenario"
         constraint["given"] = "Given for the scenario"

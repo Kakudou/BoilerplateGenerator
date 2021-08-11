@@ -204,7 +204,7 @@ class GenerateStructureProject:
         """
 
         created = False
-        if not os.path.isfile(path) or force:
+        if not os.path.isfile(path) or force or "__init__" in path :
             env = Environment(loader=FileSystemLoader("boilerplate_generator"),
                               trim_blocks=True, lstrip_blocks=True)
 

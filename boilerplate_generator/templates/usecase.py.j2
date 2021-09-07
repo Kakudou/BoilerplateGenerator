@@ -73,6 +73,7 @@ class {{ usecase.name }}:
 
         executed = False
         {{ entity.snakename }} = None
+        error = None
     {% if "List" != usecase.type_ %}
 
     {% for input_attr in usecase.input_attrs %}
@@ -98,11 +99,11 @@ class {{ usecase.name }}:
     {% elif "Read" == usecase.type_ %}
         {{ entity.snakename }} = self.gateway.find_by_identifier(identifier)
 
-        if {{ entity.snakename }} is None:
+        if {{ entity.snakename }} is not None:
+            executed = True
+        else:
             error = "This {{ entity.name }}, doesn't look like to exist"
             self.__output = self.builder.create().with_error(error).build()
-        else:
-            executed = True
     {% elif "Update" == usecase.type_ %}
         {{ entity.snakename }} = self.gateway.find_by_identifier(identifier)
 
@@ -151,7 +152,8 @@ class {{ usecase.name }}:
                                 .build()
 
         elif not executed and {{ entity.snakename }} is None:
-            error = "An error occured during persistence"
+            if error is None:
+                error = "An error occured during persistence"
             self.__output = self.builder.create().with_error(error).build()
 
         return self.__output

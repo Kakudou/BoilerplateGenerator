@@ -156,7 +156,7 @@ class GenerateEntity:
             try:
                 os.makedirs(path)
                 if not os.path.exists(f"{path}/__init__.py"):
-                    os.mknod(f"{path}/__init__.py")
+                    open(f"{path}/__init__.py", 'a').close()
                 created = True
             except PermissionError as err:
                 print(f"can't create folder at {path}: {err}")

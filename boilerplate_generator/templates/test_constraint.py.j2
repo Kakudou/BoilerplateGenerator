@@ -2,7 +2,7 @@ import os
 import pytest
 
 from pytest_bdd\
-    import scenario, given, when, then
+    import scenario, given, when, then, parsers
 
 from {{ project.snakename }}.tests.factory\
     import Factory
@@ -24,16 +24,16 @@ def context():
     return {}
 
 
-@given("{{ constraint.given }}")
+@given(parsers.parse("{{ constraint.given }}"))
 def given_{{ constraint.snakename }}(context):
     pass
 
 
-@when("{{ constraint.when }}")
+@when(parsers.parse("{{ constraint.when }}"))
 def when_{{ constraint.snakename }}(context):
     pass
 
 
-@then("{{ constraint.then }}")
+@then(parsers.parse("{{ constraint.then }}"))
 def then_{{ constraint.snakename }}(context):
     assert True == False

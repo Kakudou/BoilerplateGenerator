@@ -19,14 +19,14 @@ def test_{{ feature.snakename }}():
     pass
 
 
-@pytest.fixture(scope="function")
-def context():
-    return {}
+@given(parsers.parse("{{ feature.given | replace('<', '{') | replace('>','}') }}"), target_fixture="context")
+def given_{{ feature.snakename }}({% for param in feature.given.split('<')[1:] %}{{ param.split('>')[0] }}{% if not loop.last %}, {% endif %}{% endfor %}):
+    return {
+        {% for param in feature.given.split('<')[1:] %}
+        "{{ param.split('>')[0] }}": {{ param.split('>')[0] }}{% if not loop.last %},{% endif %}
 
-
-@given(parsers.parse("{{ feature.given }}"))
-def given_{{ feature.snakename }}(context):
-    pass
+        {% endfor %}
+    }
 
 
 @when(parsers.parse("{{ feature.when }}"))

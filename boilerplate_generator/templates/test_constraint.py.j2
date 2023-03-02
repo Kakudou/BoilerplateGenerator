@@ -1,5 +1,4 @@
 import os
-import pytest
 
 from pytest_bdd\
     import scenario, given, when, then, parsers
@@ -19,14 +18,14 @@ def test_{{ constraint.snakename }}():
     pass
 
 
-@pytest.fixture(scope="function")
-def context():
-    return {}
+@given(parsers.parse("{{ constraint.given | replace('<', '{') | replace('>','}') }}"), target_fixture="context")
+def given_{{ constraint.snakename }}({% for param in constraint.given.split('<')[1:] %}{{ param.split('>')[0] }}{% if not loop.last %}, {% endif %}{% endfor %}):
+    return {
+        {% for param in constraint.given.split('<')[1:] %}
+        "{{ param.split('>')[0] }}": {{ param.split('>')[0] }}{% if not loop.last %},{% endif %}
 
-
-@given(parsers.parse("{{ constraint.given }}"))
-def given_{{ constraint.snakename }}(context):
-    pass
+        {% endfor %}
+    }
 
 
 @when(parsers.parse("{{ constraint.when }}"))

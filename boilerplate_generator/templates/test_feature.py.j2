@@ -28,11 +28,11 @@ def given_{{ feature.snakename }}({% for param in feature.given.split('<')[1:] %
     }
 
 
-@when(parsers.parse("{{ feature.when }}"))
-def when_{{ feature.snakename }}(context):
+@when(parsers.parse("{{ feature.when | replace('<', '{') | replace('>','}') }}"))
+def when_{{ feature.snakename }}(context, {% for param in feature.when.split('<')[1:] %}{{ param.split('>')[0] }}{% if not loop.last %}, {% endif %}{% endfor %}):
     pass
 
 
-@then(parsers.parse("{{ feature.then }}"))
-def then_{{ feature.snakename }}(context):
+@then(parsers.parse("{{ feature.then | replace('<', '{') | replace('>','}') }}"))
+def then_{{ feature.snakename }}(context, {% for param in feature.then.split('<')[1:] %}{{ param.split('>')[0] }}{% if not loop.last %}, {% endif %}{% endfor %}):
     assert True == False

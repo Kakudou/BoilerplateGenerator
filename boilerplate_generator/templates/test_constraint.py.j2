@@ -28,11 +28,11 @@ def given_{{ constraint.snakename }}({% for param in constraint.given.split('<')
     }
 
 
-@when(parsers.parse("{{ constraint.when }}"))
-def when_{{ constraint.snakename }}(context):
+@when(parsers.parse("{{ constraint.when | replace('<', '{') | replace('>','}') }}"))
+def when_{{ constraint.snakename }}(context, {% for param in constraint.when.split('<')[1:] %}{{ param.split('>')[0] }}{% if not loop.last %}, {% endif %}{% endfor %}):
     pass
 
 
-@then(parsers.parse("{{ constraint.then }}"))
-def then_{{ constraint.snakename }}(context):
+@then(parsers.parse("{{ constraint.then | replace('<', '{') | replace('>','}') }}"))
+def then_{{ constraint.snakename }}(context, {% for param in constraint.then.split('<')[1:] %}{{ param.split('>')[0] }}{% if not loop.last %}, {% endif %}{% endfor %}):
     assert True == False

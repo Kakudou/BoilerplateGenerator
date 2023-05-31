@@ -1,0 +1,40 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "BoilerplateGenerator"
+authors = [
+  {name = "Kakudou - カクドウ", email = "contact@kakudou.org"},
+]
+description = "A simple boilerplate generator for Python projects."
+requires-python = ">=3.8"
+keywords = ["BoilerplateGenerator", "Gherkin", "Clean Architecture"]
+license = {text = ""}
+classifiers = [
+        "Programming Language :: Python :: 3",
+        "devel::Clean Architecture",
+        "devel::BDD",
+        "devel::Tools",
+        "devel::Gerkhin",
+        "devel::Boilerplate",
+]
+dependencies = [
+  "click",
+  "questionary",
+  "Jinja2",
+  "PyYaml",
+]
+dynamic = ["version", "readme"]
+
+[project.optional-dependencies]
+dev = ["flake8", "autopep8", "pynvim", "pytest-bdd"]
+
+[project.scripts]
+BoilerplateGenerator = "boilerplate_generator.__main__:boilerplate_generator"
+
+[tool.setuptools.dynamic]
+version = {attr = "boilerplate_generator.src.VERSION"}
+readme = {file = ["README.md"]}
+
+

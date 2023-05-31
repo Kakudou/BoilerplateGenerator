@@ -100,7 +100,7 @@ def then_generate_entity(context):
         assert os.path.isfile(f"{dest_path}/LICENSE")
         assert os.path.isfile(f"{dest_path}/README.md")
         assert os.path.isfile(f"{dest_path}/requirements")
-        assert os.path.isfile(f"{dest_path}/setup.py")
+        assert os.path.isfile(f"{dest_path}/pyproject.toml")
         assert os.path.isfile(f"{dest_path}/generate_structure/src/__init__.py")
         assert os.path.isfile(f"{dest_path}/generate_structure/src/app/repository/inmemory/inmemory_persist.py")
         assert os.path.isfile(f"{dest_path}/generate_structure/src/generate_structure/gateway/abstract_gateway.py")

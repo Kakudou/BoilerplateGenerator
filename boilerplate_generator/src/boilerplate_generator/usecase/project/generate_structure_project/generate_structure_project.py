@@ -114,7 +114,7 @@ class GenerateStructureProject:
             f"{dest_path}/LICENSE",
             f"{dest_path}/README.md",
             f"{dest_path}/requirements",
-            f"{dest_path}/setup.py",
+            f"{dest_path}/pyproject.toml",
             f"{dest_path}/{project.snakename}/src/__init__.py",
             f"{dest_path}/{project.snakename}/src/app/repository/inmemory/inmemory_persist.py",
             f"{dest_path}/{project.snakename}/src/{project.snakename}/gateway/abstract_gateway.py",

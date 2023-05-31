@@ -63,6 +63,6 @@ def then_generate_constraint(context):
     try:
         dest_path = f"{context['project']['path']}/{context['project']['name']}"
         assert os.path.exists(f"{dest_path}/generate_constraint/constraints/cli/generate_constraint.constraint")
-        assert os.path.exists(f"{dest_path}/generate_constraint/tests/constraints/cli/test_generate_constraint.py")
+        assert os.path.exists(f"{dest_path}/generate_constraint/tests/z_constraints/cli/test_generate_constraint.py")
     finally:
         shutil.rmtree(f"{context['project']['path']}/{context['project']['name']}")

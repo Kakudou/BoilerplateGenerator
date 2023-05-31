@@ -6,6 +6,14 @@ from pytest_bdd\
 from {{ project.snakename }}.tests.factory\
     import Factory
 
+from {{ project.snakename }}.src.utils.container\
+    import Container
+
+from {{ project.snakename }}.src.{{ project.snakename }}.usecase.\
+    .{{ feature.snakename }}.{{ feature.snakename }}_inputport_builder\
+    import InputPortBuilder
+
+
 STORAGE_ENGINE = "INMEMORY"
 __fullpath = os.path.dirname(os.path.abspath(__file__))
 
@@ -20,19 +28,31 @@ def test_{{ feature.snakename }}():
 
 @given(parsers.parse("{{ feature.given | replace('<', '{') | replace('>','}') }}"), target_fixture="context")
 def given_{{ feature.snakename }}({% for param in feature.given.split('<')[1:] %}{{ param.split('>')[0] }}{% if not loop.last %}, {% endif %}{% endfor %}):
+    input_contract = InputPortBuilder()\
+        .create()\
+        {% for param in feature.given.split('<')[1:] %}
+        .with_{{ param.split('>')[0] }}({{ param.split('>')[0] }})\
+        {% endfor %}
+        .build()
+
     return {
         {% for param in feature.given.split('<')[1:] %}
-        "{{ param.split('>')[0] }}": {{ param.split('>')[0] }}{% if not loop.last %},{% endif %}
-
+        "{{ param.split('>')[0] }}": {{ param.split('>')[0] }},
         {% endfor %}
+        "input_contract": input_contract
     }
 
 
 @when(parsers.parse("{{ feature.when | replace('<', '{') | replace('>','}') }}"))
 def when_{{ feature.snakename }}(context, {% for param in feature.when.split('<')[1:] %}{{ param.split('>')[0] }}{% if not loop.last %}, {% endif %}{% endfor %}):
-    pass
+    usecase = Container.get_usecase_repo("", STORAGE_ENGINE)
+    output_contract = usecase.execute(context["input_contract"])
+    context["output_contract"] = output_contract
 
 
 @then(parsers.parse("{{ feature.then | replace('<', '{') | replace('>','}') }}"))
 def then_{{ feature.snakename }}(context, {% for param in feature.then.split('<')[1:] %}{{ param.split('>')[0] }}{% if not loop.last %}, {% endif %}{% endfor %}):
-    assert True == False
+    {% for param in feature.then.split('<')[1:] %}
+    assert context["output_contract"]\
+        .{{ param.split('>')[0] }} == {{ param.split('>')[0] }}
+    {% endfor %}

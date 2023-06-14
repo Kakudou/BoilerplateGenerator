@@ -94,12 +94,12 @@ class GenerateConstraint:
 
         folders = [
             f"{dest_path}/{project.snakename}/constraints/{constraint.type_}/",
-            f"{dest_path}/{project.snakename}/tests/z_constraints/{constraint.type_}/",
+            f"{dest_path}/{project.snakename}/tests/constraints/{constraint.type_}/",
         ]
 
         files = [
             f"{dest_path}/{project.snakename}/constraints/{constraint.type_}/{constraint.snakename}.constraint",
-            f"{dest_path}/{project.snakename}/tests/z_constraints/{constraint.type_}/test_{constraint.snakename}.py",
+            f"{dest_path}/{project.snakename}/tests/constraints/{constraint.type_}/test_{constraint.snakename}.py",
         ]
 
         created_folders = []

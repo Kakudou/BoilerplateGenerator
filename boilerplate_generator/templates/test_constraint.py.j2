@@ -1,7 +1,9 @@
 import os
 
+from pytest import mark
 from pytest_bdd\
     import scenario, given, when, then, parsers
+
 
 from {{ project.snakename }}.tests.factory\
     import Factory
@@ -14,9 +16,10 @@ STORAGE_ENGINE = "INMEMORY"
 __fullpath = os.path.dirname(os.path.abspath(__file__))
 
 
+@mark.order()
 @scenario(f"{__fullpath.split('/{{ project.name }}/')[0]}"
           "/{{ project.name }}/{{ project.snakename }}"
-          "/constraints/{{ project.snakename }}/{{ constraint.snakename }}.constraint",
+          "/constraints/{% if constraint.type_ != "core" %}{{ constraint.type_ }}{% else %}{{ project.snakename}}{% endif %}/{{ constraint.snakename }}.constraint",
           "{{ constraint.scenario }}")
 def test_{{ constraint.snakename }}():
     pass

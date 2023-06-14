@@ -28,7 +28,7 @@ dependencies = [
 dynamic = ["version", "readme"]
 
 [project.optional-dependencies]
-dev = ["flake8", "autopep8", "pynvim", "pytest-bdd"]
+dev = ["flake8", "autopep8", "pynvim", "pytest-bdd", "pytest-order"]
 
 [project.scripts]
 BoilerplateGenerator = "boilerplate_generator.__main__:boilerplate_generator"

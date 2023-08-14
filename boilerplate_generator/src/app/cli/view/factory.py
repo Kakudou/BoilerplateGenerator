@@ -361,7 +361,7 @@ class Factory:
             if project_update is not None else "",
         ).ask()
 
-        choices = ["web", "cli", "api"]
+        choices = ["web", "cli", "api", "tui"]
         if project_update is not None:
             for choice in project_update.types:
                 choices.remove(choice)

@@ -8,7 +8,7 @@ from {{ project.snakename }}.src\
 from {{ project.snakename }}.src.utils.container\
     import Container
 from {{ project.snakename }}.src.{{ project.snakename }}.usecase.\
-    {{ entity.snakedomain }}.{{ usecase.snakename }}.{{ usecase.snakename }}_inputport_builder\
+    {{ entity.snakedomain | replace('/','.') }}.{{ usecase.snakename }}.{{ usecase.snakename }}_inputport_builder\
     import {{ usecase.name }}InputPortBuilder
 
 

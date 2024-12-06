@@ -9,13 +9,13 @@ from {{ project.snakename }}.src.utils.\
     singleton\
     import Singleton
 from {{ project.snakename }}.src.app.\
-    dto.{{ entity.snakedomain }}.{{ entity.snakename }}_dto\
+    dto.{{ entity.snakedomain | replace('/','.') }}.{{ entity.snakename }}_dto\
     import {{ entity.name }}DTO
 from {{ project.snakename }}.src.{{ project.snakename }}.gateway.\
-    {{ entity.snakedomain }}.{{ entity.snakename }}_gateway\
+    {{ entity.snakedomain | replace('/','.') }}.{{ entity.snakename }}_gateway\
     import {{ entity.name }}Gateway
 from {{ project.snakename }}.src.{{ project.snakename }}.entity.\
-    {{ entity.snakedomain }}.{{ entity.snakename }}\
+    {{ entity.snakedomain | replace('/','.') }}.{{ entity.snakename }}\
     import {{ entity.name }}
 from {{ project.snakename }}.src.app.\
     repository.inmemory.inmemory_persist\

@@ -6,17 +6,17 @@ from typing\
     import Any
 
 from {{ project.snakename }}.src.{{ project.snakename }}.usecase.\
-    {{ entity.snakedomain }}.{{ usecase.snakename }}.{{ usecase.snakename }}_inputport\
+    {{ entity.snakedomain | replace('/','.') }}.{{ usecase.snakename }}.{{ usecase.snakename }}_inputport\
     import {{ usecase.name }}InputPort
 from {{ project.snakename }}.src.{{ project.snakename }}.usecase.\
-    {{ entity.snakedomain }}.{{ usecase.snakename }}.{{ usecase.snakename }}_outputport_builder\
+    {{ entity.snakedomain | replace('/','.') }}.{{ usecase.snakename }}.{{ usecase.snakename }}_outputport_builder\
     import {{ usecase.name }}OutputPortBuilder
 from {{ project.snakename }}.src.{{ project.snakename }}.usecase.\
-    {{ entity.snakedomain }}.{{ usecase.snakename }}.{{ usecase.snakename }}_outputport\
+    {{ entity.snakedomain | replace('/','.') }}.{{ usecase.snakename }}.{{ usecase.snakename }}_outputport\
     import {{ usecase.name }}OutputPort
 {% if "Create" == usecase.type_ %}
 from {{ project.snakename }}.src.{{ project.snakename }}.entity.\
-    {{ entity.snakedomain }}.{{ entity.snakename }}\
+    {{ entity.snakedomain | replace('/','.') }}.{{ entity.snakename }}\
     import {{ entity.name }}
 {% endif %}
 

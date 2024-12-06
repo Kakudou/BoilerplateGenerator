@@ -11,7 +11,7 @@ from typing\
     import Any{% if typing|length > 0 %}, {{ typing | join(", ") }}{% endif %}
 
 from {{ project.snakename }}.src.{{ project.snakename }}.usecase.\
-    {{ entity.snakedomain }}.{{ usecase.snakename }}.{{ usecase.snakename }}_inputport\
+    {{ entity.snakedomain | replace('/','.') }}.{{ usecase.snakename }}.{{ usecase.snakename }}_inputport\
     import {{ usecase.name }}InputPort
 
 

@@ -1,4 +1,4 @@
-Constraint: When we delete an entity we should be sure to delete all the linked usecases.
+Feature: When we delete an entity we should be sure to delete all the linked usecases.
 
     Scenario: Delete an entity and check if the linked usecase are deleted.
         Given I have an <entity> with some CRUDL <usecases>.

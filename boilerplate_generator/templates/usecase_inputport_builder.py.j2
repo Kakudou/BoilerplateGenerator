@@ -68,8 +68,24 @@ class {{ usecase.name }}InputPortBuilder:
 
         """
 
+        self._validate_{{ input_attrs.name }}({{ input_attrs.name }})
         self.__input.{{ input_attrs.name }} = {{ input_attrs.name }}
         return self
+
+    def _validate_{{ input_attrs.name }}(self, {{ input_attrs.name }}: {{ input_attrs.type }}):
+        """ This function check the  validity of {{ input_attrs.name }} in the contract
+
+        Parameters:
+        -----------
+        {{ input_attrs.name }}: {{ input_attrs.type }}
+            the {{ input_attrs.name }} of the {{ usecase.name }}
+
+        Returns:
+        --------
+
+        """
+        raise NotImplementedError
+
 {% endfor %}
 
     def build(self) -> {{ usecase.name }}InputPort:
@@ -81,6 +97,10 @@ class {{ usecase.name }}InputPortBuilder:
             the contract filled
 
         """
+
+{% for input_attrs in usecase.input_attrs %}
+        self._validate_{{ input_attrs.name }}(self.__input.{{ input_attrs.name }})
+{% endfor %}
 
         return self.__input
 

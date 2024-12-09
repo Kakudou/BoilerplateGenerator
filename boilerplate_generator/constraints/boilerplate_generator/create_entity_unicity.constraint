@@ -1,4 +1,4 @@
-Constraint: A Entity should'nt be create if another one exist with the same name.
+Feature: A Entity should'nt be create if another one exist with the same name.
 
     Scenario: Create a Entity who already exist to check the error.
         Given I have a <entity> already created.

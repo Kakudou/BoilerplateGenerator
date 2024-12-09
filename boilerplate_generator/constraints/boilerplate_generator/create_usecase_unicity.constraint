@@ -1,4 +1,4 @@
-Constraint: A Usecase should'nt be create if another one exist with the same name.
+Feature: A Usecase should'nt be create if another one exist with the same name.
 
     Scenario: Create a Usecase who already exist to check the error.
         Given I have a <usecase> already created.

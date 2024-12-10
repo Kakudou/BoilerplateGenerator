@@ -53,6 +53,8 @@ def then_create_constraint(context):
     assert context["output_contract"].\
         description == context["constraint"]["description"]
     assert context["output_contract"].\
+        domain == context["constraint"]["domain"]
+    assert context["output_contract"].\
         scenario == context["constraint"]["scenario"]
     assert context["output_contract"].\
         given == context["constraint"]["given"]

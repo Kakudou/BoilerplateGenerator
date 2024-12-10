@@ -19,6 +19,10 @@ class Constraint:
         The name of the project
     __type: str
         The type of the constraint
+    __domain: str
+        The domain of the constraint
+    __snakedomain: str
+        The snakedomain of the constraint
     __description: str
         The description of the constraint
     __scenario: str
@@ -39,6 +43,8 @@ class Constraint:
     __snakename: str = None
     __project_name: str = None
     __type: str = None
+    __domain: str = None
+    __snakedomain: str = None
     __description: str = None
     __scenario: str = None
     __given: str = None
@@ -73,6 +79,19 @@ class Constraint:
     @type_.setter
     def type_(self, type_: str):
         self.__type = type_
+
+    @property
+    def domain(self) -> str:
+        return self.__domain
+
+    @domain.setter
+    def domain(self, domain: str):
+        self.__domain = domain
+        self.__snakedomain = re.sub(r'(?!^)([A-Z]+)', r'_\1', domain).lower()
+
+    @property
+    def snakedomain(self) -> str:
+        return self.__snakedomain
 
     @property
     def description(self) -> str:

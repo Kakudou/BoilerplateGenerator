@@ -13,8 +13,10 @@ class ConstraintView:
         The name of the constraint
     __project_name: str
         The name of the project
-    __type: str
+    __type_: str
         The type of the constraint
+    __domain: str
+        The domain of the constraint
     __description: str
         The description of the constraint
     __scenario: str
@@ -33,7 +35,8 @@ class ConstraintView:
 
     __name: str = None
     __project_name: str = None
-    __type: str = None
+    __type_: str = None
+    __domain: str = None
     __description: str = None
     __scenario: str = None
     __given: str = None
@@ -58,11 +61,19 @@ class ConstraintView:
 
     @property
     def type_(self) -> str:
-        return self.__type
+        return self.__type_
 
     @type_.setter
     def type_(self, type_: str):
-        self.__type = type_
+        self.__type_ = type_
+
+    @property
+    def domain(self) -> str:
+        return self.__domain
+
+    @domain.setter
+    def domain(self, domain_: str):
+        self.__domain = domain
 
     @property
     def description(self) -> str:
@@ -110,6 +121,7 @@ class ConstraintView:
         constraint.name = contract.name
         constraint.project_name = contract.project_name
         constraint.type_ = contract.type_
+        constraint.domain = contract.domain
         constraint.description = contract.description
         constraint.scenario = contract.scenario
         constraint.given = contract.given

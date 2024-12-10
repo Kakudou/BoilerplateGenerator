@@ -86,6 +86,7 @@ class ReadConstraint:
                                 .with_name(constraint.name)\
                                 .with_project_name(constraint.project_name)\
                                 .with_type_(constraint.type_)\
+                                .with_domain(constraint.domain)\
                                 .with_description(constraint.description)\
                                 .with_scenario(constraint.scenario)\
                                 .with_given(constraint.given)\

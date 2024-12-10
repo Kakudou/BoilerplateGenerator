@@ -80,6 +80,7 @@ class UpdateConstraint:
 
         answers["project_name"] = project_name
         answers["name"] = constraint_name
+        answers["domain"] = constraint_domain
 
         contract = UpdateConstraintAdapter.execute(answers)
 

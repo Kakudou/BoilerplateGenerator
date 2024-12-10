@@ -476,6 +476,15 @@ class Factory:
 #?            use_pointer=True,
         ).ask()
 
+
+        constraint["domain"] = questionary.text(
+            "What's the constraint domain?",
+            validate=lambda val: "That domain need a name!"
+            if len(val) == 0 else True,
+            default=constraint_update.name
+            if constraint_update is not None else ""
+        ).ask()
+
         constraint["description"] = questionary.text(
             "Can you describe the constraint?",
             validate=lambda val: "That constraint need a description!"

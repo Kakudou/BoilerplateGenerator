@@ -27,6 +27,8 @@ class CreateConstraintInputPortBuilder:
         fill the project_name in the contract
     with_type_: str
         fill the type_ in the contract
+    with_domain: str
+        fill the domain in the contract
     with_description: str
         fill the description in the contract
     with_scenario: str
@@ -109,6 +111,24 @@ class CreateConstraintInputPortBuilder:
         """
 
         self.__input.type_ = type_
+        return self
+
+    def with_domain(self, domain: str):
+        """ This function fill the domain in the contract
+
+        Parameters:
+        -----------
+        domain: str
+            the domain of the CreateConstraint
+
+        Returns:
+        --------
+        CreateConstraintOutputPortBuilder
+            this builder with the contract to fill
+
+        """
+
+        self.__input.domain = domain
         return self
 
     def with_description(self, description: str):

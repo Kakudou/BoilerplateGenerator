@@ -17,8 +17,10 @@ class ConstraintDTO:
         The name of the constraint
     __project_name: str
         The name of the project
-    __type: str
+    __type_: str
         The type_ of the constraint
+    __domain: str
+        The domain of the constraint
     __description: str
         The description of the constraint
     __scenario: str
@@ -38,7 +40,8 @@ class ConstraintDTO:
     __id: str = None
     __name: str = None
     __project_name: str = None
-    __type: str = None
+    __type_: str = None
+    __domain: str = None
     __description: str = None
     __scenario: str = None
     __given: str = None
@@ -71,11 +74,19 @@ class ConstraintDTO:
 
     @property
     def type_(self) -> str:
-        return self.__type
+        return self.__type_
 
     @type_.setter
     def type_(self, type_: str):
-        self.__type = type_
+        self.__type_ = type_
+
+    @property
+    def domain(self) -> str:
+        return self.__domain
+
+    @domain.setter
+    def domain(self, domain: str):
+        self.__domain = domain
 
     @property
     def description(self) -> str:
@@ -121,6 +132,7 @@ class ConstraintDTO:
         obj_to_yaml = {
             "name": self.name,
             "type": self.type_,
+            "domain": self.domain,
             "description": self.description,
             "scenario": self.scenario,
             "given": self.given,
@@ -133,6 +145,7 @@ class ConstraintDTO:
     def from_yaml(self, yaml):
         self.name = yaml["name"]
         self.type_ = yaml["type"]
+        self.domain = yaml["domain"]
         self.description = yaml["description"]
         self.scenario = yaml["scenario"]
         self.given = yaml["given"]

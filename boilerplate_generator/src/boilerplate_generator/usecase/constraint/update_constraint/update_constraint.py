@@ -71,6 +71,7 @@ class UpdateConstraint:
         name = inputp.name
         project_name = inputp.project_name
         type_ = inputp.type_
+        domain = inputp.domain
         description = inputp.description
         scenario = inputp.scenario
         given = inputp.given
@@ -88,6 +89,7 @@ class UpdateConstraint:
             constraint.name = name
             constraint.project_name = project_name
             constraint.type_ = type_
+            constraint.domain = domain
             constraint.description = description
             constraint.scenario = scenario
             constraint.given = given
@@ -101,6 +103,7 @@ class UpdateConstraint:
                                 .with_name(constraint.name)\
                                 .with_project_name(constraint.project_name)\
                                 .with_type_(constraint.type_)\
+                                .with_domain(constraint.domain)\
                                 .with_description(constraint.description)\
                                 .with_scenario(constraint.scenario)\
                                 .with_given(constraint.given)\

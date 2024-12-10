@@ -19,7 +19,7 @@ __fullpath = os.path.dirname(os.path.abspath(__file__))
 @mark.order()
 @scenario(f"{__fullpath.split('/{{ project.name }}/')[0]}"
           "/{{ project.name }}/{{ project.snakename }}"
-          "/constraints/{% if constraint.type_ != "core" %}{{ constraint.type_ }}{% else %}{{ project.snakename}}{% endif %}/{{ constraint.snakename }}.constraint",
+          "/constraints/{% if constraint.type_ != "core" %}{{ constraint.type_ }}{% else %}{{ project.snakename}}{% endif %}/{{constraint.snakedomain}}/{{ constraint.snakename }}.constraint",
           "{{ constraint.scenario }}")
 def test_{{ constraint.snakename }}():
     pass

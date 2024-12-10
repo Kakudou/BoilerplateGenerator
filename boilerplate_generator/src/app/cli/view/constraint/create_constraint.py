@@ -50,6 +50,7 @@ class CreateConstraint:
         if inputs["type_"] == "core":
             snakename = re.sub(r'(?!^)([A-Z]+)', r'_\1', project.name).lower()
             inputs["type_"] = snakename
+        inputs["domain"] = domain
         inputs["project_name"] = project_name
 
         print("")

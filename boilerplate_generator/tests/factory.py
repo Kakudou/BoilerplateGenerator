@@ -39,6 +39,7 @@ class Factory:
 
         constraint["name"] = f"{name}"
         constraint["type_"] = "cli"
+        constraint["domain"] = "cli"
         constraint["description"] = "Description for the constraint"
         constraint["scenario"] = "Description for the scenario"
         constraint["given"] = "Given for the scenario"

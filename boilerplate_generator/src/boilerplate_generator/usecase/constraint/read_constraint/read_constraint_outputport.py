@@ -17,6 +17,8 @@ class ReadConstraintOutputPort:
         The name of the project
     type_: str
         The type_ of the constraint
+    domain: str
+        The domain of the constraint
     description: str
         The description of the constraint
     scenario: str
@@ -34,6 +36,7 @@ class ReadConstraintOutputPort:
     name: str = None
     project_name: str = None
     type_: str = None
+    domain: str = None
     description: str = None
     scenario: str = None
     given: str = None

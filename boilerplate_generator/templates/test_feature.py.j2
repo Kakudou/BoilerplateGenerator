@@ -22,7 +22,7 @@ __fullpath = os.path.dirname(os.path.abspath(__file__))
 @mark.order()
 @scenario(f"{__fullpath.split('/{{ project.name }}/')[0]}"
           "/{{ project.name }}/{{ project.snakename }}"
-          "/features/{% if feature.type_ != "core" %}{{ feature.type_ }}{% else %}{{ project.snakename}}{% endif %}/{{ feature.snakename }}.feature",
+          "/features/{% if feature.type_ != "core" %}{{ feature.type_ }}{% else %}{{ project.snakename}}{% endif %}/{{feature.snakedomain}}/{{ feature.snakename }}.feature",
           "{{ feature.scenario }}")
 def test_{{ feature.snakename }}():
     pass

@@ -53,6 +53,8 @@ def then_create_feature(context):
     assert context["output_contract"].\
         description == context["feature"]["description"]
     assert context["output_contract"].\
+        domain == context["feature"]["domain"]
+    assert context["output_contract"].\
         scenario == context["feature"]["scenario"]
     assert context["output_contract"].\
         given == context["feature"]["given"]

@@ -19,6 +19,8 @@ class FeatureDTO:
         The name of the project
     __type_: str
         The type_ of the feature
+    __domain: str
+        The domain of the feature
     __description: str
         The description of the feature
     __scenario: str
@@ -39,6 +41,7 @@ class FeatureDTO:
     __name: str = None
     __project_name: str = None
     __type_: str = None
+    __domain: str = None
     __description: str = None
     __scenario: str = None
     __given: str = None
@@ -76,6 +79,14 @@ class FeatureDTO:
     @type_.setter
     def type_(self, type_: str):
         self.__type_ = type_
+
+    @property
+    def domain(self) -> str:
+        return self.__domain
+
+    @domain.setter
+    def domain(self, domain: str):
+        self.__domain = domain
 
     @property
     def description(self) -> str:
@@ -121,6 +132,7 @@ class FeatureDTO:
         obj_to_yaml = {
             "name": self.name,
             "type": self.type_,
+            "domain": self.domain,
             "description": self.description,
             "scenario": self.scenario,
             "given": self.given,
@@ -133,6 +145,7 @@ class FeatureDTO:
     def from_yaml(self, yaml):
         self.name = yaml["name"]
         self.type_ = yaml["type"]
+        self.domain = yaml["domain"]
         self.description = yaml["description"]
         self.scenario = yaml["scenario"]
         self.given = yaml["given"]

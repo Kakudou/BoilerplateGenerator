@@ -403,6 +403,14 @@ class Factory:
 #?            use_pointer=True,
         ).ask()
 
+        feature["domain"] = questionary.text(
+            "What's the feature domain?",
+            validate=lambda val: "That domain need a name!"
+            if len(val) == 0 else True,
+            default=feature_update.name
+            if feature_update is not None else ""
+        ).ask()
+
         feature["description"] = questionary.text(
             "Can you describe the feature?",
             validate=lambda val: "That feature need a description!"

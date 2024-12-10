@@ -74,6 +74,7 @@ class CreateFeature:
         name = inputp.name
         project_name = inputp.project_name
         type_ = inputp.type_
+        domain = inputp.domain
         description = inputp.description
         scenario = inputp.scenario
         given = inputp.given
@@ -92,6 +93,7 @@ class CreateFeature:
             feature.name = name
             feature.project_name = project_name
             feature.type_ = type_
+            feature.domain = domain
             feature.description = description
             feature.scenario = scenario
             feature.given = given
@@ -105,6 +107,7 @@ class CreateFeature:
                                 .with_name(feature.name)\
                                 .with_project_name(feature.project_name)\
                                 .with_type_(feature.type_)\
+                                .with_domain(feature.domain)\
                                 .with_description(feature.description)\
                                 .with_scenario(feature.scenario)\
                                 .with_given(feature.given)\

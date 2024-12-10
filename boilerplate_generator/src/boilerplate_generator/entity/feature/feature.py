@@ -19,6 +19,10 @@ class Feature:
         The name of the project
     __type: str
         The type of feature based on the project type
+    __domain: str
+        The domain of the entity
+    __snakedomain: str
+          The snake case domain of the project
     __description: str
         The description of the feature
     __scenario: str
@@ -39,6 +43,8 @@ class Feature:
     __snakename: str = None
     __project_name: str = None
     __type: str = None
+    __domain: str = None
+    __snakedomain: str = None
     __description: str = None
     __scenario: str = None
     __given: str = None
@@ -69,6 +75,18 @@ class Feature:
     @type_.setter
     def type_(self, type_: str):
         self.__type = type_
+    @property
+    def domain(self) -> str:
+        return self.__domain
+
+    @domain.setter
+    def domain(self, domain: str):
+        self.__domain = domain
+        self.__snakedomain = re.sub(r'(?!^)([A-Z]+)', r'_\1', domain).lower()
+
+    @property
+    def snakedomain(self) -> str:
+        return self.__snakedomain
 
     @project_name.setter
     def project_name(self, project_name: str):

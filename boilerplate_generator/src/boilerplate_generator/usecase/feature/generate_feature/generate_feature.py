@@ -93,13 +93,13 @@ class GenerateFeature:
         dest_path = f"{project.path}/{project.name}"
 
         folders = [
-            f"{dest_path}/{project.snakename}/features/{feature.type_}/",
-            f"{dest_path}/{project.snakename}/tests/features/{feature.type_}/",
+            f"{dest_path}/{project.snakename}/features/{feature.type_}/{feature.snakedomain}",
+            f"{dest_path}/{project.snakename}/tests/features/{feature.type_}/{feature.snakedomain}",
         ]
 
         files = [
-            f"{dest_path}/{project.snakename}/features/{feature.type_}/{feature.snakename}.feature",
-            f"{dest_path}/{project.snakename}/tests/features/{feature.type_}/test_{feature.snakename}.py",
+            f"{dest_path}/{project.snakename}/features/{feature.type_}/{feature.snakedomain}/{feature.snakename}.feature",
+            f"{dest_path}/{project.snakename}/tests/features/{feature.type_}/{feature.snakedomain}/test_{feature.snakename}.py",
         ]
 
         created_folders = []

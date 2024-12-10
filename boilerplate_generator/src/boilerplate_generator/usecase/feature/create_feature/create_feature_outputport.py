@@ -17,6 +17,8 @@ class CreateFeatureOutputPort:
         The name of the project
     type_: str
         The type_ of the feature
+    domain: str
+        The domain of the feature
     description: str
         The description of the feature
     scenario: str
@@ -34,6 +36,7 @@ class CreateFeatureOutputPort:
     name: str = None
     project_name: str = None
     type_: str = None
+    domain: str = None
     description: str = None
     scenario: str = None
     given: str = None

@@ -23,6 +23,7 @@ class Factory:
 
         feature["name"] = f"{name}"
         feature["type_"] = "cli"
+        feature["domain"] = "cli"
         feature["description"] = "Description for the feature"
         feature["scenario"] = "Description for the scenario"
         feature["given"] = "Given for the scenario"

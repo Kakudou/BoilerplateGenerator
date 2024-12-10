@@ -81,6 +81,7 @@ class UpdateFeature:
 
         answers["project_name"] = project_name
         answers["name"] = feature_name
+        answers["domain"] = feature_domain
         if answers["type_"] == "core":
             snakename = re.sub(r'(?!^)([A-Z]+)', r'_\1', project_name).lower()
             answers["type_"] = snakename

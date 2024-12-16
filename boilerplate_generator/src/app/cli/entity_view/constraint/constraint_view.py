@@ -72,7 +72,7 @@ class ConstraintView:
         return self.__domain
 
     @domain.setter
-    def domain(self, domain_: str):
+    def domain(self, domain: str):
         self.__domain = domain
 
     @property

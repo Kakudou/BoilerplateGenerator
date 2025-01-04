@@ -85,7 +85,6 @@ class {{ usecase.name }}InputPortBuilder:
 
         """
         raise NotImplementedError
-
 {% endfor %}
 
     def build(self) -> {{ usecase.name }}InputPort:

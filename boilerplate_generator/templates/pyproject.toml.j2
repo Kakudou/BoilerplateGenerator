@@ -18,7 +18,12 @@ dependencies = []
 dynamic = ["version", "readme"]
 
 [project.optional-dependencies]
-dev = ["flake8", "autopep8", "pynvim", "pytest-bdd", "pytest-order"]
+dev = ["flake8",
+       "black",
+       "pre-commit",
+       "pynvim",
+       "pytest-bdd",
+       "pytest-order"]
 
 [project.scripts]
 {{ project.name }} = ""
@@ -27,4 +32,19 @@ dev = ["flake8", "autopep8", "pynvim", "pytest-bdd", "pytest-order"]
 version = {attr = ""}
 readme = {file = ["README.md"]}
 
-
+[tool.black]
+line-length = 79
+include = '\.pyi?$'
+exclude = '''
+/(
+    \.git
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | _build
+  | buck-out
+  | build
+  | dist
+)/
+'''

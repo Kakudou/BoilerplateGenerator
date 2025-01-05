@@ -115,6 +115,8 @@ class GenerateStructureProject:
             f"{dest_path}/README.md",
             f"{dest_path}/requirements",
             f"{dest_path}/pyproject.toml",
+            f"{dest_path}/.flake8",
+            f"{dest_path}/.pre-commit-config.yaml",
             f"{dest_path}/{project.snakename}/src/__init__.py",
             f"{dest_path}/{project.snakename}/src/app/repository/inmemory/inmemory_persist.py",
             f"{dest_path}/{project.snakename}/src/{project.snakename}/gateway/abstract_gateway.py",

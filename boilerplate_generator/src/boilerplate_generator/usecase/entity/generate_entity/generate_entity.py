@@ -95,15 +95,15 @@ class GenerateEntity:
         folders = [
             f"{dest_path}/{project.snakename}/src/app/dto/{entity.snakedomain}/",
             f"{dest_path}/{project.snakename}/src/app/repository/inmemory/{entity.snakedomain}/",
-            f"{dest_path}/{project.snakename}/src/{project.snakename}/entity/{entity.snakedomain}/",
-            f"{dest_path}/{project.snakename}/src/{project.snakename}/gateway/{entity.snakedomain}/",
+            f"{dest_path}/{project.snakename}/src/core/entity/{entity.snakedomain}/",
+            f"{dest_path}/{project.snakename}/src/core/gateway/{entity.snakedomain}/",
         ]
 
         files = [
             f"{dest_path}/{project.snakename}/src/app/dto/{entity.snakedomain}/{entity.snakename}_dto.py",
             f"{dest_path}/{project.snakename}/src/app/repository/inmemory/{entity.snakedomain}/{entity.snakename}_inmemory_repository.py",
-            f"{dest_path}/{project.snakename}/src/{project.snakename}/entity/{entity.snakedomain}/{entity.snakename}.py",
-            f"{dest_path}/{project.snakename}/src/{project.snakename}/gateway/{entity.snakedomain}/{entity.snakename}_gateway.py",
+            f"{dest_path}/{project.snakename}/src/core/entity/{entity.snakedomain}/{entity.snakename}.py",
+            f"{dest_path}/{project.snakename}/src/core/gateway/{entity.snakedomain}/{entity.snakename}_gateway.py",
         ]
         if len(project.types) != 0:
             for project_type in project.types:

@@ -133,18 +133,18 @@ class GenerateUsecase:
 
         folders = [
             f"{dest_path}/{project.snakename}/src/app/adapter/{entity.snakedomain}/{usecase.snakename}",
-            f"{dest_path}/{project.snakename}/src/{project.snakename}/usecase/",
-            f"{dest_path}/{project.snakename}/src/{project.snakename}/usecase/{entity.snakedomain}",
-            f"{dest_path}/{project.snakename}/src/{project.snakename}/usecase/{entity.snakedomain}/{usecase.snakename}"
+            f"{dest_path}/{project.snakename}/src/core/usecase/",
+            f"{dest_path}/{project.snakename}/src/core/usecase/{entity.snakedomain}",
+            f"{dest_path}/{project.snakename}/src/core/usecase/{entity.snakedomain}/{usecase.snakename}"
         ]
 
         files = [
             f"{dest_path}/{project.snakename}/src/app/adapter/{entity.snakedomain}/{usecase.snakename}/{usecase.snakename}_adapter.py",
-            f"{dest_path}/{project.snakename}/src/{project.snakename}/usecase/{entity.snakedomain}/{usecase.snakename}/{usecase.snakename}.py",
-            f"{dest_path}/{project.snakename}/src/{project.snakename}/usecase/{entity.snakedomain}/{usecase.snakename}/{usecase.snakename}_inputport.py",
-            f"{dest_path}/{project.snakename}/src/{project.snakename}/usecase/{entity.snakedomain}/{usecase.snakename}/{usecase.snakename}_inputport_builder.py",
-            f"{dest_path}/{project.snakename}/src/{project.snakename}/usecase/{entity.snakedomain}/{usecase.snakename}/{usecase.snakename}_outputport.py",
-            f"{dest_path}/{project.snakename}/src/{project.snakename}/usecase/{entity.snakedomain}/{usecase.snakename}/{usecase.snakename}_outputport_builder.py"
+            f"{dest_path}/{project.snakename}/src/core/usecase/{entity.snakedomain}/{usecase.snakename}/{usecase.snakename}.py",
+            f"{dest_path}/{project.snakename}/src/core/usecase/{entity.snakedomain}/{usecase.snakename}/{usecase.snakename}_inputport.py",
+            f"{dest_path}/{project.snakename}/src/core/usecase/{entity.snakedomain}/{usecase.snakename}/{usecase.snakename}_inputport_builder.py",
+            f"{dest_path}/{project.snakename}/src/core/usecase/{entity.snakedomain}/{usecase.snakename}/{usecase.snakename}_outputport.py",
+            f"{dest_path}/{project.snakename}/src/core/usecase/{entity.snakedomain}/{usecase.snakename}/{usecase.snakename}_outputport_builder.py"
         ]
 
         created_folders = []
